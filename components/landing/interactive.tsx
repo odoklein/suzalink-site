@@ -38,7 +38,8 @@ export function Spotlight({
 
 /** Counts up to a number the first time it scrolls into view ("5 174", "20+", "≈ 20"). */
 export function CountUp({ value }: { value: string }) {
-  const match = value.match(/^(\D*)([\d\s ]+)(.*)$/);
+  // prefix / number (spaces between digits allowed) / suffix with its own spacing (« 59 € », « 20+ »).
+  const match = value.match(/^(\D*?)(\d(?:[\d\s\u00a0\u202f]*\d)?)(.*)$/);
   const target = match ? Number(match[2].replace(/\D/g, "")) : NaN;
   const [shown, setShown] = useState(value);
   const ref = useRef<HTMLSpanElement>(null);
@@ -55,8 +56,10 @@ export function CountUp({ value }: { value: string }) {
         io.disconnect();
         const start = performance.now();
         const tick = (now: number) => {
-          const t = Math.min(1, (now - start) / 1100);
-          setShown(format(Math.round(target * (1 - Math.pow(1 - t, 3)))));
+          const t = Math.min(1, (now - start) / 1600);
+          // Expo out, the site's motion curve: fast at first, then a long soft landing.
+          const eased = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+          setShown(t < 1 ? format(Math.round(target * eased)) : value);
           if (t < 1) raf = requestAnimationFrame(tick);
         };
         raf = requestAnimationFrame(tick);

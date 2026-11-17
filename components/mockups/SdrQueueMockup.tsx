@@ -1,6 +1,7 @@
 import { Icon } from "@/components/ui/Icon";
 import { cx } from "@/components/ui/primitives";
 import { Avatar, Kbd, MockButton, MockRoot, MockWindow, Tag } from "./parts";
+import { CallTimer } from "./CallTimer";
 
 const queue = [
   { initials: "CM", name: "Claire Martin", company: "Nordfil", tag: { label: "En appel", tone: "rose" as const }, active: true },
@@ -84,7 +85,9 @@ export function SdrQueueMockup({ label, variant = "full" }: { label: string; var
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-rose opacity-60" />
                 <span className="relative inline-flex size-2 rounded-full bg-rose" />
               </span>
-              <span className="font-mono text-[11px]">En appel · 02:14</span>
+              <span className="font-mono text-[11px]">
+                En appel · <CallTimer />
+              </span>
             </div>
           </div>
 
@@ -99,7 +102,7 @@ export function SdrQueueMockup({ label, variant = "full" }: { label: string; var
             <p className="mb-2 text-[11px] font-medium text-muted">Résultat en 1 clic</p>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {outcomes.map((o) => (
-                <MockButton key={o.label} variant={o.variant ?? "outline"} className="text-[11.5px]">
+                <MockButton key={o.label} variant={o.variant ?? "outline"} className={cx("text-[11.5px]", o.key === "1" && "stage-press")}>
                   {o.label}
                   <Kbd>{o.key}</Kbd>
                 </MockButton>

@@ -177,7 +177,8 @@ function renderBlock(block: Block, i: number) {
     case "pains":
       return (
         <Section key={id} id={id}>
-          <Reveal>{header}</Reveal>
+          <Reveal stagger>{header}</Reveal>
+          <Reveal delay={0.12}>
           <ul className={cx("mt-12 grid gap-4", block.items.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2")}>
             {block.items.map((it, n) => (
               <Spotlight as="li" key={it.title} className="rounded-[24px] border border-line bg-white p-7">
@@ -189,13 +190,15 @@ function renderBlock(block: Block, i: number) {
               </Spotlight>
             ))}
           </ul>
+          </Reveal>
         </Section>
       );
 
     case "steps":
       return (
         <Section key={id} id={id} tone="white">
-          <Reveal>{header}</Reveal>
+          <Reveal stagger>{header}</Reveal>
+          <Reveal delay={0.12}>
           <ol className={cx("relative mt-12 grid gap-4", block.items.length === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "lg:grid-cols-5")}>
             <span aria-hidden className="absolute top-9 right-[10%] left-[10%] hidden h-px bg-[repeating-linear-gradient(90deg,var(--color-line)_0_6px,transparent_6px_12px)] lg:block" />
             {block.items.map((it, n) => (
@@ -213,13 +216,15 @@ function renderBlock(block: Block, i: number) {
               </Spotlight>
             ))}
           </ol>
+          </Reveal>
         </Section>
       );
 
     case "features":
       return (
         <Section key={id} id={id}>
-          <Reveal>{header}</Reveal>
+          <Reveal stagger>{header}</Reveal>
+          <Reveal delay={0.12}>
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {block.items.map((it) => (
               <Spotlight as="li" key={it.title} className="rounded-[20px] border border-line bg-white p-6">
@@ -233,6 +238,7 @@ function renderBlock(block: Block, i: number) {
               </Spotlight>
             ))}
           </ul>
+          </Reveal>
         </Section>
       );
 
@@ -240,7 +246,7 @@ function renderBlock(block: Block, i: number) {
       return (
         <Section key={id} id={id} tone="dark" className="relative overflow-hidden">
           <div aria-hidden className="pointer-events-none absolute -top-40 -right-40 size-[520px] rounded-full bg-[radial-gradient(closest-side,rgba(185,237,214,.18),transparent)]" />
-          <Reveal>{header}</Reveal>
+          <Reveal stagger>{header}</Reveal>
           <dl className="relative mt-12 grid gap-px overflow-hidden rounded-[24px] border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
             {block.stats.map((s) => (
               <div key={s.label} className="group/stat flex flex-col-reverse bg-navy p-7 transition-colors duration-300 hover:bg-navy-deep">
@@ -263,7 +269,8 @@ function renderBlock(block: Block, i: number) {
     case "compare":
       return (
         <Section key={id} id={id} tone="white">
-          <Reveal>{header}</Reveal>
+          <Reveal stagger>{header}</Reveal>
+          <Reveal delay={0.12}>
           <div className="mt-12 overflow-x-auto rounded-[20px] border border-line">
             <table className="w-full min-w-[640px] border-collapse text-left text-[15px]">
               <caption className="sr-only">{block.title}</caption>
@@ -298,6 +305,7 @@ function renderBlock(block: Block, i: number) {
               </tbody>
             </table>
           </div>
+          </Reveal>
           {block.note ? <p className="mt-4 text-[13px] text-muted">{block.note}</p> : null}
         </Section>
       );
@@ -305,15 +313,17 @@ function renderBlock(block: Block, i: number) {
     case "offers":
       return (
         <Section key={id} id={id} tone="white">
-          <Reveal>{header}</Reveal>
+          <Reveal stagger>{header}</Reveal>
           {block.image ? (
-            <div className="relative mt-12 aspect-[16/7] overflow-hidden rounded-[28px] bg-sand">
+            <Reveal stagger>
+              <div className="r-media relative mt-12 aspect-[16/7] overflow-hidden rounded-[28px] bg-sand">
               <Image src={block.image.src} alt={block.image.alt} fill sizes="(min-width: 1240px) 1180px, 100vw" className="object-cover object-[center_62%]" />
-            </div>
+              </div>
+            </Reveal>
           ) : null}
-          <div className="mt-12">
+          <Reveal className="mt-12" delay={0.12}>
             <OfferCards />
-          </div>
+          </Reveal>
           <div className="mt-8">
             <Guarantees />
           </div>
@@ -493,7 +503,7 @@ function renderBlock(block: Block, i: number) {
       return (
         <Section key={id} id={id}>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,380px)_1fr] lg:gap-20">
-            <Reveal className="lg:sticky lg:top-28 lg:self-start">{header}</Reveal>
+            <Reveal stagger className="lg:sticky lg:top-28 lg:self-start">{header}</Reveal>
             <div className="flex max-w-[68ch] flex-col gap-8">
               {block.parts.map((p) => (
                 <div key={p.title} className="border-t border-line pt-6">
@@ -538,6 +548,7 @@ function renderBlock(block: Block, i: number) {
       return (
         <Section key={id} id={id}>
           {header}
+          <Reveal delay={0.12}>
           <ul className="mt-10 grid gap-4 md:grid-cols-3">
             {block.items.map((l) => (
               <Spotlight as="li" key={l.href} className="rounded-[20px] border border-line bg-white">
@@ -553,6 +564,7 @@ function renderBlock(block: Block, i: number) {
               </Spotlight>
             ))}
           </ul>
+          </Reveal>
         </Section>
       );
 
@@ -654,7 +666,7 @@ export function LandingPage({ page, extra, children }: { page: LandingPageData; 
                 hero.visual ? "lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center" : "lg:grid-cols-[1fr_380px] lg:items-end",
               )}
             >
-              <div className="flex flex-col gap-6">
+              <div className="stage flex flex-col gap-6">
                 <Eyebrow>{hero.eyebrow}</Eyebrow>
                 <h1
                   id="page-title"
@@ -695,7 +707,7 @@ export function LandingPage({ page, extra, children }: { page: LandingPageData; 
                 ) : null}
               </div>
               {hero.visual?.photo ? (
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-sand">
+                <div className="stage-visual relative aspect-[4/3] overflow-hidden rounded-[28px] bg-sand">
                   <Image
                     src={hero.visual.src}
                     alt={hero.visual.alt}
@@ -713,10 +725,10 @@ export function LandingPage({ page, extra, children }: { page: LandingPageData; 
                   height={hero.visual.height}
                   priority
                   sizes="(min-width: 1024px) 520px, 100vw"
-                  className="h-auto w-full drop-shadow-[0_30px_50px_rgba(12,31,35,.18)]"
+                  className="stage-visual h-auto w-full drop-shadow-[0_30px_50px_rgba(12,31,35,.18)]"
                 />
               ) : hero.bullets ? (
-                <ul className="flex flex-col gap-3 rounded-[24px] border border-line bg-white/90 p-6 text-[15px] shadow-[0_18px_40px_-30px_rgba(12,31,35,.35)] backdrop-blur">
+                <ul className="stage-visual flex flex-col gap-3 rounded-[24px] border border-line bg-white/90 p-6 text-[15px] shadow-[0_18px_40px_-30px_rgba(12,31,35,.35)] backdrop-blur">
                   {hero.bullets.map((b) => (
                     <li key={b} className="flex gap-3">
                       <Check />

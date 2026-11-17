@@ -3,18 +3,23 @@ import { formatEuro, stackComparison, stackTotal, startingPrice } from "@/conten
 import { tools } from "@/content/brands";
 import { Logo } from "@/components/brand/Logo";
 import { BrandMark } from "@/components/ui/BrandMark";
-import { Container, SectionHeader } from "@/components/ui/primitives";
+import { Container, SectionHeader, cascade } from "@/components/ui/primitives";
+import { CountUp } from "@/components/landing/interactive";
 import { Reveal } from "@/components/ui/motion";
 
 const range = (min: number, max: number) => `${formatEuro(min).replace(/\s?€/, "")}–${formatEuro(max)}`;
 
-/** 8. "Le stack morcelé vous coûte 4×": big number + comparison table, on a navy band. */
+/**
+ * « Cinq abonnements pour un seul métier » : grand prix + tableau comparatif, sur bande teal.
+ * Mouvement : le titre arrive, puis les outils s'empilent ligne à ligne comme une facture qui
+ * s'allonge, le total tombe, et la ligne Suzalink arrive en dernier. Le prix compte jusqu'à 59 €.
+ */
 export function StackCost() {
   return (
     <section id="cout" aria-labelledby="stack-title" className="on-dark bg-navy py-24 text-white sm:py-32">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
-          <Reveal className="flex min-w-0 flex-col gap-12">
+        <Reveal stagger className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+          <div className="flex min-w-0 flex-col gap-12">
             <SectionHeader
               id="stack-title"
               eyebrow={stack.eyebrow}
@@ -23,16 +28,19 @@ export function StackCost() {
               action={stack.action}
               tone="dark"
             />
-            <div className="border-t border-white/15 pt-8">
-              <p className="eyebrow text-white/70">Suzalink, dès</p>
-              <p className="font-display-tight mt-2 text-[clamp(5rem,12vw,9.5rem)] leading-[0.9] font-light">
-                {formatEuro(startingPrice)}
-              </p>
-              <p className="mt-4 max-w-[36ch] text-white/75">{stack.bigNumberCaption}</p>
+            <div className="relative pt-8" style={cascade(4)}>
+              <span aria-hidden className="r-line absolute inset-x-0 top-0 h-px bg-white/15" />
+              <div className="r-item">
+                <p className="eyebrow text-white/70">Suzalink, dès</p>
+                <p className="font-display-tight mt-2 text-[clamp(5rem,12vw,9.5rem)] leading-[0.9] font-light tabular-nums">
+                  <CountUp value={formatEuro(startingPrice)} />
+                </p>
+                <p className="mt-4 max-w-[36ch] text-white/75">{stack.bigNumberCaption}</p>
+              </div>
             </div>
-          </Reveal>
+          </div>
 
-          <Reveal delay={0.1} className="min-w-0 self-center">
+          <div className="r-item min-w-0 self-center" style={cascade(2)}>
             <div className="overflow-x-auto rounded-[20px] border border-white/15 bg-white/[.04]">
               <table className="w-full min-w-[460px] border-collapse text-left">
                 <caption className="px-6 pt-6 pb-2 text-left text-[15px] text-white/75">{stack.tableCaption}</caption>
@@ -50,8 +58,8 @@ export function StackCost() {
                   </tr>
                 </thead>
                 <tbody>
-                  {stackComparison.rows.map((row) => (
-                    <tr key={row.tool} className="border-t border-white/10">
+                  {stackComparison.rows.map((row, n) => (
+                    <tr key={row.tool} className="r-item border-t border-white/10" style={cascade(n + 4)}>
                       <th scope="row" className="px-6 py-4 font-medium">
                         <span className="flex items-center gap-3">
                           <span className="flex -space-x-1.5">
@@ -66,7 +74,7 @@ export function StackCost() {
                       <td className="px-6 py-4 text-right font-mono text-[15px] whitespace-nowrap">{range(row.min, row.max)}</td>
                     </tr>
                   ))}
-                  <tr className="border-t border-white/30">
+                  <tr className="r-item border-t border-white/30" style={cascade(stackComparison.rows.length + 5)}>
                     <th scope="row" colSpan={2} className="px-6 py-4 font-semibold">
                       {stack.totalLabel}
                     </th>
@@ -74,7 +82,7 @@ export function StackCost() {
                       ≈ {range(stackTotal.min, stackTotal.max)}
                     </td>
                   </tr>
-                  <tr className="bg-white text-ink">
+                  <tr className="r-item bg-white text-ink" style={cascade(stackComparison.rows.length + 8)}>
                     <th scope="row" className="relative px-6 py-5 font-semibold">
                       <span aria-hidden className="absolute top-3 bottom-3 left-0 w-1 rounded-r-full bg-rose" />
                       <span className="flex items-center gap-3">
@@ -91,8 +99,8 @@ export function StackCost() {
               </table>
             </div>
             <p className="mt-4 text-[13px] leading-relaxed text-white/65">{stackComparison.footnote}</p>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

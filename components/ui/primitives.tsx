@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ComponentProps, ReactNode } from "react";
+import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { Icon } from "./Icon";
 
 export function cx(...classes: Array<string | false | null | undefined>) {
@@ -109,7 +109,10 @@ export function ArrowLink({
   );
 }
 
-/** Eyebrow + headline + 1–2 lines of subtext + one action. */
+/** Position of an element in a reveal cascade (see .r-item in app/globals.css). */
+export const cascade = (i: number) => ({ "--i": i }) as CSSProperties;
+
+/** Eyebrow + headline + 1–2 lines of subtext + one action, revealed in cascade. */
 export function SectionHeader({
   id,
   eyebrow,
@@ -139,11 +142,14 @@ export function SectionHeader({
   const centered = align === "center";
   return (
     <div className={cx("flex flex-col gap-5", centered && "mx-auto items-center text-center", className)}>
-      <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
+      <div className="r-item" style={cascade(0)}>
+        <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
+      </div>
       <Heading
         id={id}
+        style={cascade(1)}
         className={cx(
-          "font-display-tight text-[clamp(2.25rem,4.6vw,3.75rem)] leading-[1.02] font-light",
+          "r-item font-display-tight text-[clamp(2.25rem,4.6vw,3.75rem)] leading-[1.02] font-light",
           tone === "dark" ? "text-white" : "text-ink",
           centered ? "max-w-[18ch]" : "max-w-[16ch]",
         )}
@@ -152,8 +158,9 @@ export function SectionHeader({
       </Heading>
       {subtitle ? (
         <p
+          style={cascade(2)}
           className={cx(
-            "max-w-[56ch] text-[17px] leading-relaxed sm:text-lg",
+            "r-item max-w-[56ch] text-[17px] leading-relaxed sm:text-lg",
             tone === "dark" ? "text-white/75" : "text-muted",
           )}
         >
@@ -161,7 +168,7 @@ export function SectionHeader({
         </p>
       ) : null}
       {action ? (
-        <div className="mt-2">
+        <div className="r-item mt-2" style={cascade(3)}>
           <ButtonLink href={action.href} variant={actionVariant ?? (tone === "dark" ? "light" : "primary")} arrow>
             {action.label}
           </ButtonLink>
@@ -182,10 +189,10 @@ export function Mark({ children }: { children: ReactNode }) {
       <svg aria-hidden viewBox="0 0 200 12" preserveAspectRatio="none" fill="none">
         <path
           d="M2 8.5C38 4.2 92 3 132 4.4c22 .8 44 2.4 66 4.6"
+          pathLength={1}
           stroke="var(--color-rose)"
-          strokeWidth="5"
+          strokeWidth="4.5"
           strokeLinecap="round"
-          vectorEffect="non-scaling-stroke"
         />
       </svg>
     </span>

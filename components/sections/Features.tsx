@@ -1,20 +1,22 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { features } from "@/content/home";
 import { Reveal } from "@/components/ui/motion";
-import { Container, SectionHeader, cx } from "@/components/ui/primitives";
+import { Container, SectionHeader, cascade, cx } from "@/components/ui/primitives";
 
 // « Le logiciel derrière chaque appel » : bento of five small product UIs.
 // The UIs are illustrations: one description for assistive tech (features.label),
-// the visual details are aria-hidden. Motion is CSS only and stops with reduced motion.
+// the visual details are aria-hidden. Motion is CSS only and stops with reduced motion:
+// the cards land in cascade, then each card keeps one quiet, looping product gesture
+// (the equalizer of the live call, the result keys lighting up in turn, the playhead).
 
 const panel = "rounded-[16px] border border-line bg-white shadow-[0_18px_40px_-30px_rgba(12,31,35,.35)]";
 
-function Card({ title, body, className, children, delay }: { title: string; body: string; className?: string; children: ReactNode; delay: number }) {
+function Card({ title, body, className, children, order }: { title: string; body: string; className?: string; children: ReactNode; order: number }) {
   return (
-    <Reveal
-      delay={delay}
+    <div
+      style={cascade(order + 2)}
       className={cx(
-        "flex flex-col overflow-hidden rounded-[24px] border border-line bg-white p-6 sm:p-7",
+        "r-item flex flex-col overflow-hidden rounded-[24px] border border-line bg-white p-6 sm:p-7",
         className,
       )}
     >
@@ -23,7 +25,7 @@ function Card({ title, body, className, children, delay }: { title: string; body
       <div aria-hidden className="mt-6 flex flex-1 flex-col justify-end">
         {children}
       </div>
-    </Reveal>
+    </div>
   );
 }
 
@@ -89,12 +91,14 @@ function Keys() {
           <span
             key={k}
             className={cx(
-              "flex min-h-[58px] items-center justify-between gap-2 rounded-[14px] border px-3.5 py-2.5 text-[14px] leading-tight font-medium",
-              on ? "border-transparent bg-mint text-navy shadow-[0_10px_24px_-14px_rgba(17,47,53,.5)]" : "border-line bg-white text-ink",
+              "relative isolate flex min-h-[58px] items-center justify-between gap-2 overflow-hidden rounded-[14px] border border-line bg-white px-3.5 py-2.5 text-[14px] leading-tight font-medium text-ink",
+              on && "motion-reduce:border-transparent motion-reduce:bg-mint motion-reduce:text-navy",
             )}
           >
+            {/* Lights up in turn (see .key-cycle in app/globals.css); static on « RDV pris » with reduced motion. */}
+            <span aria-hidden className="key-cycle absolute inset-0 -z-10 bg-mint" style={{ "--k": i } as CSSProperties} />
             {k}
-            <kbd className={cx("grid size-7 shrink-0 place-items-center rounded-[8px] border font-mono text-[12px]", on ? "border-navy/15 bg-white/70" : "border-line bg-paper")}>
+            <kbd className="grid size-7 shrink-0 place-items-center rounded-[8px] border border-line bg-paper/80 font-mono text-[12px]">
               {i + 1}
             </kbd>
           </span>
@@ -237,27 +241,27 @@ export function Features() {
   return (
     <section id="produit" aria-labelledby="features-title" className="py-24 sm:py-32">
       <Container>
-        <Reveal>
+        <Reveal stagger>
           <SectionHeader id="features-title" eyebrow={features.eyebrow} title={features.title} align="center" />
+          <p className="sr-only">{features.label}</p>
+          <div className="mt-14 grid gap-4 sm:mt-16 md:grid-cols-2 xl:grid-cols-12 xl:gap-5">
+            <Card {...features.queue} className="xl:col-span-4" order={0}>
+              <Queue />
+            </Card>
+            <Card {...features.keys} className="xl:col-span-4" order={1}>
+              <Keys />
+            </Card>
+            <Card {...features.ai} className="md:col-span-2 xl:col-span-4" order={2}>
+              <AiResult />
+            </Card>
+            <Card {...features.journal} className="md:col-span-2 xl:col-span-7" order={3}>
+              <Journal />
+            </Card>
+            <Card {...features.portal} className="md:col-span-2 xl:col-span-5" order={4}>
+              <Portal />
+            </Card>
+          </div>
         </Reveal>
-        <p className="sr-only">{features.label}</p>
-        <div className="mt-14 grid gap-4 sm:mt-16 md:grid-cols-2 xl:grid-cols-12 xl:gap-5">
-          <Card {...features.queue} className="xl:col-span-4" delay={0}>
-            <Queue />
-          </Card>
-          <Card {...features.keys} className="xl:col-span-4" delay={0.06}>
-            <Keys />
-          </Card>
-          <Card {...features.ai} className="md:col-span-2 xl:col-span-4" delay={0.12}>
-            <AiResult />
-          </Card>
-          <Card {...features.journal} className="md:col-span-2 xl:col-span-7" delay={0}>
-            <Journal />
-          </Card>
-          <Card {...features.portal} className="md:col-span-2 xl:col-span-5" delay={0.06}>
-            <Portal />
-          </Card>
-        </div>
       </Container>
     </section>
   );
