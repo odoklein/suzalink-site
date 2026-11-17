@@ -56,10 +56,10 @@ export function SiteHeader() {
         <MegaMenu />
 
         <div className="ml-auto hidden items-center gap-2 lg:flex">
-          <a href={site.loginUrl} className="rounded-full px-3.5 py-2 text-[15px] text-ink/80 hover:text-ink">
+          <a href={site.loginUrl} className="rounded-full px-3.5 py-2 text-[15px] text-ink/80 transition-colors duration-200 hover:bg-ink/[.04] hover:text-ink">
             {site.loginLabel}
           </a>
-          <ButtonLink href={site.demoHref} size="sm" className="h-11 px-5">
+          <ButtonLink href={site.demoHref} size="sm" className="px-5">
             {site.demoLabel}
           </ButtonLink>
         </div>

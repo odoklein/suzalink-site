@@ -32,7 +32,8 @@ export type Block =
   | (Head & { kind: "features"; items: Array<{ title: string; body: string; icon?: IconName }> })
   | (Head & { kind: "proof"; stats: Array<{ value: string; label: string }>; story?: string; note: string })
   | (Head & { kind: "compare"; columns: string[]; rows: Array<{ label: string; cells: string[] }>; note?: string })
-  | (Head & { kind: "offers" })
+  /** Les trois offres de prospection (content/offers.ts). `image` : visuel large au-dessus des cartes. */
+  | (Head & { kind: "offers"; image?: { src: string; alt: string; width: number; height: number } })
   /** Les trois offres CRM de content/pricing.ts (même bloc que sur l'accueil). */
   | { kind: "crm-pricing"; id?: string }
   /** Encadré « En bref » juste sous le hero : la réponse à la question de la page, en 40 à 60 mots. */
@@ -71,7 +72,14 @@ export type LandingPage = {
     secondary?: Link;
     bullets?: string[];
     /** Visuel à droite du titre (remplace la carte de puces). Fichier dans public/visuals/. */
-    visual?: { src: string; alt: string; width: number; height: number };
+    visual?: {
+      src: string;
+      alt: string;
+      width: number;
+      height: number;
+      /** true pour une photo de la série de marque (public/photos/) : cadre arrondi, recadrée. */
+      photo?: boolean;
+    };
   };
   blocks: Block[];
 };

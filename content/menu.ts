@@ -27,8 +27,8 @@ export const menu: MenuItem[] = [
         title: "Deux façons de travailler",
         layout: "cards",
         links: [
-          { label: "Suzalink Prospection", href: "/prospection-externalisee", body: "Nos SDR prennent vos RDV. Chaque appel est enregistré et visible.", icon: "phone", image: "/visuals/mission-semaine.webp" },
-          { label: "Suzalink CRM", href: "/crm-agence-prospection", body: "Votre équipe appelle avec notre CRM, à votre marque.", icon: "grid", image: "/visuals/marque-blanche.webp" },
+          { label: "Suzalink Prospection", href: "/prospection-externalisee", body: "Nos téléprospecteurs prennent vos RDV. Chaque appel est enregistré et visible.", icon: "phone", image: "/visuals/mission-semaine.webp" },
+          { label: "Suzalink CRM", href: "/crm-agence-prospection", body: "Votre équipe appelle avec notre logiciel, à votre marque.", icon: "grid", image: "/visuals/marque-blanche.webp" },
         ],
       },
     ],
@@ -40,9 +40,9 @@ export const menu: MenuItem[] = [
       image: "/visuals/fiche-rdv-ia.webp",
     },
     footer: [
-      { label: "Sécurité et instance dédiée", href: "/#securite", icon: "shield" },
-      { label: "Téléphonie Allo et OnOff", href: "/#execution", icon: "waveform" },
-      { label: "Intelligence artificielle", href: "/#ia", icon: "sparkle" },
+      { label: "Comment ça marche", href: "/#comment", icon: "waveform" },
+      { label: "Nos garanties", href: "/#garanties", icon: "shield" },
+      { label: "Sécurité des données", href: "/#securite", icon: "lock" },
     ],
   },
   {
@@ -54,7 +54,7 @@ export const menu: MenuItem[] = [
           { label: "Des RDV sans recruter", href: "/prospection-externalisee", icon: "calendar" },
           { label: "Tester un nouveau marché", href: "/tarifs#sprint", icon: "target" },
           { label: "Équiper mon agence", href: "/crm-agence-prospection", icon: "building" },
-          { label: "Piloter mes SDR", href: "/#roles", icon: "chart" },
+          { label: "Trouver des RDV pour mes clients", href: "/partenaires", icon: "users" },
         ],
       },
       {
@@ -69,9 +69,9 @@ export const menu: MenuItem[] = [
         title: "Par organisation",
         layout: "cards",
         links: [
-          { label: "PME", href: "/prospection-externalisee", body: "Des RDV qualifiés sans embaucher, avec un test de deux semaines.", icon: "briefcase" },
-          { label: "Agences de prospection", href: "/crm-agence-prospection", body: "Un CRM à votre marque, avec portail client.", icon: "building" },
-          { label: "Équipes SDR", href: "/#roles", body: "File d'appels, résultat en un clic, IA intégrée.", icon: "users" },
+          { label: "Dirigeants de PME", href: "/prospection-externalisee", body: "Des RDV qualifiés sans embaucher, avec un test de deux semaines.", icon: "briefcase" },
+          { label: "Directeurs commerciaux externalisés", href: "/partenaires", body: "Des RDV pour vos clients, chaque appel visible dans leur portail.", icon: "users" },
+          { label: "Agences et équipes commerciales", href: "/crm-agence-prospection", body: "Le logiciel à votre marque, avec portail client.", icon: "building" },
         ],
       },
     ],

@@ -36,7 +36,7 @@ export const guidesHub: LandingPage = {
       eyebrow: "Nos offres",
       title: "Quand vous voulez passer à l'action",
       items: [
-        { label: "Prospection externalisée", href: "/prospection-externalisee", body: "Nos SDR prennent vos RDV, chaque appel est visible." },
+        { label: "Prospection externalisée", href: "/prospection-externalisee", body: "Nos téléprospecteurs prennent vos RDV, chaque appel est visible." },
         { label: "CRM pour agences", href: "/crm-agence-prospection", body: "Votre équipe appelle avec notre CRM, à votre marque." },
         { label: "Tarifs", href: "/tarifs", body: "Prix publics, hors taxes, sans « nous consulter »." },
       ],
@@ -91,7 +91,7 @@ export const aPropos: LandingPage = {
   meta: {
     title: "À propos de Suzalink, une marque de Suzali Conseil",
     description:
-      "Suzalink est la marque de prospection et de CRM de Suzali Conseil : une vingtaine de SDR, 5 à 10 missions en parallèle, et un CRM construit sur le terrain.",
+      "Suzalink est la marque de prospection et de CRM de Suzali Conseil : une vingtaine de téléprospecteurs (SDR), 5 à 10 missions en parallèle, et un CRM construit sur le terrain.",
   },
   hero: {
     eyebrow: "À propos",
@@ -105,8 +105,8 @@ export const aPropos: LandingPage = {
       kind: "answer",
       question: "Qui est derrière Suzalink ?",
       answer:
-        "Suzalink est une marque de Suzali Conseil, société de conseil commercial. L'équipe compte une vingtaine de SDR qui mènent 5 à 10 missions de prospection en parallèle. Suzalink réunit deux offres : la prospection externalisée, et le CRM que nous utilisons pour la faire, proposé aux agences et aux équipes SDR.",
-      facts: ["≈ 20 SDR", "5 à 10 missions en parallèle", "Un CRM utilisé chaque jour par l'équipe"],
+        "Suzalink est une marque de Suzali Conseil, société de conseil commercial. L'équipe compte une vingtaine de téléprospecteurs (SDR) qui mènent 5 à 10 missions de prospection en parallèle. Suzalink réunit deux offres : la prospection externalisée, et le CRM que nous utilisons pour la faire, proposé aux agences et aux équipes SDR.",
+      facts: ["≈ 20 téléprospecteurs", "5 à 10 missions en parallèle", "Un CRM utilisé chaque jour par l'équipe"],
     },
     {
       kind: "prose",
@@ -123,7 +123,7 @@ export const aPropos: LandingPage = {
         {
           title: "Pourquoi un CRM",
           paragraphs: [
-            "Nos SDR passaient d'une mission à l'autre dans la journée, nos clients voulaient voir les appels, et aucun outil ne faisait les deux sans bricolage. Nous avons donc construit le nôtre : file d'appels, enregistrements, fiche de RDV rédigée par l'IA, portail client. C'est devenu [le CRM Suzalink](/crm-agence-prospection).",
+            "Nos téléprospecteurs passaient d'une mission à l'autre dans la journée, nos clients voulaient voir les appels, et aucun outil ne faisait les deux sans bricolage. Nous avons donc construit le nôtre : file d'appels, enregistrements, fiche de RDV rédigée par l'IA, portail client. C'est devenu [le CRM Suzalink](/crm-agence-prospection).",
           ],
         },
         {
@@ -154,7 +154,7 @@ export const aPropos: LandingPage = {
       eyebrow: "Pour aller plus loin",
       title: "Découvrir Suzalink",
       items: [
-        { label: "Prospection externalisée", href: "/prospection-externalisee", body: "Nos SDR prennent vos RDV." },
+        { label: "Prospection externalisée", href: "/prospection-externalisee", body: "Nos téléprospecteurs prennent vos RDV." },
         { label: "CRM pour agences", href: "/crm-agence-prospection", body: "Le CRM à votre marque." },
         { label: "Nos guides", href: "/guides", body: "Ce que nous apprenons au téléphone." },
       ],

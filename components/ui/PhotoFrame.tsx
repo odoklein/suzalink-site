@@ -31,7 +31,7 @@ export function PhotoFrame({
   return (
     <div
       className={cx(
-        "grain relative overflow-hidden bg-[radial-gradient(120%_90%_at_20%_10%,#d9d2c3_0%,#a9b3a0_45%,#55634f_100%)]",
+        "grain relative overflow-hidden bg-sand",
         className,
       )}
     >

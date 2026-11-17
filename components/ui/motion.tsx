@@ -1,9 +1,9 @@
 "use client";
 
-import { LazyMotion, MotionConfig, domAnimation, m, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { LazyMotion, MotionConfig, domAnimation } from "framer-motion";
+import { useEffect, useRef, type CSSProperties, type ReactNode, type RefObject } from "react";
 
-/** Loads only the DOM animation features and honours prefers-reduced-motion. */
+/** Loads only the DOM animation features (used by the mega menu) and honours prefers-reduced-motion. */
 export function MotionProvider({ children }: { children: ReactNode }) {
   return (
     <LazyMotion features={domAnimation} strict>
@@ -12,7 +12,12 @@ export function MotionProvider({ children }: { children: ReactNode }) {
   );
 }
 
-/** Soft fade + slide-up when the element scrolls into view (300 ms, once). */
+/**
+ * Soft fade + slide-up the first time a block scrolls into view.
+ * Progressive enhancement: the server HTML is always visible (search engines, AI crawlers,
+ * no-JS). Only blocks that are still below the fold after load get hidden, then revealed.
+ * Styles live in app/globals.css ([data-reveal]).
+ */
 export function Reveal({
   children,
   delay = 0,
@@ -24,17 +29,45 @@ export function Reveal({
   className?: string;
   as?: "div" | "li" | "article";
 }) {
-  const reduce = useReducedMotion();
-  const Comp = m[as];
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (el.getBoundingClientRect().top < window.innerHeight) return;
+    el.dataset.reveal = "hidden";
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        el.dataset.reveal = "shown";
+        io.disconnect();
+      },
+      { rootMargin: "0px 0px -8% 0px" },
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      delete el.dataset.reveal;
+    };
+  }, []);
+
+  const style = delay ? ({ "--reveal-delay": `${delay}s` } as CSSProperties) : undefined;
+  if (as === "li")
+    return (
+      <li ref={ref as RefObject<HTMLLIElement>} className={className} style={style}>
+        {children}
+      </li>
+    );
+  if (as === "article")
+    return (
+      <article ref={ref} className={className} style={style}>
+        {children}
+      </article>
+    );
   return (
-    <Comp
-      className={className}
-      initial={reduce ? false : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.35, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
+    <div ref={ref as RefObject<HTMLDivElement>} className={className} style={style}>
       {children}
-    </Comp>
+    </div>
   );
 }

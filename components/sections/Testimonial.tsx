@@ -4,6 +4,8 @@ import { Reveal } from "@/components/ui/motion";
 
 /** 10. Large testimonial. Placeholder until a real, approved quote exists. */
 export function Testimonial() {
+  // Hidden until a real, approved quote replaces the placeholder (content/home.ts).
+  if (testimonial.placeholder) return null;
   return (
     <section aria-labelledby="testimonial-title" className="pb-24 sm:pb-32">
       <Container>

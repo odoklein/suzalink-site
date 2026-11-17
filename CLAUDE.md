@@ -21,10 +21,11 @@ UI). Explique ce que tu fais en français simple, sans jargon technique, et mont
 | Visuels produit (PNG/WebP sans fond) | `public/visuals/` |
 | Prix et offres du CRM | `content/pricing.ts` |
 | Offres de prospection (sprint, mission, 100 % résultat) et garanties | `content/offers.ts` |
-| Pages d'offre : /prospection-externalisee, /crm-agence-prospection, /tarifs | `content/pages/<page>.ts` |
+| Pages d'offre : /prospection-externalisee, /crm-agence-prospection, /tarifs, /partenaires | `content/pages/<page>.ts` |
 | Pages secteur /secteurs/<cible> (une entrée = une page, sitemap inclus) | `content/pages/secteurs.ts` |
 | Logos clients et outils cités | `content/brands.ts` (+ fichiers dans `public/logos/`) |
 | Photos et leur texte alternatif | `content/images.ts` (+ fichiers dans `public/photos/`) |
+| Garanties affichées (accueil, offres) | `content/offers.ts` (`guarantees`) |
 | Page et formulaire de démo | `content/demo.ts` |
 | Mise en page d'une section | `components/sections/<Section>.tsx` |
 | Couleurs, typographie | `app/globals.css` (bloc `@theme`) |
@@ -50,7 +51,33 @@ aucune modification de composant.
 - **Typographie** : titres en Bricolage Grotesque (léger, interlettrage serré), texte en Geist,
   eyebrows en Geist Mono majuscules. Ne pas ajouter d'autre police.
 - **Ton** : français, direct, concret, vouvoiement. Chaque section : un eyebrow, un titre de
-  8 mots maximum, 1 à 2 lignes de texte, une seule action.
+  8 mots maximum, 1 à 2 lignes de texte, une seule action. On rassure avant de promettre :
+  explications claires, mises en page calmes, preuves réelles.
+- **Mot souligné** : un mot clé d'un titre peut recevoir le trait jaune dessiné à la main
+  (champ `mark` dans `content/home.ts`, composant `Mark`). Pas plus d'un par titre, et pas sur
+  chaque section : il perd sa force s'il est partout.
+- **Visuels** : la série crème / teal / menthe de `public/photos/` (voir `content/images.ts`).
+  Ce sont des visuels illustratifs : jamais à côté d'un témoignage ou d'un cas client, ils
+  passeraient pour de vrais clients. Pas de photo de banque d'images, pas de 3D ni de décor
+  derrière les maquettes du produit. Un visuel n'apparaît qu'une fois sur le site.
+
+## Écrire simple
+
+Le site parle à des dirigeants de PME, à des directeurs commerciaux externalisés et à des
+agences. On écrit comme on leur parlerait au téléphone :
+
+| Éviter | Écrire |
+|---|---|
+| SDR (seul) | téléprospecteur ; « téléprospecteur (SDR) » à la première mention d'une page |
+| CRM d'exécution outbound | logiciel de prospection téléphonique |
+| stack, stack morcelé | vos outils, vos abonnements |
+| single-tenant, base PostgreSQL isolée, S3 | un espace à part, une base à vous, un stockage privé |
+| BANT, closer | besoin, budget, décideur ; le commercial qui reçoit le RDV |
+| digest, agent de veille | la liste des priorités du matin, une alerte |
+| Call Vault | les appels enregistrés |
+
+Exceptions : les guides (`content/pages/guides.ts`) et la page CRM pour agences gardent « SDR »
+quand c'est le mot recherché sur Google ou le vocabulaire du lecteur.
 
 ## Règles de contenu
 

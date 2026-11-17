@@ -13,11 +13,11 @@ export const site = {
   lang: "fr",
 
   seo: {
-    title: "Suzalink — RDV B2B qualifiés et CRM de prospection",
-    titleTemplate: "%s · Suzalink",
+    title: "Suzalink : prise de rendez-vous B2B et CRM de prospection",
+    titleTemplate: "%s | Suzalink",
     description:
-      "Nos SDR prennent vos RDV B2B, ou votre équipe appelle avec notre CRM : téléphonie, appels enregistrés, IA et portail client. Une marque de Suzali Conseil.",
-    ogImageAlt: "Suzalink — Votre prospection. Vos règles.",
+      "Prise de rendez-vous B2B : nos téléprospecteurs remplissent votre agenda, ou votre équipe appelle avec notre CRM. Chaque appel est enregistré et visible.",
+    ogImageAlt: "Suzalink : votre prospection, vos règles.",
   },
 
   /** Lien « Se connecter ». TODO : URL de l'application. */
@@ -37,7 +37,7 @@ export const site = {
 
 
   footer: {
-    tagline: "Des RDV B2B pris par nos SDR, ou le CRM pour les prendre vous-même.",
+    tagline: "Des RDV B2B pris par nos téléprospecteurs, ou le logiciel pour les prendre vous-même.",
     /** Maison mère : affichée sous le logo et dans les données structurées. */
     parent: { name: "Suzali Conseil", url: "https://suzaliconseil.com", label: "Une marque de Suzali Conseil" },
     columns: [
@@ -47,16 +47,17 @@ export const site = {
           { label: "Prospection externalisée", href: "/prospection-externalisee" },
           { label: "Sprint test", href: "/tarifs#sprint" },
           { label: "CRM pour agences", href: "/crm-agence-prospection" },
+          { label: "Partenaires", href: "/partenaires" },
           { label: "Tarifs", href: "/tarifs" },
         ],
       },
       {
         title: "Produit",
         links: [
-          { label: "Exécution", href: "/#execution" },
-          { label: "IA", href: "/#ia" },
-          { label: "Instance dédiée", href: "/#instance" },
-          { label: "Portail client", href: "/#roles" },
+          { label: "Comment ça marche", href: "/#comment" },
+          { label: "Le logiciel", href: "/#produit" },
+          { label: "Garanties", href: "/#garanties" },
+          { label: "Sécurité", href: "/#securite" },
         ],
       },
       {
@@ -75,7 +76,6 @@ export const site = {
         links: [
           { label: "À propos", href: "/a-propos" },
           { label: "Suzali Conseil", href: "https://suzaliconseil.com" },
-          { label: "Sécurité", href: "/#securite" },
           { label: "Contact", href: "/demo" },
         ],
       },

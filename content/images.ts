@@ -25,29 +25,31 @@ export type PhotoEntry = {
 const unsplash = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&q=80&w=2400`;
 
 export const images = {
-  /** 3. Hero : grand cadre derrière la maquette SDR (prompt n°1). */
-  heroNature: {
-    file: "/creative/connection",
-    alt: "Collines volcaniques noyées dans la brume au lever du jour",
-    fallback: {
-      src: unsplash("photo-1470071459604-3b5ec3a7fe05"),
-      alt: "Vallée verdoyante sous la brume, traversée par une route, au lever du soleil",
-    },
+  /*
+   * Série de visuels de la marque (crème, teal, menthe, une touche de jaune), dans public/photos/.
+   * Ce sont des visuels illustratifs : ne jamais les placer à côté d'un témoignage ou d'un cas
+   * client, ils passeraient pour de vrais clients.
+   */
+  /** Accueil, « Pour qui » : la directrice commerciale qui pilote. */
+  audience: {
+    file: "/photos/directrice-commerciale",
+    alt: "Une directrice commerciale prend des notes dans un carnet à son bureau, près d'une fenêtre donnant sur des immeubles parisiens",
+    position: "72% center",
   },
-  /** 5. Bande partagée : SDR avec casque, tons chauds (prompt n°2). */
-  sdrHeadset: {
-    file: "/photos/sdr-headset",
-    alt: "Commerciale souriante avec un casque-micro, à son bureau dans un appartement parisien baigné de lumière dorée",
-    position: "62% center",
-    fallback: {
-      src: unsplash("photo-1521737604893-d14cc237f11d"),
-      alt: "Équipe au travail autour d'une table en bois ; au premier plan, un commercial porte un casque",
-    },
+  /** Accueil, « Comment ça marche » : contact, appel, agenda, relance. */
+  how: {
+    file: "/photos/contact-appel-relance",
+    alt: "Deux mains posent une fiche contact sur une table, suivie d'une pastille téléphone, d'un calendrier et d'une étiquette jaune « À relancer »",
   },
-  /** 9. Cas clients (prompts n°3, 4 et 5). */
+  /** Accueil, appel à l'action final : le chemin qui mène au repère jaune. */
+  ctaPath: {
+    file: "/photos/chemin-rdv",
+    alt: "",
+  },
+  /** 9. Cas clients (prompts n°3, 4 et 5). Section affichée seulement avec au moins deux cas réels. */
   caseAgency: {
     file: "/photos/case-agency",
-    alt: "Open space en briques et plantes : des SDR en casque passent leurs appels autour d'une grande table en bois",
+    alt: "Open space en briques et plantes : des téléprospecteurs en casque passent leurs appels autour d'une grande table en bois",
     fallback: {
       src: unsplash("photo-1522071820081-009f0129c71c"),
       alt: "Équipe concentrée sur ses ordinateurs portables autour d'une table en bois, certains avec un casque",
@@ -69,20 +71,6 @@ export const images = {
       src: unsplash("photo-1525182008055-f88b95ff7980"),
       alt: "Commercial au téléphone à son bureau, devant son écran",
     },
-  },
-  /** 13. CTA final : paysage plein cadre sous un voile sombre (prompt n°6). */
-  ctaLandscape: {
-    file: "/creative/horizon",
-    alt: "Sommets enneigés au-dessus d'une mer de nuages, ciel bleu nuit et lueur rose à l'horizon",
-    fallback: {
-      src: unsplash("photo-1506905925346-21bda4d32df4"),
-      alt: "Sommets enneigés au-dessus d'une mer de nuages au coucher du soleil",
-    },
-  },
-  /** 12. Texture de la bande Sécurité (prompt n°7). Décorative : pas de photo de secours. */
-  securityTexture: {
-    file: "/creative/vault",
-    alt: "",
   },
 } satisfies Record<string, PhotoEntry>;
 

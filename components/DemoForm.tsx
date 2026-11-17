@@ -89,7 +89,7 @@ export function DemoForm({ plan }: { plan?: string }) {
             ref={summaryRef}
             tabIndex={-1}
             role="alert"
-            className="rounded-[12px] border border-[#B42318]/30 bg-[#B42318]/[.06] px-4 py-3 text-[15px] text-[#8A1C13]"
+            className="rounded-[12px] border border-danger/30 bg-danger/[.06] px-4 py-3 text-[15px] text-danger-ink"
           >
             {serverFailed ? f.errors.server : f.errors.summary(errorCount)}
           </p>
@@ -225,11 +225,11 @@ function Field({
         className: cx(
           "h-12 w-full rounded-[12px] border bg-paper px-4 text-base text-ink placeholder:text-muted transition-colors",
           "focus-visible:border-navy focus-visible:bg-white focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-rose",
-          error ? "border-[#B42318]" : "border-line hover:border-ink/30",
+          error ? "border-danger" : "border-line hover:border-ink/30",
         ),
       })}
       {error ? (
-        <p id={errorId} className="text-[14px] text-[#B42318]">
+        <p id={errorId} className="text-[14px] text-danger">
           {error}
         </p>
       ) : null}

@@ -9,6 +9,7 @@ import { Icon, type IconName } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/motion";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { ButtonLink, Container, Eyebrow, SectionHeader, cx } from "@/components/ui/primitives";
+import { AnnouncementBar } from "@/components/sections/AnnouncementBar";
 import { SiteHeader } from "@/components/sections/SiteHeader";
 import { Pricing } from "@/components/sections/Pricing";
 import { Footer } from "@/components/sections/Footer";
@@ -177,7 +178,7 @@ function renderBlock(block: Block, i: number) {
       return (
         <Section key={id} id={id}>
           <Reveal>{header}</Reveal>
-          <ul className="mt-12 grid gap-4 md:grid-cols-2">
+          <ul className={cx("mt-12 grid gap-4", block.items.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2")}>
             {block.items.map((it, n) => (
               <Spotlight as="li" key={it.title} className="rounded-[24px] border border-line bg-white p-7">
                 <span className="font-mono text-[12px] text-muted transition-colors group-hover/card:text-navy">{String(n + 1).padStart(2, "0")}</span>
@@ -195,7 +196,7 @@ function renderBlock(block: Block, i: number) {
       return (
         <Section key={id} id={id} tone="white">
           <Reveal>{header}</Reveal>
-          <ol className="relative mt-12 grid gap-4 lg:grid-cols-5">
+          <ol className={cx("relative mt-12 grid gap-4", block.items.length === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "lg:grid-cols-5")}>
             <span aria-hidden className="absolute top-9 right-[10%] left-[10%] hidden h-px bg-[repeating-linear-gradient(90deg,var(--color-line)_0_6px,transparent_6px_12px)] lg:block" />
             {block.items.map((it, n) => (
               <Spotlight as="li" key={it.title} className="flex flex-col rounded-[20px] border border-line bg-paper p-6">
@@ -305,6 +306,11 @@ function renderBlock(block: Block, i: number) {
       return (
         <Section key={id} id={id} tone="white">
           <Reveal>{header}</Reveal>
+          {block.image ? (
+            <div className="relative mt-12 aspect-[16/7] overflow-hidden rounded-[28px] bg-sand">
+              <Image src={block.image.src} alt={block.image.alt} fill sizes="(min-width: 1240px) 1180px, 100vw" className="object-cover object-[center_62%]" />
+            </div>
+          ) : null}
           <div className="mt-12">
             <OfferCards />
           </div>
@@ -632,6 +638,7 @@ export function LandingPage({ page, extra, children }: { page: LandingPageData; 
         <JsonLd key={i} data={s} />
       ))}
       {page.article ? <ReadingProgress /> : null}
+      <AnnouncementBar />
       <SiteHeader />
       <main id="contenu" tabIndex={-1} className="outline-none">
         <section aria-labelledby="page-title" className="relative overflow-hidden pt-10 pb-20 sm:pt-14 sm:pb-24">
@@ -639,13 +646,23 @@ export function LandingPage({ page, extra, children }: { page: LandingPageData; 
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-0 h-[560px] [background-image:radial-gradient(rgba(17,47,53,.12)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_30%_20%,black_20%,transparent_70%)]"
           />
-          <div aria-hidden className="pointer-events-none absolute -top-24 right-[-10%] h-[520px] w-[620px] rounded-full bg-[radial-gradient(closest-side,rgba(185,237,214,.6),rgba(185,237,214,0))]" />
           <Container className="relative">
             <Breadcrumbs trail={trail} />
-            <div className={cx("mt-10 grid gap-12 lg:items-end lg:gap-16", hero.visual ? "lg:grid-cols-[1fr_520px]" : "lg:grid-cols-[1fr_380px]")}>
+            <div
+              className={cx(
+                "mt-10 grid gap-12 lg:gap-16",
+                hero.visual ? "lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center" : "lg:grid-cols-[1fr_380px] lg:items-end",
+              )}
+            >
               <div className="flex flex-col gap-6">
                 <Eyebrow>{hero.eyebrow}</Eyebrow>
-                <h1 id="page-title" className="font-display-tight max-w-[18ch] text-[clamp(2.75rem,6.4vw,5rem)] leading-[1] font-light text-ink">
+                <h1
+                  id="page-title"
+                  className={cx(
+                    "font-display-tight max-w-[18ch] leading-[1.02] font-light text-ink",
+                    hero.visual ? "text-[clamp(2.6rem,5vw,4.25rem)]" : "text-[clamp(2.75rem,6.4vw,5rem)]",
+                  )}
+                >
                   {hero.title}
                 </h1>
                 <p className="max-w-[58ch] text-lg leading-relaxed text-muted sm:text-xl">
@@ -662,24 +679,33 @@ export function LandingPage({ page, extra, children }: { page: LandingPageData; 
                   ) : null}
                 </div>
                 {page.updated ? (
-                  <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-muted">
+                  <p className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[13px] text-muted">
                     <span>
                       Par <a href={site.footer.parent.url} className="font-medium text-ink/80 underline-offset-4 hover:underline">l&apos;équipe Suzali Conseil</a>
                     </span>
-                    <span aria-hidden>·</span>
                     <span>
                       Mis à jour le <time dateTime={page.updated}>{dateFr(page.updated)}</time>
                     </span>
                     {page.article ? (
                       <>
-                        <span aria-hidden>·</span>
                         <span>{page.article.readingMinutes} min de lecture</span>
                       </>
                     ) : null}
                   </p>
                 ) : null}
               </div>
-              {hero.visual ? (
+              {hero.visual?.photo ? (
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-sand">
+                  <Image
+                    src={hero.visual.src}
+                    alt={hero.visual.alt}
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 560px, 100vw"
+                    className="object-cover object-[38%_center]"
+                  />
+                </div>
+              ) : hero.visual ? (
                 <Image
                   src={hero.visual.src}
                   alt={hero.visual.alt}

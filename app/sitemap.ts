@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/prospection-externalisee", 0.9, "weekly"),
     page("/crm-agence-prospection", 0.9, "weekly"),
     page("/tarifs", 0.9),
+    page("/partenaires", 0.8),
     page("/secteurs", 0.6),
     ...sectors.map((s) => page(s.path, 0.7)),
     page("/guides", 0.6, "weekly"),

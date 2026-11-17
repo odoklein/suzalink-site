@@ -16,21 +16,22 @@ export const prospectionPage: LandingPage = {
   meta: {
     title: "Prospection externalisée : des RDV B2B qualifiés",
     description:
-      "Externalisez votre prospection téléphonique B2B : un SDR dédié, chaque appel enregistré et visible. Un sprint test de 2 semaines pour juger sur pièces.",
+      "Externalisez votre prospection téléphonique B2B : un téléprospecteur dédié, chaque appel enregistré et visible. Un sprint test de 2 semaines pour juger sur pièces.",
   },
   breadcrumb: "Prospection externalisée",
   updated: "2026-11-12",
   hero: {
     eyebrow: "Prospection externalisée",
     title: "Des RDV qualifiés dans votre agenda, sans recruter",
-    lead: "Nos SDR appellent vos cibles depuis notre propre CRM. Vous voyez chaque appel, chaque objection et chaque RDV le jour même. Et si un RDV n'est pas honoré, on le remplace.",
+    lead: "Nos téléprospecteurs appellent vos cibles depuis notre propre CRM. Vous voyez chaque appel, chaque objection et chaque RDV le jour même. Et si un RDV n'est pas honoré, on le remplace.",
     primary: { label: "Lancer un sprint test", href: "/demo?offre=sprint" },
     secondary: { label: "Voir les tarifs", href: "/tarifs" },
     visual: {
-      src: "/visuals/mission-semaine.webp",
-      alt: "Illustration du portail client : appels de la semaine, taux de joignabilité, RDV pris et enregistrements à écouter.",
-      width: 1536,
-      height: 1024,
+      src: "/photos/chemin-accompagne.webp",
+      alt: "Une femme avance sur une passerelle menthe qui serpente jusqu'à un repère jaune : le chemin jusqu'au rendez-vous",
+      width: 1672,
+      height: 941,
+      photo: true,
     },
   },
   blocks: [
@@ -38,7 +39,7 @@ export const prospectionPage: LandingPage = {
       kind: "answer",
       question: "Qu'est-ce que la prospection externalisée ?",
       answer:
-        "La prospection externalisée consiste à confier à une équipe extérieure les appels qui mènent à vos rendez-vous commerciaux. Chez Suzalink, un SDR dédié appelle vos cibles depuis notre CRM, chaque appel est enregistré, et vous ne gardez que les RDV qualifiés : un RDV non honoré est remplacé.",
+        "La prospection externalisée consiste à confier à une équipe extérieure les appels qui mènent à vos rendez-vous commerciaux. Chez Suzalink, un téléprospecteur (SDR) dédié appelle vos cibles depuis notre CRM, chaque appel est enregistré, et vous ne gardez que les RDV qualifiés : un RDV non honoré est remplacé.",
       facts: [
         "Sprint test de 2 semaines : **990 € HT**",
         "Chaque appel enregistré et consultable le jour même",
@@ -91,7 +92,7 @@ export const prospectionPage: LandingPage = {
         {
           when: "chaque jour",
           title: "Appels et rappels",
-          body: "Un SDR dédié appelle, note chaque objection et planifie les rappels à d'autres heures. Rien ne se perd entre deux journées.",
+          body: "Un téléprospecteur dédié appelle, note chaque objection et planifie les rappels à d'autres heures. Rien ne se perd entre deux journées.",
         },
         {
           when: "à chaque RDV",
@@ -110,7 +111,7 @@ export const prospectionPage: LandingPage = {
       id: "fiche-rdv",
       eyebrow: "Ce que vous recevez",
       title: "Chaque RDV arrive préparé",
-      intro: "Dès qu'un RDV est pris, l'IA rédige la fiche à partir de l'appel. Le SDR la relit et la confirme avant qu'elle n'arrive chez vous.",
+      intro: "Dès qu'un RDV est pris, l'IA rédige la fiche à partir de l'appel. Le téléprospecteur la relit et la confirme avant qu'elle n'arrive chez vous.",
       points: [
         "Le besoin, dit avec les mots du prospect",
         "Le budget et l'horizon, quand ils ont été évoqués",
@@ -152,7 +153,7 @@ export const prospectionPage: LandingPage = {
         { label: "Ce que vous voyez", cells: ["Ce que vos outils enregistrent", "Un rapport périodique", "Chaque appel enregistré, le jour même"] },
         { label: "Engagement", cells: ["Contrat de travail", "Souvent plusieurs mois", "Aucun après le sprint"] },
         { label: "RDV non honoré", cells: ["Perdu", "Selon le contrat", "Remplacé sous 14 jours"] },
-        { label: "Si le SDR part", cells: ["On recommence le recrutement", "Géré par l'agence", "Un autre SDR reprend avec tout l'historique"] },
+        { label: "Si le téléprospecteur part", cells: ["On recommence le recrutement", "Géré par l'agence", "Un autre téléprospecteur reprend avec tout l'historique"] },
       ],
       note: "Comparaison générale, à adapter à chaque contrat. Les conditions des agences varient.",
     },
@@ -162,6 +163,12 @@ export const prospectionPage: LandingPage = {
       eyebrow: "Offres",
       title: "Trois façons de commencer",
       intro: "Des prix publics, hors taxes. Commencez par le sprint : il vous dit ce que vaut votre cible avant de vous engager.",
+      image: {
+        src: "/photos/trois-portes.webp",
+        alt: "Trois arches teal ouvrent sur des bureaux lumineux : trois façons d'entrer chez Suzalink",
+        width: 1672,
+        height: 941,
+      },
     },
     {
       kind: "prose",
@@ -173,7 +180,7 @@ export const prospectionPage: LandingPage = {
           title: "Quand externaliser a du sens",
           paragraphs: [
             "Quand vous savez déjà vendre votre offre en rendez-vous, mais que personne n'a le temps d'en obtenir. Quand vous voulez tester un nouveau marché sans recruter. Ou quand votre équipe commerciale passe ses journées à appeler au lieu de signer.",
-            "C'est moins utile si votre offre n'est pas encore claire : un SDR, interne ou externe, amplifie un message qui marche. Il ne le crée pas.",
+            "C'est moins utile si votre offre n'est pas encore claire : un téléprospecteur, interne ou externe, amplifie un message qui marche. Il ne le crée pas.",
           ],
         },
         {
@@ -185,7 +192,7 @@ export const prospectionPage: LandingPage = {
         {
           title: "Forfait ou paiement au RDV",
           paragraphs: [
-            "Le forfait mensuel vous assure un SDR dédié et un volume d'appels régulier. Le paiement au RDV transfère le risque sur nous, donc nous ne l'acceptons que sur des cibles que nous connaissons. Le plus sain pour démarrer : un test court, qui donne le coût réel d'un RDV sur votre marché. Tous nos prix sont sur la [page tarifs](/tarifs).",
+            "Le forfait mensuel vous assure un téléprospecteur dédié et un volume d'appels régulier. Le paiement au RDV transfère le risque sur nous, donc nous ne l'acceptons que sur des cibles que nous connaissons. Le plus sain pour démarrer : un test court, qui donne le coût réel d'un RDV sur votre marché. Tous nos prix sont sur la [page tarifs](/tarifs).",
           ],
         },
         {
@@ -212,11 +219,11 @@ export const prospectionPage: LandingPage = {
         },
         {
           q: "Qui appelle mes prospects ?",
-          a: "Un SDR de l'équipe Suzali Conseil, dédié à votre mission, formé à votre offre et à votre script. Il appelle en français, depuis notre CRM. Si un jour il change de mission, son remplaçant reprend avec tout l'historique.",
+          a: "Un téléprospecteur de l'équipe Suzali Conseil, dédié à votre mission, formé à votre offre et à votre script. Il appelle en français, depuis notre CRM. Si un jour il change de mission, son remplaçant reprend avec tout l'historique.",
         },
         {
           q: "Puis-je écouter les appels ?",
-          a: "Oui. Chaque appel est enregistré et consultable dans votre portail client le jour même, avec le résultat de l'appel et les notes du SDR.",
+          a: "Oui. Chaque appel est enregistré et consultable dans votre portail client le jour même, avec le résultat de l'appel et les notes du téléprospecteur.",
         },
         {
           q: "Que se passe-t-il si un RDV n'est pas honoré ?",

@@ -1,18 +1,19 @@
 import { site } from "@/content/site";
 import { plans } from "@/content/pricing";
+import { prospectionOffers } from "@/content/offers";
 import { AnnouncementBar } from "@/components/sections/AnnouncementBar";
 import { SiteHeader } from "@/components/sections/SiteHeader";
 import { Hero } from "@/components/sections/Hero";
+import { Audience } from "@/components/sections/Audience";
 import { LogoStrip } from "@/components/sections/LogoStrip";
-import { Doors } from "@/components/sections/Doors";
+import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Features } from "@/components/sections/Features";
-import { AiSplit } from "@/components/sections/AiSplit";
-import { Engines } from "@/components/sections/Engines";
-import { Roles } from "@/components/sections/Roles";
 import { StackCost } from "@/components/sections/StackCost";
+import { Proof } from "@/components/sections/Proof";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Testimonial } from "@/components/sections/Testimonial";
-import { Pricing } from "@/components/sections/Pricing";
+import { Guarantees } from "@/components/sections/Guarantees";
+import { OffersHome } from "@/components/sections/OffersHome";
 import { Security } from "@/components/sections/Security";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Footer } from "@/components/sections/Footer";
@@ -54,12 +55,34 @@ function StructuredData() {
       })),
     },
   };
+  // The other door: B2B appointment setting done by our callers (content/offers.ts).
+  const service = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Prise de rendez-vous B2B",
+    serviceType: "Prospection téléphonique B2B externalisée",
+    url: `${site.url}/prospection-externalisee`,
+    areaServed: { "@type": "Country", name: "France" },
+    provider: { "@id": `${site.url}/#organisation` },
+    offers: prospectionOffers.map((o) => ({
+      "@type": "Offer",
+      name: o.name,
+      price: o.price.amount,
+      priceCurrency: "EUR",
+      url: `${site.url}/tarifs#${o.id}`,
+    })),
+  };
   return (
-    <script
-      type="application/ld+json"
-      // JSON.stringify output is safe here: all values come from our own config files.
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(json).replace(/</g, "\\u003c") }}
-    />
+    <>
+      {[json, service].map((data) => (
+        <script
+          key={data["@type"]}
+          type="application/ld+json"
+          // JSON.stringify output is safe here: all values come from our own config files.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
+        />
+      ))}
+    </>
   );
 }
 
@@ -71,16 +94,17 @@ export default function HomePage() {
       <SiteHeader />
       <main id="contenu" tabIndex={-1} className="outline-none">
         <Hero />
-        <Doors />
+        <Audience />
         <LogoStrip />
+        <HowItWorks />
         <Features />
-        <AiSplit />
-        <Engines />
-        <Roles />
         <StackCost />
+        <Proof />
+        {/* Shown only once real content exists (see content/home.ts). */}
         <CaseStudies />
         <Testimonial />
-        <Pricing />
+        <Guarantees />
+        <OffersHome />
         <Security />
         <FinalCta />
       </main>

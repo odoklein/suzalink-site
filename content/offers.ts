@@ -30,7 +30,7 @@ export const prospectionOffers: ProspectionOffer[] = [
     extra: "Déduit du premier mois si vous continuez",
     highlight: "Pour commencer",
     features: [
-      "2 semaines, 1 SDR dédié",
+      "2 semaines, 1 téléprospecteur dédié",
       "Fichier nettoyé avant le premier appel",
       "Script écrit avec vous",
       "Accès au portail : appels, enregistrements, RDV",
@@ -41,11 +41,11 @@ export const prospectionOffers: ProspectionOffer[] = [
   {
     id: "mission",
     name: "Mission mensuelle",
-    audience: "Pour un flux régulier de RDV, avec un SDR qui connaît votre offre.",
+    audience: "Pour un flux régulier de RDV, avec un téléprospecteur qui connaît votre offre.",
     price: { amount: 1290, unit: "HT / mois" },
     extra: "+ 100 € HT par RDV honoré",
     features: [
-      "1 SDR dédié, 22 jours par mois",
+      "1 téléprospecteur dédié, 22 jours par mois",
       "Rappels planifiés à des horaires différents",
       "Fiche de RDV rédigée par l'IA pour chaque RDV",
       "Rapport quotidien et bilan chaque semaine",
@@ -81,6 +81,8 @@ export const guarantees = [
 export const interests = [
   ...prospectionOffers.map((o) => ({ id: o.id, name: o.name })),
   ...plans.map((p) => ({ id: p.id, name: `CRM ${p.name}` })),
+  // /partenaires : directeurs commerciaux externalisés et consultants.
+  { id: "partenaire", name: "Programme partenaires" },
 ];
 
 export const findInterest = (id?: string) => interests.find((i) => i.id === id);

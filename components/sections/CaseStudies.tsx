@@ -3,13 +3,18 @@ import { cases } from "@/content/home";
 import { resolveImage } from "@/lib/resolve-image";
 import { Icon } from "@/components/ui/Icon";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
-import { Container, PlaceholderBadge, SectionHeader } from "@/components/ui/primitives";
+import { Container, SectionHeader } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/motion";
 
-/** 9. Three case-study cards. Metrics are "XX" placeholders until real, approved results exist. */
+/**
+ * Cas clients. Shown only once at least two real, approved cases exist (placeholder: false):
+ * until then the real dental mission is told by the Proof section.
+ */
 export function CaseStudies() {
+  const real = cases.items.filter((item) => !item.placeholder);
+  if (real.length < 2) return null;
   return (
-    <section id="cas-clients" aria-labelledby="cases-title" className="py-24 sm:py-32">
+    <section id="autres-cas" aria-labelledby="cases-title" className="py-24 sm:py-32">
       <Container>
         <Reveal>
           <SectionHeader
@@ -23,7 +28,7 @@ export function CaseStudies() {
         </Reveal>
 
         <ul className="mt-14 grid gap-6 md:grid-cols-3">
-          {cases.items.map((item, i) => (
+          {real.map((item, i) => (
             <Reveal as="li" key={item.title} delay={i * 0.08}>
               <article className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-line bg-white">
                 <PhotoFrame
@@ -35,8 +40,7 @@ export function CaseStudies() {
                 <div className="flex flex-1 flex-col gap-3 p-6">
                   <div className="flex flex-wrap items-center gap-2">
                     <p className="eyebrow text-muted">{item.eyebrow}</p>
-                    {"placeholder" in item && item.placeholder === false ? null : <PlaceholderBadge>{cases.placeholderBadge}</PlaceholderBadge>}
-                  </div>
+                                      </div>
                   <h3 className="font-display-tight text-2xl leading-tight font-light">{item.title}</h3>
                   <Link
                     href={item.href}

@@ -19,14 +19,14 @@ export const sectors: Sector[] = [
     meta: {
       title: "Prospection des cabinets dentaires par téléphone",
       description:
-        "Vous vendez aux cabinets dentaires ? Nos SDR obtiennent l'accord de l'assistante et remplissent vos tournées. 147 RDV terrain sur une mission de fin 2025.",
+        "Vous vendez aux cabinets dentaires ? Nos téléprospecteurs obtiennent l'accord de l'assistante et remplissent vos tournées. 147 RDV terrain sur une mission de fin 2025.",
     },
     breadcrumb: "Cabinets dentaires",
     updated: "2026-11-12",
     hero: {
       eyebrow: "Secteur · Cabinets dentaires",
       title: "Joignez les cabinets dentaires, pas seulement leur répondeur",
-      lead: "Dans un cabinet, la personne qui décroche est presque toujours l'assistante. C'est souvent elle qui dit oui. Nos SDR savent lui parler, au bon moment, avec une demande qu'elle peut accepter seule.",
+      lead: "Dans un cabinet, la personne qui décroche est presque toujours l'assistante. C'est souvent elle qui dit oui. Nos téléprospecteurs savent lui parler, au bon moment, avec une demande qu'elle peut accepter seule.",
       primary: { label: "Lancer un sprint test", href: "/demo?offre=sprint" },
       secondary: { label: "Voir la méthode", href: "#ce-qui-marche" },
       visual: {
@@ -77,7 +77,7 @@ export const sectors: Sector[] = [
           },
           {
             title: "Appeler hors des soins",
-            body: "En début de matinée ou de début d'après-midi. Beaucoup de cabinets ferment le mercredi ou finissent plus tôt le vendredi : nos SDR notent les horaires de chaque cabinet dans le CRM.",
+            body: "En début de matinée ou de début d'après-midi. Beaucoup de cabinets ferment le mercredi ou finissent plus tôt le vendredi : nos téléprospecteurs notent les horaires de chaque cabinet dans le CRM.",
           },
           {
             title: "Demander peu, et concret",

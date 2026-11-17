@@ -31,9 +31,9 @@ type ButtonVariant = "primary" | "ghost" | "light" | "ghost-light";
 
 const buttonStyles: Record<ButtonVariant, string> = {
   primary: "bg-navy text-white hover:bg-navy-deep",
-  ghost: "border border-ink/15 text-ink hover:border-ink/40 hover:bg-white",
+  ghost: "border border-ink/15 text-ink hover:bg-white",
   light: "bg-paper text-navy hover:bg-white",
-  "ghost-light": "border border-white/30 text-white hover:border-white/70 hover:bg-white/5",
+  "ghost-light": "border border-white/30 text-white hover:bg-white/10",
 };
 
 /** Pill button rendered as a link (every action on the site navigates). */
@@ -58,7 +58,7 @@ export function ButtonLink({
     <Link
       href={href}
       className={cx(
-        "group inline-flex items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-[color,background-color,border-color,transform,box-shadow] duration-200 motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0 hover:shadow-sm",
+        "group inline-flex items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-[color,background-color,transform,box-shadow] duration-200 ease-out motion-safe:hover:-translate-y-0.5 motion-safe:active:scale-[0.97] hover:shadow-sm",
         sizes[size],
         buttonStyles[variant],
         arrow && "pr-2.5",
@@ -120,11 +120,14 @@ export function SectionHeader({
   tone = "light",
   as: Heading = "h2",
   actionVariant,
+  mark,
   className,
 }: {
   id?: string;
   eyebrow: string;
   title: ReactNode;
+  /** Word of the title to underline by hand (see Mark). */
+  mark?: string;
   subtitle?: ReactNode;
   action?: { label: string; href: string };
   align?: "left" | "center";
@@ -145,7 +148,7 @@ export function SectionHeader({
           centered ? "max-w-[18ch]" : "max-w-[16ch]",
         )}
       >
-        {title}
+        {typeof title === "string" ? withMark(title, mark) : title}
       </Heading>
       {subtitle ? (
         <p
@@ -165,6 +168,40 @@ export function SectionHeader({
         </div>
       ) : null}
     </div>
+  );
+}
+
+/**
+ * Key word with a hand-drawn yellow underline (« visible », « garanti »…). The line is
+ * decoration only: the word itself stays in the text colour, never on yellow.
+ */
+export function Mark({ children }: { children: ReactNode }) {
+  return (
+    <span className="mark">
+      {children}
+      <svg aria-hidden viewBox="0 0 200 12" preserveAspectRatio="none" fill="none">
+        <path
+          d="M2 8.5C38 4.2 92 3 132 4.4c22 .8 44 2.4 66 4.6"
+          stroke="var(--color-rose)"
+          strokeWidth="5"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+    </span>
+  );
+}
+
+/** Underlines the first occurrence of `mark` in a plain-text title. */
+export function withMark(title: string, mark?: string): ReactNode {
+  const at = mark ? title.indexOf(mark) : -1;
+  if (!mark || at < 0) return title;
+  return (
+    <>
+      {title.slice(0, at)}
+      <Mark>{mark}</Mark>
+      {title.slice(at + mark.length)}
+    </>
   );
 }
 

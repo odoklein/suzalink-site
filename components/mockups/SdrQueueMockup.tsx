@@ -35,14 +35,14 @@ export function SdrQueueMockup({ label, variant = "full" }: { label: string; var
         right={
           <>
             <Tag tone="ok">
-              <span className="size-1.5 rounded-full bg-[#1F7A4D]" /> Ligne Allo connectée
+              <span className="size-1.5 rounded-full bg-ok" /> Ligne Allo connectée
             </Tag>
           </>
         }
         bodyClassName={cx("grid", full ? "md:grid-cols-[230px_1fr] xl:grid-cols-[230px_1fr_220px]" : "sm:grid-cols-[200px_1fr]")}
       >
         {/* Queue */}
-        <div className={cx("border-line bg-[#FBFAF7] p-3", full ? "hidden md:block md:border-r" : "hidden sm:block sm:border-r")}>
+        <div className={cx("border-line bg-surface p-3", full ? "hidden md:block md:border-r" : "hidden sm:block sm:border-r")}>
           <div className="mb-2 flex items-center justify-between px-1">
             <p className="font-semibold">File du jour</p>
             <span className="text-[11px] text-muted">42 restants</span>
@@ -131,7 +131,7 @@ export function SdrQueueMockup({ label, variant = "full" }: { label: string; var
                 </li>
               ))}
             </ol>
-            <div className="mt-5 rounded-[12px] bg-[#FBFAF7] p-3">
+            <div className="mt-5 rounded-[12px] bg-surface p-3">
               <p className="text-[11px] font-medium text-muted">Mission</p>
               <p className="font-medium">Nordfil · Décideurs logistique</p>
               <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink/10">

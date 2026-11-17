@@ -19,18 +19,18 @@ export function LogoStrip() {
           <ArrowLink href={logos.action.href}>{logos.action.label}</ArrowLink>
         </div>
 
-        <ul className="mt-10 grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
           {customers.map((c) => (
             <li
               key={c.domain}
-              className="group flex h-24 items-center justify-center gap-3.5 rounded-[18px] border border-line bg-white/60 px-5 text-ink/75 transition-colors duration-300 hover:bg-white hover:text-ink"
+              className="group flex min-h-24 flex-col items-center justify-center gap-2 rounded-[18px] border border-line bg-white/60 px-4 py-4 text-center text-ink/75 transition-colors duration-300 hover:bg-white hover:text-ink sm:flex-row sm:gap-3.5"
             >
               <BrandMark
                 brand={c}
                 size={36}
                 className="grayscale transition-[filter] duration-300 group-hover:grayscale-0"
               />
-              <span className="font-display-tight text-[21px] leading-none font-normal whitespace-nowrap">{c.name}</span>
+              <span className="font-display-tight text-[17px] leading-tight font-normal sm:text-[21px] sm:whitespace-nowrap">{c.name}</span>
             </li>
           ))}
         </ul>

@@ -34,11 +34,11 @@ export function MockWindow({
 }) {
   return (
     <div className={cx("overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_1px_0_rgba(15,18,34,.04),0_24px_60px_-28px_rgba(15,18,34,.35)]", className)}>
-      <div className="flex items-center gap-3 border-b border-line bg-[#FBFAF7] px-4 py-2.5">
+      <div className="flex items-center gap-3 border-b border-line bg-surface px-4 py-2.5">
         <div className="flex gap-1.5" aria-hidden>
-          <span className="size-2.5 rounded-full bg-[#E4E1DA]" />
-          <span className="size-2.5 rounded-full bg-[#E4E1DA]" />
-          <span className="size-2.5 rounded-full bg-[#E4E1DA]" />
+          <span className="size-2.5 rounded-full bg-line" />
+          <span className="size-2.5 rounded-full bg-line" />
+          <span className="size-2.5 rounded-full bg-line" />
         </div>
         <p className="min-w-0 truncate text-[11px] font-medium text-muted">{title}</p>
         {right ? <div className="ml-auto flex shrink-0 items-center gap-2">{right}</div> : null}
@@ -52,7 +52,7 @@ export function Avatar({ initials, tone = "navy", size = "md" }: { initials: str
   const tones = {
     light: "bg-white text-navy",
     navy: "bg-navy/10 text-navy",
-    rose: "bg-rose/12 text-[#6E5300]",
+    rose: "bg-rose/12 text-amber-ink",
     sand: "bg-sand text-ink/70",
   };
   const sizes = { sm: "size-6 text-[9px]", md: "size-8 text-[10.5px]", lg: "size-11 text-[13px]" };
@@ -72,10 +72,10 @@ export function Tag({
 }) {
   const tones = {
     neutral: "bg-ink/[.05] text-ink/70",
-    rose: "bg-rose/10 text-[#6E5300]",
-    ok: "bg-[#1F7A4D]/10 text-[#1F6B44]",
+    rose: "bg-rose/10 text-amber-ink",
+    ok: "bg-ok/10 text-ok-ink",
     navy: "bg-navy/10 text-navy",
-    warn: "bg-[#B7791F]/12 text-[#7A4F0E]",
+    warn: "bg-warn/12 text-warn-ink",
     dark: "bg-white/10 text-white/85",
   };
   return (
@@ -111,7 +111,7 @@ export function MockButton({
   const variants = {
     outline: "border border-line bg-white text-ink",
     navy: "bg-navy text-white",
-    rose: "border border-rose/35 bg-rose/[.07] text-[#6E5300]",
+    rose: "border border-rose/35 bg-rose/[.07] text-amber-ink",
     "ghost-dark": "border border-white/15 bg-white/5 text-white",
   };
   return (

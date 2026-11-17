@@ -17,7 +17,7 @@ export const tarifsPage: LandingPage = {
   hero: {
     eyebrow: "Tarifs",
     title: "Des prix publics, des RDV garantis",
-    lead: "Vous voulez que nos SDR prennent vos RDV, ou équiper votre propre équipe. Dans les deux cas, le prix est écrit ici, hors taxes, sans « nous consulter ».",
+    lead: "Vous voulez que nos téléprospecteurs prennent vos RDV, ou équiper votre propre équipe. Dans les deux cas, le prix est écrit ici, hors taxes, sans « nous consulter ».",
     primary: { label: "Lancer un sprint test", href: "/demo?offre=sprint" },
     secondary: { label: "Tarifs du CRM", href: "#crm" },
     bullets: ["Sans engagement après le sprint", "RDV non honoré remplacé", "CRM : mensuel ou annuel, au choix"],
@@ -34,7 +34,7 @@ export const tarifsPage: LandingPage = {
       kind: "offers",
       id: "prospection",
       eyebrow: "Suzalink Prospection",
-      title: "Nos SDR prennent vos RDV",
+      title: "Nos téléprospecteurs prennent vos RDV",
       intro: "Commencez par deux semaines de test. Vous continuez seulement si le coût d'un RDV vous convient.",
     },
     {

@@ -57,10 +57,14 @@ texte et une seule action. Aucun chiffre, logo ou témoignage inventé : les emp
 
 ### Photos
 
-Déposez vos visuels dans `public/photos/` avec les noms listés dans
-[`IMAGE_PROMPTS.md`](./IMAGE_PROMPTS.md) (`hero-nature.jpg`, `sdr-headset.jpg`…) : ils remplacent
-automatiquement les photos Unsplash au prochain build. Pensez à mettre à jour le texte
-alternatif (`alt`) dans `content/images.ts`. Les photos passent par `next/image`
+Les visuels de la marque (série crème, teal, menthe, une touche de jaune) sont dans
+`public/photos/` et déclarés dans `content/images.ts` avec leur texte alternatif :
+`directrice-commerciale` (accueil, « Pour qui »), `contact-appel-relance` (« Comment ça
+marche »), `chemin-rdv` (appel à l'action final), `chemin-accompagne` (haut de la page
+prospection) et `trois-portes` (offres de la page prospection). Pour remplacer un visuel,
+déposez un fichier du même nom (extension libre) et mettez son `alt` à jour. Les photos des cas
+clients (`case-*`, voir [`IMAGE_PROMPTS.md`](./IMAGE_PROMPTS.md)) ne servent qu'une fois la
+section « Cas clients » réactivée avec des cas réels. Les photos passent par `next/image`
 (AVIF/WebP, tailles adaptées, chargement différé sauf le hero).
 
 ### Logos
@@ -87,17 +91,19 @@ un proxy d'entreprise, lancez `NODE_USE_ENV_PROXY=1 npm run logos`.
 ```
 app/
   layout.tsx            polices (Bricolage Grotesque, Geist, Geist Mono), métadonnées, lien d'évitement
-  page.tsx              accueil : les 14 sections + données structurées schema.org SoftwareApplication
+  page.tsx              accueil : les sections + données structurées schema.org (SoftwareApplication, Service)
+  partenaires/page.tsx  page pour les directeurs commerciaux externalisés
   demo/page.tsx         page de demande de démo
   demo/actions.ts       server action : validation (Zod) + envoi au webhook
   sitemap.ts, robots.ts SEO
   opengraph-image.png   image de partage (1200×630), twitter-image.png, icon.png, apple-icon.png
 components/
-  sections/             un composant par section (AnnouncementBar, SiteHeader, Hero, LogoStrip,
-                        AiSplit, Engines, Roles, StackCost, CaseStudies, Testimonial, Pricing,
-                        Security, FinalCta, Footer)
-  mockups/              maquettes produit en HTML/CSS (file d'appels SDR, fiche de RDV IA,
-                        tableau de bord manager, portail client, moteurs)
+  sections/             un composant par section, dans l'ordre de l'accueil : AnnouncementBar,
+                        SiteHeader, Hero, Audience (pour qui), LogoStrip, HowItWorks, Features,
+                        StackCost, Proof (mission réelle), CaseStudies et Testimonial (masqués
+                        tant que le contenu n'est pas réel), Guarantees, OffersHome, Security,
+                        FinalCta, Footer. Pricing = offres du logiciel (/tarifs, page CRM).
+  mockups/              maquette produit en HTML/CSS (file d'appels)
   ui/                   boutons, eyebrow, cadre photo avec grain, animations, icônes
   brand/Logo.tsx        logo Suzalink (fichiers PNG de public/brand)
   DemoForm.tsx          formulaire de démo (nom, email, entreprise, taille d'équipe)

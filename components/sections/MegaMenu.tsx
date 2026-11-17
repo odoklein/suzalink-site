@@ -25,7 +25,8 @@ const linksOf = (item: Panel) => [
 
 function matches(pathname: string, href: string) {
   const path = href.split("#")[0];
-  if (!path || path === "/" || href.startsWith("http")) return false;
+  // The demo page is a contact link in several panels, not a section of the menu.
+  if (!path || path === "/" || path === "/demo" || href.startsWith("http")) return false;
   return pathname === path || pathname.startsWith(`${path}/`);
 }
 
@@ -227,13 +228,17 @@ export function MegaMenu() {
   };
 
   const current = open !== null ? menu[open] : null;
+  // One active entry at most: the first panel that links to the current page.
+  const activeIndex = menu.findIndex((item) =>
+    isPanel(item) ? linksOf(item).some((l) => matches(pathname, l.href)) : matches(pathname, item.href),
+  );
 
   return (
     <div ref={rootRef} className="hidden flex-1 justify-center lg:flex" onPointerLeave={(e) => e.pointerType === "mouse" && scheduleClose()}>
       <nav aria-label="Navigation principale">
         <ul className="flex items-center gap-1">
           {menu.map((item, i) => {
-            const active = isPanel(item) ? linksOf(item).some((l) => matches(pathname, l.href)) : matches(pathname, item.href);
+            const active = i === activeIndex;
             const expanded = open === i;
             const cls = cx(
               "relative flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[15px] transition-colors duration-200",

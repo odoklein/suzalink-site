@@ -3,7 +3,7 @@ import { features } from "@/content/home";
 import { Reveal } from "@/components/ui/motion";
 import { Container, SectionHeader, cx } from "@/components/ui/primitives";
 
-// 4. « Tout ce qu'il faut pour appeler plus » — bento of five small product UIs.
+// « Le logiciel derrière chaque appel » : bento of five small product UIs.
 // The UIs are illustrations: one description for assistive tech (features.label),
 // the visual details are aria-hidden. Motion is CSS only and stops with reduced motion.
 
@@ -14,7 +14,7 @@ function Card({ title, body, className, children, delay }: { title: string; body
     <Reveal
       delay={delay}
       className={cx(
-        "flex flex-col overflow-hidden rounded-[24px] border border-line bg-[linear-gradient(180deg,rgba(185,237,214,.28)_0%,rgba(255,255,255,.7)_42%,#fff_100%)] p-6 sm:p-7",
+        "flex flex-col overflow-hidden rounded-[24px] border border-line bg-white p-6 sm:p-7",
         className,
       )}
     >
@@ -117,7 +117,7 @@ function AiResult() {
     <div className={cx(panel, "overflow-hidden")}>
       <div className="bg-mint/40 px-4 pt-3.5 pb-3">
         <p className="flex items-center gap-2 text-[14px] font-semibold text-ink">
-          <Spark /> Résultat proposé <span className="rounded-md bg-rose/25 px-1.5 py-0.5 text-[11px] font-semibold text-[#6E5300]">IA</span>
+          <Spark /> Résultat proposé <span className="rounded-md bg-rose/25 px-1.5 py-0.5 text-[11px] font-semibold text-amber-ink">IA</span>
         </p>
         <p className="mt-2.5 rounded-[10px] bg-white px-3 py-2.5 text-[14px] font-medium text-ink">Rappel (interlocuteur indisponible)</p>
       </div>
@@ -235,7 +235,7 @@ function Portal() {
 
 export function Features() {
   return (
-    <section id="fonctionnalites" aria-labelledby="features-title" className="py-24 sm:py-32">
+    <section id="produit" aria-labelledby="features-title" className="py-24 sm:py-32">
       <Container>
         <Reveal>
           <SectionHeader id="features-title" eyebrow={features.eyebrow} title={features.title} align="center" />
