@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Self-contained server for the Docker image (Dokploy): .next/standalone + static files.
   output: "standalone",
-  // This project lives inside another repository: pin the root so Next ignores the parent app.
+  // Pin the project root so Next never picks up a lockfile from a parent folder.
   turbopack: { root: path.join(__dirname) },
   outputFileTracingRoot: path.join(__dirname),
   images: {

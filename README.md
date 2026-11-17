@@ -4,15 +4,14 @@ Site vitrine de **Suzalink**, le CRM d'exécution outbound (appels, emails, séq
 dans une instance dédiée). Next.js 16 (App Router), TypeScript, Tailwind CSS 4, Framer Motion.
 Tout le site est en français, les prix sont en euros HT.
 
-Ce dossier est un projet autonome : il a son propre `package.json` et ne dépend pas du CRM
-qui l'entoure dans ce dépôt (il est exclu du `tsconfig.json` et de l'ESLint racine).
+Ce dépôt ne contient que le site : il ne dépend pas du CRM Captain Prospect, dont il a été
+extrait avec son historique Git.
 
 ## Lancer le projet
 
 Node.js 20.9 ou plus récent (22 recommandé).
 
 ```bash
-cd suzalink-site
 npm install
 npm run dev          # http://localhost:3000
 ```
@@ -141,10 +140,10 @@ clair sur le fond papier. Les CTA sont des pilules teal, avec une pastille jaune
 
 ## Déploiement (Dokploy, suzalink.com)
 
-Le dossier contient un `Dockerfile` (build Next.js `standalone`, Node 22, port **3000**).
+Le dépôt contient un `Dockerfile` (build Next.js `standalone`, Node 22, port **3000**).
 
-Dans Dokploy : nouvelle application → source Git (ce dépôt, branche à déployer) →
-**Build type : Dockerfile**, **Build path / context : `suzalink-site`**, Dockerfile : `Dockerfile`.
+Dans Dokploy : nouvelle application → source Git (ce dépôt, branche `main`) →
+**Build type : Dockerfile**, **Build path / context : `/`** (racine du dépôt), Dockerfile : `Dockerfile`.
 Variables : `NEXT_PUBLIC_SITE_URL=https://suzalink.com` (aussi en *build arg*), `DEMO_WEBHOOK_URL` si les
 demandes de démo doivent partir vers un outil. Domaine : `suzalink.com` (et `www.suzalink.com`), port 3000,
 HTTPS Let's Encrypt. Le DNS de `suzalink.com` doit pointer vers l'IP du VPS.
