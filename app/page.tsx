@@ -1,66 +1,35 @@
 import { site } from "@/content/site";
-import { plans } from "@/content/pricing";
+import { homeFaq } from "@/content/home";
 import { prospectionOffers } from "@/content/offers";
+import { plainText } from "@/components/landing/RichText";
+import { JsonLd } from "@/components/ui/JsonLd";
+import { VideoSlot } from "@/components/ui/VideoSlot";
+import { softwareSchema } from "@/lib/schema";
 import { AnnouncementBar } from "@/components/sections/AnnouncementBar";
 import { SiteHeader } from "@/components/sections/SiteHeader";
 import { Hero } from "@/components/sections/Hero";
-import { Audience } from "@/components/sections/Audience";
 import { LogoStrip } from "@/components/sections/LogoStrip";
+import { Audience } from "@/components/sections/Audience";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Features } from "@/components/sections/Features";
 import { StackCost } from "@/components/sections/StackCost";
 import { Proof } from "@/components/sections/Proof";
-import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Testimonial } from "@/components/sections/Testimonial";
-import { Guarantees } from "@/components/sections/Guarantees";
-import { OffersHome } from "@/components/sections/OffersHome";
 import { Security } from "@/components/sections/Security";
+import { ServiceBand } from "@/components/sections/ServiceBand";
+import { HomeFaq } from "@/components/sections/HomeFaq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Footer } from "@/components/sections/Footer";
 
-/** schema.org SoftwareApplication, offers built from content/pricing.ts. */
-function StructuredData() {
-  const prices = plans.flatMap((p) => [p.price.monthly, p.price.annual]);
-  const json = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: site.name,
-    applicationCategory: "BusinessApplication",
-    applicationSubCategory: "CRM",
-    operatingSystem: "Web",
-    inLanguage: "fr-FR",
-    url: site.url,
-    description: site.seo.description,
-    image: `${site.url}/opengraph-image.png`,
-    publisher: { "@id": `${site.url}/#organisation` },
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "EUR",
-      lowPrice: Math.min(...prices),
-      highPrice: Math.max(...prices),
-      offerCount: plans.length,
-      offers: plans.map((p) => ({
-        "@type": "Offer",
-        name: p.name,
-        price: p.price.monthly,
-        priceCurrency: "EUR",
-        url: `${site.url}/tarifs#crm`,
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
-          price: p.price.monthly,
-          priceCurrency: "EUR",
-          unitText: "MONTH",
-          valueAddedTaxIncluded: false,
-        },
-      })),
-    },
-  };
-  // The other door: B2B appointment setting done by our callers (content/offers.ts).
-  const service = {
+// Organization is published once, site-wide, in app/layout.tsx (@id /#organisation).
+const schemas = [
+  softwareSchema({ url: site.url, description: site.seo.description }),
+  {
+    // The second door: B2B appointment setting done by our callers (content/offers.ts).
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Prise de rendez-vous B2B",
-    serviceType: "Prospection téléphonique B2B externalisée",
+    name: "Prospection téléphonique B2B externalisée",
+    serviceType: "Prise de rendez-vous B2B",
     url: `${site.url}/prospection-externalisee`,
     areaServed: { "@type": "Country", name: "France" },
     provider: { "@id": `${site.url}/#organisation` },
@@ -71,41 +40,37 @@ function StructuredData() {
       priceCurrency: "EUR",
       url: `${site.url}/tarifs#${o.id}`,
     })),
-  };
-  return (
-    <>
-      {[json, service].map((data) => (
-        <script
-          key={data["@type"]}
-          type="application/ld+json"
-          // JSON.stringify output is safe here: all values come from our own config files.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
-        />
-      ))}
-    </>
-  );
-}
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: homeFaq.items.map((q) => ({ "@type": "Question", name: q.q, acceptedAnswer: { "@type": "Answer", text: plainText(q.a) } })),
+  },
+];
 
+/** Accueil : le logiciel d'abord, la prospection externalisée en second (voir content/home.ts). */
 export default function HomePage() {
   return (
     <>
-      <StructuredData />
+      {schemas.map((s, i) => (
+        <JsonLd key={i} data={s} />
+      ))}
       <AnnouncementBar />
       <SiteHeader />
       <main id="contenu" tabIndex={-1} className="outline-none">
         <Hero />
-        <Audience />
         <LogoStrip />
+        <Audience />
         <HowItWorks />
+        <VideoSlot />
         <Features />
         <StackCost />
         <Proof />
-        {/* Shown only once real content exists (see content/home.ts). */}
-        <CaseStudies />
+        {/* Hidden until a real, approved quote exists (content/home.ts). */}
         <Testimonial />
-        <Guarantees />
-        <OffersHome />
         <Security />
+        <ServiceBand />
+        <HomeFaq />
         <FinalCta />
       </main>
       <Footer />

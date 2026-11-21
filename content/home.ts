@@ -13,69 +13,73 @@
  * Les prix sont dans content/pricing.ts et content/offers.ts, les photos dans content/images.ts.
  */
 
+import { plans } from "./pricing";
+
 export type Action = { label: string; href: string };
 
+const annual = plans.map((p) => p.price.annual);
+
 export const hero = {
-  eyebrow: "Prise de rendez-vous B2B",
-  title: "Des RDV qualifiés. Chaque appel visible.",
-  mark: "visible",
+  eyebrow: "Agences et équipes de prospection",
+  title: "Le logiciel de la prospection téléphonique.",
+  mark: "téléphonique",
   subtitle:
-    "Nos téléprospecteurs remplissent votre agenda, et vous écoutez chaque appel. Vous avez votre équipe ? Elle appelle avec notre logiciel.",
-  primary: { label: "Demander une démo", href: "/demo" },
-  secondary: { label: "Lancer un sprint test", href: "/demo?offre=sprint" },
+    "Appels, enregistrements, fiche de RDV par l'IA et portail client, dans un seul outil. Les données de chaque client sont hébergées à part.",
+  primary: { label: "Demander une démo", href: "/demo?offre=logiciel" },
+  secondary: { label: "Voir le logiciel", href: "/logiciel" },
   mockupLabel:
     "Aperçu du logiciel Suzalink : la liste des prospects à appeler, la fiche du contact en cours, les résultats en un clic et le bouton Appel suivant.",
 };
 
-/** Juste sous le hero : à qui s'adresse Suzalink, profil par profil. */
+/** Aiguillage : deux profils, deux pages. */
 export const audience = {
   eyebrow: "Pour qui",
-  title: "À qui s'adresse Suzalink ?",
-  subtitle: "Vous déléguez les appels, ou votre équipe les passe elle-même. Dans les deux cas, rien n'est caché.",
+  title: "Une agence ou une équipe interne ?",
+  subtitle: "Le même logiciel, réglé pour votre façon de prospecter.",
   items: [
     {
-      eyebrow: "Dirigeant de PME",
-      title: "Des RDV dans votre agenda, sans recruter.",
-      body: "Nos téléprospecteurs appellent vos cibles. Un RDV non honoré est remplacé, et vous commencez par un test de deux semaines.",
-      action: { label: "Découvrir la prospection externalisée", href: "/prospection-externalisee" },
+      eyebrow: "Je dirige une agence",
+      title: "Vos clients voient leurs RDV, à votre marque.",
+      body: "Plusieurs missions par téléprospecteur, portail client et marque blanche. Une base de données par agence.",
+      action: { label: "Le logiciel pour les agences", href: "/solutions/agences-prospection" },
     },
     {
-      eyebrow: "Directeur commercial externalisé",
-      title: "Vous fixez le cap, on remplit l'agenda de vos clients.",
-      body: "Pour chaque client que vous nous confiez : une mission dédiée et un portail où il voit ses appels et ses RDV.",
-      action: { label: "Devenir partenaire", href: "/partenaires" },
-    },
-    {
-      eyebrow: "Agence ou équipe commerciale",
-      title: "Votre équipe appelle avec notre logiciel.",
-      body: "Liste d'appels, téléphonie, IA et portail client, à votre marque. À partir de 59 € HT par mois.",
-      action: { label: "Découvrir le logiciel", href: "/crm-agence-prospection" },
+      eyebrow: "J'ai une équipe commerciale",
+      title: "Votre équipe appelle, vous suivez en direct.",
+      body: "File d'appels, téléphonie, appels enregistrés et tableau de bord manager, pour une équipe de 3 à 30 personnes.",
+      action: { label: "Le logiciel pour les équipes", href: "/solutions/equipes-commerciales" },
     },
   ],
 } as const;
 
 export const logos = {
   eyebrow: "Références",
-  title: "Ils prospectent avec Suzalink",
+  title: "Ils utilisent Suzalink",
   subtitle: "Des agences de prospection et des centres d'appels B2B.",
-  action: { label: "Voir une mission en chiffres", href: "/#cas-clients" },
+  action: { label: "Voir une mission en chiffres", href: "/secteurs/cabinets-dentaires" },
+  /** Deux chiffres déjà publiés (page /logiciel et mission dentaire). */
+  stats: [
+    { value: "≈ 20", label: "téléprospecteurs l'utilisent chaque jour", note: "chiffres internes, novembre 2026" },
+    { value: "5 174", label: "appels sur une seule campagne, fin 2025", note: "mission cabinets dentaires" },
+  ],
+  /** Nos propres équipes (content/brands.ts, ownTeams), présentées honnêtement. */
+  ownTeamsNote: "Nos propres équipes l'utilisent aussi chaque jour :",
   // La liste des clients et leurs logos : content/brands.ts
 };
 
-/** Comment ça marche : le parcours d'un contact, du fichier au RDV. */
+/** Le logiciel en 4 temps, autour d'un appel. */
 export const how = {
-  eyebrow: "Comment ça marche",
-  title: "Un contact, un appel, un rendez-vous",
-  mark: "rendez-vous",
-  subtitle:
-    "Le téléprospecteur appelle, note le résultat en une touche et passe au suivant. Rien ne se perd entre deux journées.",
+  eyebrow: "Autour d'un appel",
+  title: "De la file au portail client",
+  mark: "portail",
+  subtitle: "Le téléprospecteur appelle, note le résultat en une touche et passe au suivant. Le reste suit tout seul.",
   steps: [
-    { title: "Un fichier propre", body: "Doublons et faux numéros retirés avant le premier appel." },
-    { title: "Chaque appel enregistré", body: "Vous pouvez réécouter n'importe quel échange." },
-    { title: "Des rappels planifiés", body: "Un prospect absent est rappelé à une autre heure." },
-    { title: "Un RDV préparé", body: "Il arrive avec sa fiche : besoin, budget, décideur." },
+    { title: "La file", body: "Le prospect suivant s'affiche, le résultat se note en une touche." },
+    { title: "L'appel enregistré", body: "Allo ou OnOff, avec vos numéros. Chaque appel est gardé." },
+    { title: "La fiche IA", body: "L'IA rédige la fiche de RDV, le téléprospecteur la relit." },
+    { title: "Le portail client", body: "Votre client voit son RDV et peut écouter l'appel." },
   ],
-  action: { label: "Voir une mission en détail", href: "/prospection-externalisee#methode" },
+  action: { label: "Voir le logiciel", href: "/logiciel" },
 };
 
 export const features = {
@@ -95,11 +99,14 @@ export const stack = {
   eyebrow: "Coût total",
   title: "Cinq abonnements pour un seul métier",
   subtitle:
-    "Fichier clients, téléphonie, écoute des appels, emails de relance : chaque outil se paie par commercial. Suzalink réunit tout.",
-  action: { label: "Voir les tarifs", href: "/#tarifs" },
-  bigNumberCaption: "HT par personne et par mois. Appels, emails, relances et IA compris.",
-  tableCaption: "Ce que coûtent les outils de prospection habituels, par personne et par mois",
-  columns: { tool: "Outil", use: "Usage", price: "Prix / personne / mois" },
+    "Fichier clients, téléphonie, écoute des appels, emails de relance : chaque outil se paie par personne. Calcul pour une équipe de 3.",
+  action: { label: "Voir les tarifs", href: "/tarifs" },
+  /** Taille d'équipe du calcul : l'offre Small Business inclut 3 utilisateurs (content/pricing.ts). */
+  team: 3,
+  bigNumberEyebrow: "Suzalink Small Business",
+  bigNumberCaption: "HT par mois pour 3 utilisateurs, en annuel. Téléphonie, enregistrements et IA compris.",
+  tableCaption: "Ce que coûtent les outils de prospection habituels pour une équipe de 3, par mois",
+  columns: { tool: "Outil", use: "Usage", price: "Prix pour 3 / mois" },
   totalLabel: "Total",
   oursLabel: "Suzalink",
   oursUse: "Tout-en-un",
@@ -110,11 +117,11 @@ export const stack = {
  * content/pages/prospection-externalisee.ts (une seule source).
  */
 export const proof = {
-  eyebrow: "Une vraie mission",
+  eyebrow: "Cas client",
   title: "147 rendez-vous en deux mois",
   subtitle:
     "Cabinets dentaires, fin 2025. Notre client devait faire accepter la visite d'un commercial terrain, partout en France.",
-  action: { label: "Lire la mission complète", href: "/secteurs/cabinets-dentaires" },
+  action: { label: "Lire le cas client", href: "/cas-clients" },
 };
 
 export const cases = {
@@ -129,8 +136,9 @@ export const cases = {
   items: [
     // Mission réelle (client anonymisé) : Drive « LES RDV », nov.–déc. 2025.
     { image: "caseSmb", eyebrow: "Cabinets dentaires, 2025", title: "147 RDV terrain et 36 boîtes de collecte en deux mois", href: "/secteurs/cabinets-dentaires", placeholder: false },
-    { image: "caseAgency", eyebrow: "Agence de prospection", title: "XX téléprospecteurs pilotés sur un seul logiciel", href: "#", placeholder: true },
-    { image: "caseFreelance", eyebrow: "Téléprospecteur indépendant", title: "XX appels par jour, sans changer d'outil", href: "#", placeholder: true },
+    // TODO : cartes réservées, masquées tant qu'elles n'ont pas de résultat réel validé par écrit avec le client.
+    //   { image: "caseAgency", eyebrow: "Agence de prospection", title: "XX téléprospecteurs pilotés sur un seul logiciel", href: "/secteurs/…", placeholder: true },
+    //   { image: "caseFreelance", eyebrow: "Téléprospecteur indépendant", title: "XX appels par jour, sans changer d'outil", href: "/secteurs/…", placeholder: true },
   ],
 } as const;
 
@@ -145,7 +153,7 @@ export const testimonial = {
   name: "Prénom Nom",
   role: "Poste, Entreprise",
   logoLabel: "Logo client",
-  action: { label: "Lire le cas client", href: "#" }, // TODO
+  action: { label: "Lire le cas client", href: "/secteurs/cabinets-dentaires" },
 };
 
 export const guaranteesSection = {
@@ -163,7 +171,7 @@ export const offersHome = {
   subtitle: "Hors taxes. Commencez par le sprint test : en deux semaines, vous savez ce que vaut votre cible.",
   crm: {
     text: (price: string) => `Votre équipe appelle elle-même ? Le logiciel Suzalink est à partir de ${price} HT par mois.`,
-    action: { label: "Voir les offres du logiciel", href: "/tarifs#crm" },
+    action: { label: "Voir les offres du logiciel", href: "/tarifs" },
   },
 };
 
@@ -188,7 +196,7 @@ export const security = {
   title: "Vos données restent les vôtres",
   subtitle:
     "Chaque client a son propre espace, sa propre base et ses propres enregistrements. Rien n'est partagé avec une autre entreprise.",
-  action: { label: "Poser vos questions sécurité", href: "/demo" },
+  action: { label: "Tout sur la sécurité", href: "/securite" },
   badges: [
     { icon: "server", title: "Un espace par client", body: "Votre logiciel tourne à part, jamais partagé avec une autre entreprise." },
     { icon: "database", title: "Une base à vous", body: "Vos contacts et vos notes sont rangés dans une base qui n'appartient qu'à vous." },
@@ -197,10 +205,42 @@ export const security = {
   ],
 } as const;
 
+/** Encart service : la prospection externalisée, en second. */
+export const serviceBand = {
+  eyebrow: "Prospection externalisée",
+  title: "Pas d'équipe ? Nos téléprospecteurs appellent.",
+  subtitle: "Ils travaillent sur le même logiciel : vous écoutez chaque appel. Commencez par deux semaines de test.",
+  action: { label: "Découvrir la prospection externalisée", href: "/prospection-externalisee" },
+};
+
+/** FAQ de l'accueil (publiée aussi en données structurées FAQPage). */
+export const homeFaq = {
+  eyebrow: "Questions fréquentes",
+  title: "Ce qu'on nous demande",
+  items: [
+    {
+      q: "Qu'est-ce que Suzalink ?",
+      a: "Un logiciel de prospection téléphonique pour les agences de prise de RDV et les équipes de téléprospection : file d'appels, téléphonie Allo et OnOff, appels enregistrés, fiche de RDV par l'IA et portail client. Voir [le logiciel](/logiciel).",
+    },
+    {
+      q: "Combien coûte le logiciel ?",
+      a: `De ${Math.min(...annual)} à ${Math.max(...annual)} € HT par mois en annuel selon l'offre et le nombre d'utilisateurs. Tous les prix sont publics : voir les [tarifs](/tarifs).`,
+    },
+    {
+      q: "Mes données sont-elles séparées de celles des autres clients ?",
+      a: "Oui. Chaque client a sa propre instance et sa propre base de données. Voir [sécurité](/securite).",
+    },
+    {
+      q: "Vous pouvez aussi appeler pour nous ?",
+      a: "Oui. Nos téléprospecteurs prennent vos RDV, sur le même logiciel : vous écoutez chaque appel. Voir la [prospection externalisée](/prospection-externalisee).",
+    },
+  ],
+};
+
 export const finalCta = {
   eyebrow: "Démo",
-  title: "Prêt à remplir votre agenda ?",
-  mark: "agenda",
+  title: "Voyez Suzalink sur vos missions",
+  mark: "missions",
   subtitle: "Une démo sur vos propres cas, avec votre équipe.",
-  action: { label: "Demander une démo", href: "/demo" },
+  action: { label: "Demander une démo", href: "/demo?offre=logiciel" },
 };

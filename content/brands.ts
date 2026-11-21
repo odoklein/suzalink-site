@@ -24,14 +24,18 @@ export type Brand = {
   logo?: string | null;
 };
 
-/** Clients réels, validés par Suzalink. */
+/** Clients externes réels, validés par Suzalink. Seuls ceux-ci apparaissent sous « Ils utilisent Suzalink ». */
 export const customers: Brand[] = [
-  // L'icône publique du site est une photo : on utilise le logo officiel (dépôt Captain Prospect).
-  { name: "Captain Prospect", domain: "captainprospect.fr", logo: "/logos/captainprospect.fr.png" },
-  { name: "Suzali Conseil", domain: "suzaliconseil.com" },
   { name: "Ping Lead Agency", domain: "ping-leadagency.fr" },
   // Pas d'icône publique pour l'instant : le nom seul est affiché. Déposez un fichier pour l'ajouter.
   { name: "Callcorico", domain: "callcorico.fr", logo: null },
+];
+
+/** Sociétés du groupe : elles utilisent Suzalink chaque jour, mais ne sont pas des clients externes. */
+export const ownTeams: Brand[] = [
+  // L'icône publique du site est une photo : on utilise le logo officiel (dépôt Captain Prospect).
+  { name: "Captain Prospect", domain: "captainprospect.fr", logo: "/logos/captainprospect.fr.png" },
+  { name: "Suzali Conseil", domain: "suzaliconseil.com" },
 ];
 
 /** Outils cités dans le comparatif et la téléphonie. */

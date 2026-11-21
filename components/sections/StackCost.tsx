@@ -1,5 +1,5 @@
 import { stack } from "@/content/home";
-import { formatEuro, stackComparison, stackTotal, startingPrice } from "@/content/pricing";
+import { formatEuro, plans, stackComparison, stackTotal } from "@/content/pricing";
 import { tools } from "@/content/brands";
 import { Logo } from "@/components/brand/Logo";
 import { BrandMark } from "@/components/ui/BrandMark";
@@ -7,12 +7,15 @@ import { Container, SectionHeader, cascade } from "@/components/ui/primitives";
 import { CountUp } from "@/components/landing/interactive";
 import { Reveal } from "@/components/ui/motion";
 
+// Calcul sur une équipe de 3 (stack.team) : l'offre Small Business inclut 3 utilisateurs.
+const team = stack.team;
+const ours = plans.find((p) => p.seatsIncluded === team)!.price.annual;
 const range = (min: number, max: number) => `${formatEuro(min).replace(/\s?€/, "")}–${formatEuro(max)}`;
 
 /**
  * « Cinq abonnements pour un seul métier » : grand prix + tableau comparatif, sur bande teal.
  * Mouvement : le titre arrive, puis les outils s'empilent ligne à ligne comme une facture qui
- * s'allonge, le total tombe, et la ligne Suzalink arrive en dernier. Le prix compte jusqu'à 59 €.
+ * s'allonge, le total tombe, et la ligne Suzalink arrive en dernier. Le calcul se fait sur une équipe de 3 personnes.
  */
 export function StackCost() {
   return (
@@ -31,9 +34,9 @@ export function StackCost() {
             <div className="relative pt-8" style={cascade(4)}>
               <span aria-hidden className="r-line absolute inset-x-0 top-0 h-px bg-white/15" />
               <div className="r-item">
-                <p className="eyebrow text-white/70">Suzalink, dès</p>
+                <p className="eyebrow text-white/70">{stack.bigNumberEyebrow}</p>
                 <p className="font-display-tight mt-2 text-[clamp(5rem,12vw,9.5rem)] leading-[0.9] font-light tabular-nums">
-                  <CountUp value={formatEuro(startingPrice)} />
+                  <CountUp value={formatEuro(ours)} />
                 </p>
                 <p className="mt-4 max-w-[36ch] text-white/75">{stack.bigNumberCaption}</p>
               </div>
@@ -71,7 +74,7 @@ export function StackCost() {
                         </span>
                       </th>
                       <td className="px-3 py-4 text-white/75">{row.use}</td>
-                      <td className="px-6 py-4 text-right font-mono text-[15px] whitespace-nowrap">{range(row.min, row.max)}</td>
+                      <td className="px-6 py-4 text-right font-mono text-[15px] whitespace-nowrap">{range(row.min * team, row.max * team)}</td>
                     </tr>
                   ))}
                   <tr className="r-item border-t border-white/30" style={cascade(stackComparison.rows.length + 5)}>
@@ -79,7 +82,7 @@ export function StackCost() {
                       {stack.totalLabel}
                     </th>
                     <td className="px-6 py-4 text-right font-mono text-[15px] font-semibold whitespace-nowrap">
-                      ≈ {range(stackTotal.min, stackTotal.max)}
+                      ≈ {range(stackTotal.min * team, stackTotal.max * team)}
                     </td>
                   </tr>
                   <tr className="r-item bg-white text-ink" style={cascade(stackComparison.rows.length + 8)}>
@@ -92,7 +95,7 @@ export function StackCost() {
                     </th>
                     <td className="px-3 py-5 text-muted">{stack.oursUse}</td>
                     <td className="px-6 py-5 text-right font-mono text-[15px] font-semibold whitespace-nowrap text-navy">
-                      dès {formatEuro(startingPrice)}
+                      {formatEuro(ours)}
                     </td>
                   </tr>
                 </tbody>
