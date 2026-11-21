@@ -12,6 +12,8 @@ import { ButtonLink, Container, Eyebrow, SectionHeader, cx } from "@/components/
 import { AnnouncementBar } from "@/components/sections/AnnouncementBar";
 import { SiteHeader } from "@/components/sections/SiteHeader";
 import { Pricing } from "@/components/sections/Pricing";
+import { PricingTabs } from "@/components/tarifs/PricingTabs";
+import { PlanCompare } from "@/components/tarifs/PlanCompare";
 import { Footer } from "@/components/sections/Footer";
 import { RichText, plainText } from "./RichText";
 import { CountUp, ReadingProgress, Spotlight, StickyCta, Toc } from "./interactive";
@@ -328,6 +330,47 @@ function renderBlock(block: Block, i: number) {
             <Guarantees />
           </div>
         </Section>
+      );
+
+    case "pricing-tabs":
+      return (
+        <section key={id} id={id} aria-label={block.label} className="scroll-mt-20 border-t border-line bg-white pt-16">
+          <PricingTabs
+            label={block.label}
+            tabs={[
+              {
+                id: "logiciel",
+                label: block.software,
+                anchors: ["crm", "tarifs", "comparer", "independant", "small-business", "medium-business"],
+                panel: (
+                  <div id="crm" className="scroll-mt-24">
+                    <Pricing />
+                    <PlanCompare />
+                  </div>
+                ),
+              },
+              {
+                id: "prospection",
+                label: block.prospection.label,
+                anchors: ["sprint", "mission", "resultat", "bilan", "offres-prospection"],
+                panel: (
+                  <>
+                    <Section id="offres-prospection" tone="white" className="!pt-6">
+                      <SectionHeader id="offres-prospection-title" eyebrow={block.prospection.eyebrow} title={block.prospection.title} subtitle={block.prospection.intro} align="center" />
+                      <div className="mt-12">
+                        <OfferCards />
+                      </div>
+                      <div className="mt-8">
+                        <Guarantees />
+                      </div>
+                    </Section>
+                    {block.prospection.blocks.map((b, n) => renderBlock(b, n + 100))}
+                  </>
+                ),
+              },
+            ]}
+          />
+        </section>
       );
 
     case "crm-pricing":

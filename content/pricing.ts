@@ -33,7 +33,7 @@ export const plans: Plan[] = [
   {
     id: "independant",
     name: "Indépendant",
-    audience: "SDR, closer ou consultant qui prospecte seul.",
+    audience: "Téléprospecteur, closer ou consultant qui prospecte seul.",
     price: { monthly: 69, annual: 59 },
     seatsIncluded: 1,
     extraSeat: null,
@@ -95,6 +95,34 @@ export const startingPrice = Math.min(...plans.map((p) => p.price.annual));
 export const maxAnnualSavingPercent = Math.floor(
   Math.max(...plans.map((p) => (1 - p.price.annual / p.price.monthly) * 100)),
 );
+
+/**
+ * Tableau comparatif des 3 offres du logiciel, fonction par fonction (page /tarifs).
+ * true = inclus, false = non inclus. Les quotas reprennent les listes `features` ci-dessus :
+ * si vous changez une offre, changez aussi cette table.
+ */
+const seat = (p: Plan) => (p.extraSeat ? `${p.extraSeat.price} € HT / mois${p.extraSeat.limit ? `, ${p.extraSeat.limit}` : ""}` : false);
+export const planComparison = {
+  eyebrow: "Comparer",
+  title: "Les trois offres, fonction par fonction",
+  subtitle: "Prix HT. Chaque offre comprend la file d'appels, la téléphonie, les enregistrements et l'IA.",
+  rows: [
+    { label: "Utilisateurs inclus", cells: plans.map((p) => String(p.seatsIncluded)) },
+    { label: "Utilisateur supplémentaire", cells: plans.map(seat) },
+    { label: "File d'appels et résultat en 1 clic", cells: [true, true, true] },
+    { label: "Lignes Allo ou OnOff", cells: ["1", "Jusqu'à 3", "Illimitées"] },
+    { label: "Call Vault (enregistrements / mois)", cells: ["20 h", "80 h", "250 h"] },
+    { label: "Fiches de RDV par l'IA / mois", cells: ["150", "600", "2 500"] },
+    { label: "Contacts", cells: ["15 000", "60 000", "250 000"] },
+    { label: "Stockage", cells: ["5 Go", "25 Go", "100 Go"] },
+    { label: "Emails et modèles", cells: [true, true, true] },
+    { label: "Tableau de bord manager en temps réel", cells: [false, true, true] },
+    { label: "Marque blanche (domaine, logo, couleurs)", cells: [false, false, true] },
+    { label: "Portail client", cells: [false, false, true] },
+    { label: "Mise en service (une fois)", cells: plans.map((p) => `${p.setupFee.price} € HT`) },
+  ] satisfies Array<{ label: string; cells: Array<string | boolean> }>,
+  note: "Options disponibles : stockage d'appels, fiches IA supplémentaires. Mise en service optionnelle pour l'offre Indépendant.",
+};
 
 /**
  * Section 8 — « Le stack morcelé ». Fourchettes de prix publics constatés,

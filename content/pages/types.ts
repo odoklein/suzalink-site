@@ -34,6 +34,11 @@ export type Block =
   | (Head & { kind: "compare"; columns: string[]; rows: Array<{ label: string; cells: string[] }>; note?: string })
   /** Les trois offres de prospection (content/offers.ts). `image` : visuel large au-dessus des cartes. */
   | (Head & { kind: "offers"; image?: { src: string; alt: string; width: number; height: number } })
+  /**
+   * /tarifs : onglets « Logiciel » (par défaut : les 3 offres + le tableau comparatif) et
+   * « Prospection » (les offres de content/offers.ts, les garanties, puis `prospection`).
+   */
+  | { kind: "pricing-tabs"; id?: string; label: string; software: string; prospection: { label: string; eyebrow: string; title: string; intro: string; blocks: Block[] } }
   /** Les trois offres CRM de content/pricing.ts (même bloc que sur l'accueil). */
   | { kind: "crm-pricing"; id?: string }
   /** Encadré « En bref » juste sous le hero : la réponse à la question de la page, en 40 à 60 mots. */
