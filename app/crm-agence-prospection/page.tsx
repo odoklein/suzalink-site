@@ -1,31 +1,7 @@
-import { site } from "@/content/site";
-import { plans } from "@/content/pricing";
-import { crmAgencePage as page } from "@/content/pages/crm-agence-prospection";
-import { LandingPage } from "@/components/landing/Landing";
-import { pageMetadata } from "@/lib/page-meta";
+import { permanentRedirect } from "next/navigation";
 
-export const metadata = pageMetadata(page);
-
-const software = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: `${site.name} CRM`,
-  applicationCategory: "BusinessApplication",
-  applicationSubCategory: "CRM",
-  operatingSystem: "Web",
-  inLanguage: "fr-FR",
-  url: `${site.url}${page.path}`,
-  description: page.meta.description,
-  publisher: { "@id": `${site.url}/#organisation` },
-  offers: plans.map((p) => ({
-    "@type": "Offer",
-    name: p.name,
-    price: p.price.annual,
-    priceCurrency: "EUR",
-    url: `${site.url}/tarifs#crm`,
-  })),
-};
-
+// Ancienne adresse de la page agences : redirection permanente (308) vers la nouvelle.
+// TODO équipe tech : à remplacer par une redirection 301 dans next.config.ts si vous le validez.
 export default function Page() {
-  return <LandingPage page={page} extra={[software]} />;
+  permanentRedirect("/solutions/agences-prospection");
 }
