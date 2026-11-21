@@ -13,7 +13,7 @@ export const guidesHub: LandingPage = {
   meta: {
     title: "Guides de prospection B2B et prise de rendez-vous",
     description:
-      "Nos guides de prospection B2B : externaliser, prix d'un RDV qualifié, barrage secrétaire. Écrits par une équipe qui appelle tous les jours, chiffres à l'appui.",
+      "Nos guides de prospection B2B : externaliser, prix d'un RDV qualifié, barrage secrétaire. Écrits par une équipe qui appelle tous les jours.",
   },
   hero: {
     eyebrow: "Ressources",
@@ -37,7 +37,7 @@ export const guidesHub: LandingPage = {
       title: "Quand vous voulez passer à l'action",
       items: [
         { label: "Prospection externalisée", href: "/prospection-externalisee", body: "Nos téléprospecteurs prennent vos RDV, chaque appel est visible." },
-        { label: "CRM pour agences", href: "/crm-agence-prospection", body: "Votre équipe appelle avec notre CRM, à votre marque." },
+        { label: "Le logiciel", href: "/logiciel", body: "Votre équipe appelle avec notre logiciel : enregistrements, fiche IA, portail client." },
         { label: "Tarifs", href: "/tarifs", body: "Prix publics, hors taxes, sans « nous consulter »." },
       ],
     },
@@ -89,15 +89,15 @@ export const aPropos: LandingPage = {
   breadcrumb: "À propos",
   updated: "2026-11-12",
   meta: {
-    title: "À propos de Suzalink, une marque de Suzali Conseil",
+    title: "À propos de Suzalink (Suzali Conseil)",
     description:
-      "Suzalink est la marque de prospection et de CRM de Suzali Conseil : une vingtaine de téléprospecteurs (SDR), 5 à 10 missions en parallèle, et un CRM construit sur le terrain.",
+      "Suzalink, marque de Suzali Conseil : un logiciel de prospection téléphonique construit sur le terrain par une vingtaine de téléprospecteurs.",
   },
   hero: {
     eyebrow: "À propos",
     title: "Nous appelons tous les jours. Suzalink en est né.",
     lead: "Suzalink est un nouveau chapitre de [Suzali Conseil](https://suzaliconseil.com). Nous menons des missions de prospection pour nos clients, et nous avons construit le CRM dont nous avions besoin pour les faire bien.",
-    primary: { label: "Demander une démo", href: "/demo" },
+    primary: { label: "Demander une démo", href: "/demo?offre=logiciel" },
     secondary: { label: "Nos offres", href: "/tarifs" },
   },
   blocks: [
@@ -155,7 +155,7 @@ export const aPropos: LandingPage = {
       title: "Découvrir Suzalink",
       items: [
         { label: "Prospection externalisée", href: "/prospection-externalisee", body: "Nos téléprospecteurs prennent vos RDV." },
-        { label: "CRM pour agences", href: "/crm-agence-prospection", body: "Le CRM à votre marque." },
+        { label: "Le logiciel", href: "/logiciel", body: "Le logiciel de prospection téléphonique, à votre marque." },
         { label: "Nos guides", href: "/guides", body: "Ce que nous apprenons au téléphone." },
       ],
     },

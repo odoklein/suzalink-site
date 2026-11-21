@@ -128,7 +128,7 @@ function PanelContent({ item, onNavigate }: { item: Panel; onNavigate: () => voi
             <div key={col.title}>
               <p className="eyebrow mb-3 px-2.5 text-muted">{col.title}</p>
               {col.layout === "cards" ? (
-                <ul className={cx("grid gap-3", cols === 1 ? "grid-cols-2" : "grid-cols-1")}>
+                <ul className={cx("grid gap-3", cols === 1 ? (col.links.length === 3 ? "grid-cols-3" : "grid-cols-2") : "grid-cols-1")}>
                   {col.links.map((l) => (
                     <CardLink key={l.label} link={l} delay={next()} onNavigate={onNavigate} />
                   ))}

@@ -31,7 +31,7 @@ export const guides: Guide[] = [
     updated: "2026-11-12",
     article: { published: "2026-11-12", readingMinutes: 9 },
     meta: {
-      title: "Externaliser sa prospection commerciale : le guide",
+      title: "Externaliser sa prospection : le guide complet",
       description:
         "Quand externaliser sa prospection commerciale, comment choisir une agence, combien ça coûte et quels résultats attendre. Avec les chiffres de nos missions.",
     },

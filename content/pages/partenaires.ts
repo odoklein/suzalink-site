@@ -12,9 +12,9 @@ import type { LandingPage } from "./types";
 export const partenairesPage: LandingPage = {
   path: "/partenaires",
   meta: {
-    title: "Directeur commercial externalisé : devenez partenaire",
+    title: "Directeur commercial externalisé : partenariat",
     description:
-      "Directeur commercial externalisé ou consultant : vous fixez la stratégie, nos téléprospecteurs remplissent l'agenda de vos clients. Chaque appel reste visible.",
+      "Directeur commercial externalisé ou consultant : vous fixez la stratégie, nos téléprospecteurs remplissent l'agenda de vos clients, chaque appel visible.",
   },
   breadcrumb: "Partenaires",
   updated: "2026-11-17",

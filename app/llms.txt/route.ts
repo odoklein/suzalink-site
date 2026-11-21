@@ -6,6 +6,9 @@ import { partenairesPage } from "@/content/pages/partenaires";
 import { guides } from "@/content/pages/guides";
 import { sectors } from "@/content/pages/secteurs";
 import { aPropos } from "@/content/pages/hubs";
+import { softwarePages } from "@/content/pages/logiciel";
+import { equipesPage } from "@/content/pages/solutions";
+import { securitePage, casClientsPage, contactPage } from "@/content/pages/ressources";
 
 // llms.txt (https://llmstxt.org): a plain summary of the site for AI assistants and answer engines.
 export const dynamic = "force-static";
@@ -18,13 +21,20 @@ export function GET() {
     "",
     `> ${site.seo.description}`,
     "",
-    `${site.name} est une marque de ${site.footer.parent.name} (${site.footer.parent.url}). Deux offres : la prospection téléphonique B2B externalisée (nos téléprospecteurs prennent les rendez-vous du client) et un CRM de prospection pour les agences et les équipes commerciales. Les directeurs commerciaux externalisés peuvent nous confier les appels de leurs clients (programme partenaires). Prix publics, hors taxes, sur ${site.url}/tarifs.`,
+    `${site.name} est une marque de ${site.footer.parent.name} (${site.footer.parent.url}). C'est d'abord un logiciel de prospection téléphonique pour les agences de prospection et de prise de RDV et pour les équipes de téléprospection internes des PME et ETI : file d'appels avec le résultat en une touche, téléphonie Allo et OnOff, enregistrement de chaque appel, fiche de RDV rédigée par l'IA puis relue par le téléprospecteur, portail client, marque blanche, tableau de bord manager. Chaque client a sa propre instance et sa propre base de données. En second, ${site.name} propose la prospection téléphonique B2B externalisée (nos téléprospecteurs prennent les RDV du client) et un programme partenaires pour les directeurs commerciaux externalisés. Prix publics, hors taxes, sur ${site.url}/tarifs.`,
     "",
-    "## Offres",
-    line(prospectionPage),
+    "## Logiciel",
+    ...softwarePages.map(line),
+    line(securitePage),
+    "",
+    "## Solutions",
     line(crmAgencePage),
-    line(tarifsPage),
+    line(equipesPage),
     line(partenairesPage),
+    line(prospectionPage),
+    "",
+    "## Tarifs",
+    line(tarifsPage),
     "",
     "## Secteurs",
     ...sectors.map(line),
@@ -33,7 +43,9 @@ export function GET() {
     ...guides.map(line),
     "",
     "## Entreprise",
+    line(casClientsPage),
     line(aPropos),
+    line(contactPage),
     "",
   ].join("\n");
   return new Response(body, { headers: { "content-type": "text/plain; charset=utf-8" } });

@@ -19,7 +19,7 @@ export const sectors: Sector[] = [
     meta: {
       title: "Prospection des cabinets dentaires par téléphone",
       description:
-        "Vous vendez aux cabinets dentaires ? Nos téléprospecteurs obtiennent l'accord de l'assistante et remplissent vos tournées. 147 RDV terrain sur une mission de fin 2025.",
+        "Vous vendez aux cabinets dentaires ? Nos téléprospecteurs obtiennent l'accord de l'assistante : 147 RDV terrain sur une mission de fin 2025.",
     },
     breadcrumb: "Cabinets dentaires",
     updated: "2026-11-12",

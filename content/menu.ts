@@ -3,6 +3,7 @@
  * Chaque lien pointe vers une page qui existe : n'ajoutez un lien que si la page est en ligne.
  */
 import type { IconName } from "@/components/ui/Icon";
+import { featurePages } from "./pages/logiciel";
 
 export type MenuLink = { label: string; href: string; body?: string; icon?: IconName; /** Aperçu (cartes uniquement), fichier de public/visuals/. */ image?: string };
 export type MenuFeature = { label: string; href: string; body: string; image: string; tag: string };
@@ -21,60 +22,39 @@ export type MenuItem =
 
 export const menu: MenuItem[] = [
   {
-    label: "Produit",
+    label: "Logiciel",
     columns: [
       {
-        title: "Deux façons de travailler",
-        layout: "cards",
-        links: [
-          { label: "Suzalink Prospection", href: "/prospection-externalisee", body: "Nos téléprospecteurs prennent vos RDV. Chaque appel est enregistré et visible.", icon: "phone", image: "/visuals/mission-semaine.webp" },
-          { label: "Suzalink CRM", href: "/crm-agence-prospection", body: "Votre équipe appelle avec notre logiciel, à votre marque.", icon: "grid", image: "/visuals/marque-blanche.webp" },
-        ],
+        title: "Autour d'un appel",
+        links: featurePages.map((f) => ({ label: f.label, href: f.href, body: f.body, icon: f.icon as IconName })),
       },
     ],
     feature: {
-      tag: "Dans le CRM",
+      tag: "IA",
       label: "La fiche de RDV rédigée par l'IA",
-      href: "/prospection-externalisee#fiche-rdv",
-      body: "Besoin, budget, décideur, objections : prête avant le premier échange.",
+      href: "/logiciel/ia",
+      body: "Besoin, budget, décideur, objections : relue par le téléprospecteur, prête pour le client.",
       image: "/visuals/fiche-rdv-ia.webp",
     },
     footer: [
-      { label: "Comment ça marche", href: "/#comment", icon: "waveform" },
-      { label: "Nos garanties", href: "/#garanties", icon: "shield" },
-      { label: "Sécurité des données", href: "/#securite", icon: "lock" },
+      { label: "Vue d'ensemble du logiciel", href: "/logiciel", icon: "grid" },
+      { label: "Sécurité des données", href: "/securite", icon: "lock" },
     ],
   },
   {
     label: "Solutions",
     columns: [
       {
-        title: "Par besoin",
-        links: [
-          { label: "Des RDV sans recruter", href: "/prospection-externalisee", icon: "calendar" },
-          { label: "Tester un nouveau marché", href: "/tarifs#sprint", icon: "target" },
-          { label: "Équiper mon agence", href: "/crm-agence-prospection", icon: "building" },
-          { label: "Trouver des RDV pour mes clients", href: "/partenaires", icon: "users" },
-        ],
-      },
-      {
-        title: "Par secteur",
-        links: [
-          { label: "Cabinets dentaires", href: "/secteurs/cabinets-dentaires", icon: "tooth" },
-          { label: "Tous les secteurs", href: "/secteurs", icon: "map" },
-          { label: "Tester mon secteur en 2 semaines", href: "/tarifs#sprint", icon: "target" },
-        ],
-      },
-      {
-        title: "Par organisation",
+        title: "Pour qui",
         layout: "cards",
         links: [
-          { label: "Dirigeants de PME", href: "/prospection-externalisee", body: "Des RDV qualifiés sans embaucher, avec un test de deux semaines.", icon: "briefcase" },
-          { label: "Directeurs commerciaux externalisés", href: "/partenaires", body: "Des RDV pour vos clients, chaque appel visible dans leur portail.", icon: "users" },
-          { label: "Agences et équipes commerciales", href: "/crm-agence-prospection", body: "Le logiciel à votre marque, avec portail client.", icon: "building" },
+          { label: "Agences de prospection", href: "/solutions/agences-prospection", body: "Marque blanche, portail client, plusieurs missions par téléprospecteur.", icon: "building", image: "/visuals/marque-blanche.webp" },
+          { label: "Équipes commerciales", href: "/solutions/equipes-commerciales", body: "Votre équipe de téléprospection, pilotée en direct.", icon: "users", image: "/visuals/mission-semaine.webp" },
+          { label: "Partenaires", href: "/partenaires", body: "Directeurs commerciaux externalisés : des RDV pour vos clients.", icon: "briefcase" },
         ],
       },
     ],
+    footer: [{ label: "Pas d'équipe ? Faire prospecter par nos téléprospecteurs", href: "/prospection-externalisee", icon: "phone" }],
   },
   {
     label: "Ressources",
@@ -89,18 +69,20 @@ export const menu: MenuItem[] = [
         ],
       },
       {
-        title: "Entreprise",
+        title: "Suzalink",
         links: [
+          { label: "Cas clients", href: "/cas-clients", icon: "target" },
+          { label: "Secteurs", href: "/secteurs", icon: "map" },
+          { label: "Sécurité", href: "/securite", icon: "shield" },
           { label: "À propos", href: "/a-propos", icon: "users" },
-          { label: "Suzali Conseil", href: "https://suzaliconseil.com", icon: "building" },
-          { label: "Contact", href: "/demo", icon: "mail" },
+          { label: "Contact", href: "/contact", icon: "mail" },
         ],
       },
     ],
     feature: {
       tag: "Cas client",
       label: "147 RDV terrain en deux mois",
-      href: "/secteurs/cabinets-dentaires",
+      href: "/cas-clients",
       body: "Notre mission vers les cabinets dentaires, chiffres à l'appui.",
       image: "/visuals/tournees-dentaires.webp",
     },

@@ -16,7 +16,7 @@ export const prospectionPage: LandingPage = {
   meta: {
     title: "Prospection externalisée : des RDV B2B qualifiés",
     description:
-      "Externalisez votre prospection téléphonique B2B : un téléprospecteur dédié, chaque appel enregistré et visible. Un sprint test de 2 semaines pour juger sur pièces.",
+      "Externalisez votre prospection téléphonique B2B : un téléprospecteur dédié, chaque appel enregistré et visible, et un sprint test de 2 semaines.",
   },
   breadcrumb: "Prospection externalisée",
   updated: "2026-11-12",
@@ -124,7 +124,7 @@ export const prospectionPage: LandingPage = {
         width: 1122,
         height: 1402,
       },
-      action: { label: "Voir le CRM qui la produit", href: "/crm-agence-prospection" },
+      action: { label: "La fiche de RDV par l'IA", href: "/logiciel/ia" },
     },
     {
       kind: "proof",
@@ -245,7 +245,7 @@ export const prospectionPage: LandingPage = {
         { label: "Prospection des cabinets dentaires", href: "/secteurs/cabinets-dentaires", body: "Ce que nous avons appris en appelant des milliers de cabinets." },
         { label: "Guide : externaliser sa prospection", href: "/guides/externaliser-prospection-commerciale", body: "Quand le faire, combien ça coûte, les pièges à éviter." },
         { label: "Prix d'un RDV qualifié", href: "/guides/prix-rdv-qualifie", body: "Forfait, paiement au RDV, coût interne : le calcul complet." },
-        { label: "CRM pour agences", href: "/crm-agence-prospection", body: "Vous avez votre propre équipe ? Utilisez notre CRM à votre marque." },
+        { label: "Le logiciel", href: "/logiciel", body: "Vous avez votre propre équipe ? Elle appelle avec notre logiciel." },
         { label: "Passer le barrage secrétaire", href: "/guides/barrage-secretaire", body: "Les phrases et les horaires qui marchent, tirés de nos appels." },
       ],
     },

@@ -62,6 +62,7 @@ export function Footer() {
               </button>
             </div>
 
+            {footer.socials.length > 0 ? (
             <ul className="flex items-center gap-2">
               {footer.socials.map((s) => (
                 <li key={s.label}>
@@ -75,6 +76,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+            ) : null}
           </div>
         </div>
       </Container>

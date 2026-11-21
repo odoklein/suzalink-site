@@ -1,6 +1,5 @@
 /**
  * Réglages globaux du site : nom, URL, SEO, barre d'annonce, navigation, pied de page.
- * Les liens marqués TODO pointent vers des pages qui n'existent pas encore.
  */
 
 export type NavLink = { label: string; href: string };
@@ -13,62 +12,63 @@ export const site = {
   lang: "fr",
 
   seo: {
-    title: "Suzalink : prise de rendez-vous B2B et CRM de prospection",
+    title: "Suzalink : logiciel de prospection téléphonique",
     titleTemplate: "%s | Suzalink",
     description:
-      "Prise de rendez-vous B2B : nos téléprospecteurs remplissent votre agenda, ou votre équipe appelle avec notre CRM. Chaque appel est enregistré et visible.",
+      "Le logiciel des agences et équipes de prospection téléphonique : appels enregistrés, fiche de RDV par l'IA, portail client. Une base de données par client.",
     ogImageAlt: "Suzalink : votre prospection, vos règles.",
   },
 
   /** Lien « Se connecter ». TODO : URL de l'application. */
   loginUrl: "https://app.suzalink.com",
   /** Toutes les actions « Demander une démo » mènent ici. */
-  demoHref: "/demo",
+  demoHref: "/demo?offre=logiciel",
   demoLabel: "Demander une démo",
   loginLabel: "Se connecter",
 
   announcement: {
-    badge: "Nouveau",
-    text: "Sprint test : 2 semaines de prospection pour juger sur pièces",
-    href: "/tarifs#sprint",
+    badge: "Logiciel",
+    text: "La fiche de RDV rédigée par l'IA, relue par le téléprospecteur",
+    href: "/logiciel/ia",
   },
 
   // Menu principal : content/menu.ts
 
 
   footer: {
-    tagline: "Des RDV B2B pris par nos téléprospecteurs, ou le logiciel pour les prendre vous-même.",
+    tagline: "Le logiciel des agences et équipes de prospection téléphonique. Pas d'équipe ? Nos téléprospecteurs appellent pour vous.",
     /** Maison mère : affichée sous le logo et dans les données structurées. */
     parent: { name: "Suzali Conseil", url: "https://suzaliconseil.com", label: "Une marque de Suzali Conseil" },
     columns: [
       {
-        title: "Offres",
+        title: "Logiciel",
         links: [
-          { label: "Prospection externalisée", href: "/prospection-externalisee" },
-          { label: "Sprint test", href: "/tarifs#sprint" },
-          { label: "CRM pour agences", href: "/crm-agence-prospection" },
-          { label: "Partenaires", href: "/partenaires" },
+          { label: "Vue d'ensemble", href: "/logiciel" },
+          { label: "File d'appels", href: "/logiciel/file-appels" },
+          { label: "Téléphonie", href: "/logiciel/telephonie" },
+          { label: "Fiche de RDV par l'IA", href: "/logiciel/ia" },
+          { label: "Portail client", href: "/logiciel/portail-client" },
+          { label: "Marque blanche", href: "/logiciel/marque-blanche" },
           { label: "Tarifs", href: "/tarifs" },
         ],
       },
       {
-        title: "Produit",
+        title: "Solutions",
         links: [
-          { label: "Comment ça marche", href: "/#comment" },
-          { label: "Le logiciel", href: "/#produit" },
-          { label: "Garanties", href: "/#garanties" },
-          { label: "Sécurité", href: "/#securite" },
+          { label: "Agences de prospection", href: "/solutions/agences-prospection" },
+          { label: "Équipes commerciales", href: "/solutions/equipes-commerciales" },
+          { label: "Partenaires", href: "/partenaires" },
+          { label: "Prospection externalisée", href: "/prospection-externalisee" },
+          { label: "Sprint test", href: "/tarifs#sprint" },
         ],
       },
       {
         title: "Ressources",
         links: [
           { label: "Guides", href: "/guides" },
-          { label: "Externaliser sa prospection", href: "/guides/externaliser-prospection-commerciale" },
-          { label: "Prix d'un RDV qualifié", href: "/guides/prix-rdv-qualifie" },
-          { label: "Barrage secrétaire", href: "/guides/barrage-secretaire" },
+          { label: "Cas clients", href: "/cas-clients" },
           { label: "Secteurs", href: "/secteurs" },
-          { label: "Prospection des cabinets dentaires", href: "/secteurs/cabinets-dentaires" },
+          { label: "Sécurité", href: "/securite" },
         ],
       },
       {
@@ -76,25 +76,23 @@ export const site = {
         links: [
           { label: "À propos", href: "/a-propos" },
           { label: "Suzali Conseil", href: "https://suzaliconseil.com" },
-          { label: "Contact", href: "/demo" },
+          { label: "Contact", href: "/contact" },
         ],
       },
       {
         title: "Légal",
-        // TODO : créer ces pages avant la mise en ligne.
         links: [
-          { label: "Mentions légales", href: "#" },
-          { label: "Confidentialité", href: "#" },
-          { label: "CGV", href: "#" },
-          { label: "Cookies", href: "#" },
+          { label: "Mentions légales", href: "/mentions-legales" },
+          { label: "Confidentialité", href: "/confidentialite" },
+          { label: "CGV", href: "/cgv" },
+          { label: "Cookies", href: "/cookies" },
         ],
       },
     ],
-    // TODO : renseigner les vrais comptes.
-    socials: [
-      { label: "LinkedIn", href: "#", icon: "linkedin" },
-      { label: "YouTube", href: "#", icon: "youtube" },
-    ],
+    // TODO : ajouter les vrais comptes (URL complète) ; un réseau sans URL n'est pas affiché.
+    //   { label: "LinkedIn", href: "https://www.linkedin.com/company/…", icon: "linkedin" },
+    //   { label: "YouTube", href: "https://www.youtube.com/@…", icon: "youtube" },
+    socials: [] as ReadonlyArray<{ label: string; href: string; icon: "linkedin" | "youtube" }>,
     languages: {
       label: "Langue",
       current: "FR",
