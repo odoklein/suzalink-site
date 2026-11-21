@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { demo } from "@/content/demo";
 import { DemoForm } from "@/components/DemoForm";
+import { resolveOffre } from "@/lib/demo-schema";
 import { Icon } from "@/components/ui/Icon";
 import { Container, Eyebrow } from "@/components/ui/primitives";
 import { SiteHeader } from "@/components/sections/SiteHeader";
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 
 export default async function DemoPage({ searchParams }: { searchParams: Promise<{ offre?: string | string[] }> }) {
   const { offre } = await searchParams;
-  const plan = typeof offre === "string" ? offre : undefined;
+  const { need, plan } = resolveOffre(typeof offre === "string" ? offre : undefined);
 
   return (
     <>
@@ -37,7 +38,7 @@ export default async function DemoPage({ searchParams }: { searchParams: Promise
               ))}
             </ul>
           </div>
-          <DemoForm plan={plan} />
+          <DemoForm need={need} plan={plan} />
         </Container>
       </main>
       <Footer />

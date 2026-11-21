@@ -19,11 +19,21 @@ export const demo = {
     legend: "Vos coordonnées",
     requiredNote: "Tous les champs sont obligatoires.",
     fields: {
+      need: { label: "Vous cherchez", placeholder: "Choisissez une option" },
       name: { label: "Nom complet", placeholder: "Camille Dupont", autoComplete: "name" },
       email: { label: "Email professionnel", placeholder: "camille@entreprise.fr", autoComplete: "email" },
       company: { label: "Entreprise", placeholder: "Nom de votre entreprise", autoComplete: "organization" },
       teamSize: { label: "Taille de l'équipe commerciale", placeholder: "Choisissez une taille" },
     },
+    /**
+     * Ce que la personne cherche. `from` : les valeurs de ?offre=… qui présélectionnent ce choix.
+     * Les identifiants d'offre précis (sprint, mission, plans du logiciel…) restent transmis à part.
+     */
+    needs: [
+      { value: "logiciel", label: "Le logiciel pour mon équipe", from: ["logiciel", "independant", "small-business", "medium-business"] },
+      { value: "prospection", label: "Faire prospecter par vos téléprospecteurs", from: ["prospection", "sprint", "mission", "resultat"] },
+      { value: "partenaire", label: "Devenir partenaire", from: ["partenaire"] },
+    ],
     teamSizes: [
       { value: "1", label: "1 personne" },
       { value: "2-5", label: "2 à 5 personnes" },
@@ -32,6 +42,7 @@ export const demo = {
       { value: "30+", label: "Plus de 30 personnes" },
     ],
     errors: {
+      needRequired: "Choisissez ce que vous cherchez.",
       nameRequired: "Indiquez votre nom.",
       nameTooLong: "Votre nom doit faire moins de 120 caractères.",
       emailRequired: "Indiquez votre email professionnel.",
@@ -44,7 +55,7 @@ export const demo = {
       server: "L'envoi a échoué. Réessayez dans un instant.",
     },
     consent:
-      "En envoyant ce formulaire, vous acceptez que Suzalink utilise ces informations pour vous recontacter au sujet de votre démo.",
+      "En envoyant ce formulaire, vous acceptez que Suzalink (Suzali Conseil) utilise ces informations pour vous recontacter au sujet de votre demande. Détails et droits : [politique de confidentialité](/confidentialite).",
     submit: "Demander une démo",
     submitting: "Envoi en cours…",
     success: {

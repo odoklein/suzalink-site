@@ -5,13 +5,14 @@ import { submitDemo, type DemoState } from "@/app/demo/actions";
 import { demo } from "@/content/demo";
 import { findInterest } from "@/content/offers";
 import { demoFields, validateDemo, type DemoErrors, type DemoField } from "@/lib/demo-schema";
+import { RichText } from "@/components/landing/RichText";
 import { ButtonLink, cx } from "@/components/ui/primitives";
 
 const initialState: DemoState = { status: "idle", errors: {}, values: {} };
 const f = demo.form;
 
 /** Demo request form: name, email, company, team size. Works without JavaScript (server action). */
-export function DemoForm({ plan }: { plan?: string }) {
+export function DemoForm({ need, plan }: { need?: string; plan?: string }) {
   const [state, formAction, pending] = useActionState(submitDemo, initialState);
   const [clientErrors, setClientErrors] = useState<DemoErrors>({});
   const [submitted, setSubmitted] = useState(false);
@@ -96,6 +97,23 @@ export function DemoForm({ plan }: { plan?: string }) {
         ) : null}
 
         <Field
+          name="need"
+          label={f.fields.need.label}
+          error={errors.need}
+          input={(p) => (
+            <select {...p} defaultValue={state.values.need ?? need ?? ""} onChange={() => revalidate("need")}>
+              <option value="" disabled>
+                {f.fields.need.placeholder}
+              </option>
+              {f.needs.map((n) => (
+                <option key={n.value} value={n.value}>
+                  {n.label}
+                </option>
+              ))}
+            </select>
+          )}
+        />
+        <Field
           name="name"
           label={f.fields.name.label}
           error={errors.name}
@@ -176,7 +194,9 @@ export function DemoForm({ plan }: { plan?: string }) {
         </div>
       </fieldset>
 
-      <p className="text-[13px] leading-relaxed text-muted">{f.consent}</p>
+      <p className="text-[13px] leading-relaxed text-muted">
+        <RichText text={f.consent} />
+      </p>
 
       <button
         type="submit"

@@ -81,8 +81,6 @@ export const guarantees = [
 export const interests = [
   ...prospectionOffers.map((o) => ({ id: o.id, name: o.name })),
   ...plans.map((p) => ({ id: p.id, name: `CRM ${p.name}` })),
-  // /partenaires : directeurs commerciaux externalisés et consultants.
-  { id: "partenaire", name: "Programme partenaires" },
 ];
 
 export const findInterest = (id?: string) => interests.find((i) => i.id === id);
