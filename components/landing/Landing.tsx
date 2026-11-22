@@ -690,7 +690,24 @@ function pageSchemas(page: LandingPageData, trail: Array<{ label: string; href: 
   const url = `${site.url}${page.path}`;
   const out: object[] = [
     {
+      // The page itself, tied to the site and the organisation (entity clarity for search and AI answers).
       "@context": "https://schema.org",
+      "@type": page.path === "/a-propos" ? "AboutPage" : page.path === "/contact" ? "ContactPage" : "WebPage",
+      "@id": `${url}#page`,
+      url,
+      name: page.meta.title,
+      description: page.meta.description,
+      inLanguage: "fr-FR",
+      isPartOf: { "@id": `${site.url}/#site` },
+      publisher: { "@id": `${site.url}/#organisation` },
+      breadcrumb: { "@id": `${url}#breadcrumb` },
+      ...(page.path === "/a-propos" ? { about: { "@id": `${site.url}/#organisation` } } : {}),
+      ...(page.updated ? { dateModified: page.updated } : {}),
+      speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", ".answer-box"] },
+    },
+    {
+      "@context": "https://schema.org",
+      "@id": `${url}#breadcrumb`,
       "@type": "BreadcrumbList",
       itemListElement: trail.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.label, item: `${site.url}${c.href}` })),
     },

@@ -3,35 +3,51 @@ import { site } from "@/content/site";
 import { sectors } from "@/content/pages/secteurs";
 import { guides } from "@/content/pages/guides";
 import { softwarePages } from "@/content/pages/logiciel";
+import { crmAgencePage } from "@/content/pages/crm-agence-prospection";
+import { equipesPage, solutionsHub } from "@/content/pages/solutions";
+import { tarifsPage } from "@/content/pages/tarifs";
+import { prospectionPage } from "@/content/pages/prospection-externalisee";
+import { partenairesPage } from "@/content/pages/partenaires";
+import { securitePage, casClientsPage, contactPage } from "@/content/pages/ressources";
+import { guidesHub, secteursHub, aPropos } from "@/content/pages/hubs";
+import { mentionsLegales, confidentialite, cgv, cookies } from "@/content/pages/legal";
+
+/**
+ * Every indexable page, with `lastModified` taken from the page's own `updated` date
+ * (search engines only trust lastmod when it changes with the content). Google ignores
+ * priority and changefreq, so they are left out.
+ * Home and /demo have no `updated` field: bump HOME_UPDATED when the home page changes.
+ */
+const HOME_UPDATED = "2026-11-22";
+
+type Page = { path: string; updated?: string };
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-  const page = (path: string, priority: number, changeFrequency: "weekly" | "monthly" = "monthly") => ({
-    url: `${site.url}${path}`,
-    lastModified,
-    changeFrequency,
-    priority,
-  });
-  return [
-    page("/", 1, "weekly"),
-    ...softwarePages.map((p) => page(p.path, p.path === "/logiciel" ? 0.95 : 0.8, "weekly")),
-    page("/solutions/agences-prospection", 0.9, "weekly"),
-    page("/solutions/equipes-commerciales", 0.9, "weekly"),
-    page("/tarifs", 0.9),
-    page("/securite", 0.7),
-    page("/prospection-externalisee", 0.8, "weekly"),
-    page("/partenaires", 0.7),
-    page("/cas-clients", 0.7),
-    page("/secteurs", 0.6),
-    ...sectors.map((s) => page(s.path, 0.7)),
-    page("/guides", 0.6, "weekly"),
-    ...guides.map((g) => page(g.path, 0.7)),
-    page("/a-propos", 0.5),
-    page("/contact", 0.4),
-    page("/demo", 0.6),
-    page("/mentions-legales", 0.2),
-    page("/confidentialite", 0.2),
-    page("/cgv", 0.2),
-    page("/cookies", 0.2),
+  const pages: Page[] = [
+    { path: "/", updated: HOME_UPDATED },
+    ...softwarePages,
+    solutionsHub,
+    crmAgencePage,
+    equipesPage,
+    partenairesPage,
+    prospectionPage,
+    tarifsPage,
+    securitePage,
+    casClientsPage,
+    secteursHub,
+    ...sectors,
+    guidesHub,
+    ...guides,
+    aPropos,
+    contactPage,
+    { path: "/demo", updated: HOME_UPDATED },
+    mentionsLegales,
+    confidentialite,
+    cgv,
+    cookies,
   ];
+  return pages.map((p) => ({
+    url: `${site.url}${p.path === "/" ? "" : p.path}`,
+    lastModified: new Date(`${p.updated ?? HOME_UPDATED}T00:00:00Z`),
+  }));
 }

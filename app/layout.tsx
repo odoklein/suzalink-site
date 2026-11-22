@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import { site } from "@/content/site";
+import { company } from "@/content/pages/legal";
 import { MotionProvider } from "@/components/ui/motion";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -37,7 +38,12 @@ export const metadata: Metadata = {
     title: site.seo.title,
     description: site.seo.description,
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    // Let search and AI answers show full snippets and large image previews.
+    googleBot: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large", "max-video-preview": -1 },
+  },
   formatDetection: { telephone: false },
 };
 
@@ -67,6 +73,24 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             logo: `${site.url}/brand/logo.png`,
             description: site.seo.description,
             parentOrganization: { "@type": "Organization", name: site.footer.parent.name, url: site.footer.parent.url },
+            areaServed: { "@type": "Country", name: "France" },
+            knowsLanguage: "fr",
+            knowsAbout: ["Prospection téléphonique B2B", "Prise de rendez-vous B2B", "Logiciel de téléprospection", "Externalisation de la prospection commerciale"],
+            address: { "@type": "PostalAddress", streetAddress: "10 rue de la Paix", postalCode: "75002", addressLocality: "Paris", addressCountry: "FR" },
+            contactPoint: { "@type": "ContactPoint", contactType: "sales", email: company.email, areaServed: "FR", availableLanguage: "French", url: `${site.url}/contact` },
+            // TODO : ajouter sameAs (LinkedIn, YouTube…) dès que les comptes ont une URL réelle (content/site.ts).
+          }}
+        />
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": `${site.url}/#site`,
+            name: site.name,
+            url: site.url,
+            inLanguage: "fr-FR",
+            description: site.seo.description,
+            publisher: { "@id": `${site.url}/#organisation` },
           }}
         />
         <SmoothScroll />
