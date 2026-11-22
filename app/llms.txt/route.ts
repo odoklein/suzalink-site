@@ -7,7 +7,7 @@ import { guides } from "@/content/pages/guides";
 import { sectors } from "@/content/pages/secteurs";
 import { aPropos } from "@/content/pages/hubs";
 import { softwarePages } from "@/content/pages/logiciel";
-import { equipesPage } from "@/content/pages/solutions";
+import { equipesPage, solutionsHub } from "@/content/pages/solutions";
 import { securitePage, casClientsPage, contactPage } from "@/content/pages/ressources";
 
 // llms.txt (https://llmstxt.org): a plain summary of the site for AI assistants and answer engines.
@@ -28,6 +28,7 @@ export function GET() {
     line(securitePage),
     "",
     "## Solutions",
+    line(solutionsHub),
     line(crmAgencePage),
     line(equipesPage),
     line(partenairesPage),

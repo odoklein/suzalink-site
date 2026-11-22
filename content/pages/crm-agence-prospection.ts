@@ -15,7 +15,8 @@ export const crmAgencePage: LandingPage = {
       "Le logiciel des agences de prospection et de prise de RDV : téléphonie, appels enregistrés, fiche IA et portail client à votre marque. Une base par agence.",
   },
   breadcrumb: "Agences de prospection",
-  updated: "2026-11-21",
+  parent: { label: "Solutions", href: "/solutions" },
+  updated: "2026-11-22",
   hero: {
     eyebrow: "Agences de prospection",
     title: "Le logiciel de votre agence, à votre marque",

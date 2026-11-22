@@ -17,7 +17,8 @@ export const partenairesPage: LandingPage = {
       "Directeur commercial externalisé ou consultant : vous fixez la stratégie, nos téléprospecteurs remplissent l'agenda de vos clients, chaque appel visible.",
   },
   breadcrumb: "Partenaires",
-  updated: "2026-11-17",
+  parent: { label: "Solutions", href: "/solutions" },
+  updated: "2026-11-22",
   hero: {
     eyebrow: "Directeurs commerciaux externalisés",
     title: "Recommandez Suzalink, suivez vos clients",
@@ -145,8 +146,8 @@ export const partenairesPage: LandingPage = {
       title: "Pour aller plus loin",
       items: [
         { label: "Prospection externalisée", href: "/prospection-externalisee", body: "Comment se passe une mission, étape par étape." },
-        { label: "Prix d'un RDV qualifié", href: "/guides/prix-rdv-qualifie", body: "Forfait, paiement au RDV, coût interne : le calcul complet." },
-        { label: "Une vraie mission en chiffres", href: "/secteurs/cabinets-dentaires", body: "147 RDV terrain en deux mois auprès de cabinets dentaires." },
+        { label: "Portail client", href: "/logiciel/portail-client", body: "Ce que votre client voit : ses RDV et ses appels enregistrés." },
+        { label: "Cas clients", href: "/cas-clients", body: "147 RDV terrain en deux mois auprès de cabinets dentaires." },
       ],
     },
     {

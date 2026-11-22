@@ -17,7 +17,8 @@ export const equipesPage: LandingPage = {
       "Équipez votre équipe de téléprospection : file d'appels, téléphonie, appels enregistrés, fiche de RDV par l'IA et tableau de bord manager en direct.",
   },
   breadcrumb: "Équipes commerciales",
-  updated: "2026-11-21",
+  parent: { label: "Solutions", href: "/solutions" },
+  updated: "2026-11-22",
   hero: {
     eyebrow: "Équipes commerciales",
     title: "Votre équipe appelle, vous voyez tout",
@@ -50,10 +51,10 @@ export const equipesPage: LandingPage = {
       eyebrow: "Pour votre équipe",
       title: "Appeler plus, sans saisie",
       items: [
-        { icon: "grid", title: "File d'appels", body: "Le suivant s'affiche, le résultat se note en une touche. [Voir](/logiciel/file-appels)." },
-        { icon: "phone", title: "Téléphonie intégrée", body: "Allo ou OnOff, avec vos numéros. [Voir](/logiciel/telephonie)." },
+        { icon: "grid", title: "File d'appels", body: "Le suivant s'affiche, le résultat se note en une touche : [la file d'appels](/logiciel/file-appels)." },
+        { icon: "phone", title: "Téléphonie intégrée", body: "Allo ou OnOff, avec vos numéros : [la téléphonie intégrée](/logiciel/telephonie)." },
         { icon: "waveform", title: "Appels enregistrés", body: "Réécoutez un échange pour coacher ou comprendre un refus." },
-        { icon: "sparkle", title: "Fiche de RDV par l'IA", body: "Le commercial reçoit une fiche prête, relue par le téléprospecteur. [Voir](/logiciel/ia)." },
+        { icon: "sparkle", title: "Fiche de RDV par l'IA", body: "Le commercial reçoit [une fiche prête](/logiciel/ia), relue par le téléprospecteur." },
         { icon: "chart", title: "Tableau de bord manager", body: "Appels, RDV et rythme de chacun, en direct." },
         { icon: "sun", title: "Les priorités du matin", body: "Chaque téléprospecteur commence la journée avec sa liste de priorités." },
       ],
@@ -99,6 +100,68 @@ export const equipesPage: LandingPage = {
       eyebrow: "Démo",
       title: "Voyez votre équipe dans Suzalink",
       intro: "Une démo sur vos propres listes, avec le tableau de bord du manager.",
+      primary: { label: "Demander une démo", href: "/demo?offre=logiciel" },
+      secondary: { label: "Voir les tarifs", href: "/tarifs" },
+    },
+  ],
+};
+
+/** Page /solutions : le carrefour des quatre façons de travailler avec Suzalink. */
+export const solutionsHub: LandingPage = {
+  path: "/solutions",
+  meta: {
+    title: "Solutions : agences, équipes, partenaires",
+    description:
+      "Le logiciel de prospection téléphonique pour les agences et les équipes internes, le programme partenaires, et la prospection par nos téléprospecteurs.",
+  },
+  breadcrumb: "Solutions",
+  updated: "2026-11-22",
+  hero: {
+    eyebrow: "Solutions",
+    title: "Quatre façons de travailler avec nous",
+    lead: "Vous avez une agence, une équipe interne, des clients à faire prospecter, ou pas d'équipe du tout. Le logiciel est le même, l'organisation change.",
+    primary: { label: "Demander une démo", href: "/demo?offre=logiciel" },
+    secondary: { label: "Voir le logiciel", href: "/logiciel" },
+    bullets: ["Le même logiciel pour tous", "Chaque appel enregistré", "Une base de données par client", "Prix publics, hors taxes"],
+  },
+  blocks: [
+    {
+      kind: "answer",
+      question: "Quelle solution Suzalink choisir ?",
+      answer:
+        "Une agence de prospection prend le logiciel avec la marque blanche et le portail client. Une PME ou une ETI avec sa propre équipe prend le logiciel avec le tableau de bord manager. Un directeur commercial externalisé rejoint le programme partenaires. Sans équipe, nos téléprospecteurs appellent pour vous.",
+    },
+    {
+      kind: "links",
+      id: "solutions",
+      eyebrow: "Pour qui",
+      title: "Choisissez votre point de départ",
+      items: [
+        { label: "Agences de prospection", href: "/solutions/agences-prospection", body: "Marque blanche, portail client, plusieurs missions par téléprospecteur." },
+        { label: "Équipes commerciales", href: "/solutions/equipes-commerciales", body: "Votre équipe de téléprospection interne, pilotée en direct." },
+        { label: "Partenaires", href: "/partenaires", body: "Directeurs commerciaux externalisés : des RDV pour vos clients." },
+        { label: "Prospection externalisée", href: "/prospection-externalisee", body: "Pas d'équipe ? Nos téléprospecteurs appellent pour vous." },
+        { label: "Tarifs", href: "/tarifs", body: "Logiciel et prospection : tous les prix sont publics." },
+        { label: "Cas clients", href: "/cas-clients", body: "Des missions réelles, chiffres datés à l'appui." },
+      ],
+    },
+    {
+      kind: "faq",
+      id: "faq",
+      eyebrow: "Questions fréquentes",
+      title: "Avant de choisir",
+      items: [
+        { q: "Puis-je combiner le logiciel et la prospection externalisée ?", a: "Oui. Certaines équipes appellent elles-mêmes avec le logiciel et nous confient une partie des appels. Tout est dans le même outil." },
+        { q: "Le logiciel est-il le même pour une agence et une équipe interne ?", a: "Oui. L'agence ajoute la [marque blanche](/logiciel/marque-blanche) et le [portail client](/logiciel/portail-client) ; l'équipe interne s'appuie sur le tableau de bord manager." },
+        { q: "Par où commencer ?", a: "Par une démo sur vos propres cas. Si vous n'avez pas d'équipe, par un [sprint test](/tarifs#sprint) de deux semaines." },
+      ],
+    },
+    {
+      kind: "cta",
+      id: "demo",
+      eyebrow: "Démo",
+      title: "Parlons de votre organisation",
+      intro: "Une démo sur une mission qui ressemble aux vôtres.",
       primary: { label: "Demander une démo", href: "/demo?offre=logiciel" },
       secondary: { label: "Voir les tarifs", href: "/tarifs" },
     },

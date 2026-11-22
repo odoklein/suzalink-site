@@ -111,7 +111,10 @@ export const menu: MenuItem[] = [
         ],
       },
     ],
-    footer: [{ label: "Pas d'équipe ? Faire prospecter par nos téléprospecteurs", href: "/prospection-externalisee", icon: "phone" }],
+    footer: [
+      { label: "Toutes les solutions", href: "/solutions", icon: "grid" },
+      { label: "Pas d'équipe ? Faire prospecter par nos téléprospecteurs", href: "/prospection-externalisee", icon: "phone" },
+    ],
     footerAction: { label: "Voir les tarifs", href: "/tarifs" },
   },
   {
