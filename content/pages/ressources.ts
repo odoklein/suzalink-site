@@ -42,7 +42,7 @@ export const securitePage: LandingPage = {
       items: [
         { icon: "server", title: "Une instance par client", body: "Votre logiciel tourne à part, jamais partagé avec une autre entreprise." },
         { icon: "database", title: "Une base à vous", body: "Vos contacts et vos notes sont rangés dans une base qui n'appartient qu'à vous." },
-        { icon: "lock", title: "Enregistrements privés", body: "Les appels sont stockés dans Call Vault, un stockage privé à votre nom." },
+        { icon: "lock", title: "Enregistrements privés", body: "Les appels sont gardés dans un stockage privé, à votre nom." },
         { icon: "users", title: "Rôles et permissions", body: "Téléprospecteur, manager, client : chacun ne voit que ce qui le concerne." },
         { icon: "shield", title: "RGPD", body: "Un refus d'être rappelé est noté et respecté sur toutes les missions." },
         { icon: "arrowUpRight", title: "Vos données vous appartiennent", body: "Contacts, fichiers et enregistrements sont à vous, et vous les récupérez si vous arrêtez." },
@@ -93,7 +93,7 @@ export const securitePage: LandingPage = {
       eyebrow: "À voir aussi",
       title: "Pour aller plus loin",
       items: [
-        { label: "Téléphonie et enregistrements", href: "/logiciel/telephonie", body: "Allo, OnOff et Call Vault." },
+        { label: "Téléphonie et enregistrements", href: "/logiciel/telephonie", body: "Allo, OnOff et les appels enregistrés." },
         { label: "Portail client", href: "/logiciel/portail-client", body: "Chaque client ne voit que ses données." },
         { label: "Confidentialité", href: "/confidentialite", body: "Données collectées, durées, vos droits." },
       ],
