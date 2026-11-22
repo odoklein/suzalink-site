@@ -87,7 +87,7 @@ export const secteursHub: LandingPage = {
 export const aPropos: LandingPage = {
   path: "/a-propos",
   breadcrumb: "À propos",
-  updated: "2026-11-12",
+  updated: "2026-11-22",
   meta: {
     title: "À propos de Suzalink (Suzali Conseil)",
     description:
@@ -123,7 +123,7 @@ export const aPropos: LandingPage = {
         {
           title: "Pourquoi un CRM",
           paragraphs: [
-            "Nos téléprospecteurs passaient d'une mission à l'autre dans la journée, nos clients voulaient voir les appels, et aucun outil ne faisait les deux sans bricolage. Nous avons donc construit le nôtre : file d'appels, enregistrements, fiche de RDV rédigée par l'IA, portail client. C'est devenu [le CRM Suzalink](/crm-agence-prospection).",
+            "Nos téléprospecteurs passaient d'une mission à l'autre dans la journée, nos clients voulaient voir les appels, et aucun outil ne faisait les deux sans bricolage. Nous avons donc construit le nôtre : file d'appels, enregistrements, fiche de RDV rédigée par l'IA, portail client. C'est devenu [le logiciel Suzalink](/logiciel).",
           ],
         },
         {

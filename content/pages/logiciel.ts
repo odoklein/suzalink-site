@@ -13,7 +13,7 @@ const small = plan("small-business");
 const medium = plan("medium-business");
 const solo = plan("independant");
 
-const UPDATED = "2026-11-21";
+const UPDATED = "2026-11-22";
 const parent: Link = { label: "Logiciel", href: "/logiciel" };
 const demo = { label: "Demander une démo", href: "/demo?offre=logiciel" };
 
@@ -75,10 +75,10 @@ export const logicielPage: LandingPage = {
       eyebrow: "Autour d'un appel",
       title: "Quatre temps, un seul écran",
       items: [
-        { title: "La file", body: "Le prospect suivant s'affiche tout seul. [En savoir plus](/logiciel/file-appels)." },
-        { title: "L'appel enregistré", body: "Allo ou OnOff, depuis la fiche. L'appel est gardé. [En savoir plus](/logiciel/telephonie)." },
-        { title: "La fiche IA", body: "L'IA rédige la fiche de RDV, le téléprospecteur la relit. [En savoir plus](/logiciel/ia)." },
-        { title: "Le portail client", body: "Le client voit le RDV et peut écouter l'appel. [En savoir plus](/logiciel/portail-client)." },
+        { title: "La file", body: "Le prospect suivant s'affiche tout seul : voir [la file d'appels](/logiciel/file-appels)." },
+        { title: "L'appel enregistré", body: "Allo ou OnOff, depuis la fiche, et l'appel est gardé : voir [la téléphonie](/logiciel/telephonie)." },
+        { title: "La fiche IA", body: "Le téléprospecteur relit [la fiche de RDV rédigée par l'IA](/logiciel/ia)." },
+        { title: "Le portail client", body: "Le client voit le RDV et écoute l'appel dans [son portail](/logiciel/portail-client)." },
       ],
     },
     {
@@ -92,7 +92,7 @@ export const logicielPage: LandingPage = {
         { icon: "waveform", title: "Appels enregistrés", body: "Chaque appel gardé dans un stockage privé. Écoute et partage en un clic." },
         { icon: "sparkle", title: "Fiche de RDV par l'IA", body: "Besoin, budget, décideur, objections. Relue et confirmée par le téléprospecteur." },
         { icon: "users", title: "Portail client", body: "Chaque client voit ses RDV, ses enregistrements et ses rapports. Rien d'autre." },
-        { icon: "building", title: "Marque blanche", body: "Votre domaine, votre logo, vos couleurs. Vos clients ne voient que vous." },
+        { icon: "building", title: "Marque blanche", body: "Votre domaine, votre logo, vos couleurs : voir [la marque blanche](/logiciel/marque-blanche)." },
         { icon: "arrowUpRight", title: "Plusieurs missions par personne", body: "Scripts, listes et rappels suivent la mission, pas le téléprospecteur." },
         { icon: "chart", title: "Tableau de bord manager", body: "Appels, RDV et rythme de chaque téléprospecteur, mission par mission." },
         { icon: "lock", title: "Une base par client", body: "Une instance et une base de données par client. Rien n'est partagé. [Sécurité](/securite)." },
@@ -126,7 +126,7 @@ export const logicielPage: LandingPage = {
         { value: "1", label: "instance et une base par client" },
       ],
       story:
-        "Chaque fonction vient d'un problème rencontré en mission : changer de client dans la journée, poser un RDV pour un client sans agenda partagé, écarter les faux numéros avant d'appeler. Voir [la mission dentaire](/secteurs/cabinets-dentaires).",
+        "Chaque fonction vient d'un problème rencontré en mission : changer de client dans la journée, poser un RDV pour un client sans agenda partagé, écarter les faux numéros avant d'appeler. Voir [la mission dentaire](/secteurs/cabinets-dentaires) et [qui nous sommes](/a-propos).",
       note: "Chiffres internes Suzali Conseil, novembre 2026.",
     },
     {

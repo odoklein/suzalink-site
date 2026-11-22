@@ -19,7 +19,7 @@ export const prospectionPage: LandingPage = {
       "Externalisez votre prospection téléphonique B2B : un téléprospecteur dédié, chaque appel enregistré et visible, et un sprint test de 2 semaines.",
   },
   breadcrumb: "Prospection externalisée",
-  updated: "2026-11-12",
+  updated: "2026-11-22",
   hero: {
     eyebrow: "Prospection externalisée",
     title: "Des RDV qualifiés dans votre agenda, sans recruter",

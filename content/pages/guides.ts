@@ -28,7 +28,7 @@ export const guides: Guide[] = [
     path: "/guides/externaliser-prospection-commerciale",
     parent: { label: "Guides", href: "/guides" },
     breadcrumb: "Externaliser sa prospection",
-    updated: "2026-11-12",
+    updated: "2026-11-22",
     article: { published: "2026-11-12", readingMinutes: 9 },
     meta: {
       title: "Externaliser sa prospection : le guide complet",
@@ -180,6 +180,17 @@ export const guides: Guide[] = [
           { q: "Puis-je garder la main sur le discours ?", a: "Oui, et vous devez le faire : le script s'écrit avec vous, et l'écoute des appels vous permet de corriger le discours chaque semaine." },
         ],
       },
+      {
+        kind: "links",
+        id: "a-lire",
+        eyebrow: "À lire ensuite",
+        title: "Pour aller plus loin",
+        items: [
+          { label: "Prospection externalisée", href: "/prospection-externalisee", body: "Nos téléprospecteurs, notre méthode et nos garanties." },
+          { label: "Prix d'un RDV qualifié", href: "/guides/prix-rdv-qualifie", body: "Le calcul complet avant de choisir une offre." },
+          { label: "Garder la prospection en interne", href: "/solutions/equipes-commerciales", body: "Le logiciel pour votre propre équipe de téléprospection." },
+        ],
+      },
       sprintCta,
     ],
   },
@@ -190,7 +201,7 @@ export const guides: Guide[] = [
     path: "/guides/prix-rdv-qualifie",
     parent: { label: "Guides", href: "/guides" },
     breadcrumb: "Prix d'un RDV qualifié",
-    updated: "2026-11-12",
+    updated: "2026-11-22",
     article: { published: "2026-11-12", readingMinutes: 6 },
     meta: {
       title: "Combien coûte un rendez-vous qualifié en B2B ?",
@@ -308,6 +319,17 @@ export const guides: Guide[] = [
           { q: "Comment connaître le prix d'un RDV sur ma cible ?", a: "En appelant votre cible. Le sprint test de deux semaines vous donne le coût réel d'un RDV avant tout engagement." },
         ],
       },
+      {
+        kind: "links",
+        id: "a-lire",
+        eyebrow: "À lire ensuite",
+        title: "Pour aller plus loin",
+        items: [
+          { label: "Tarifs", href: "/tarifs", body: "Nos prix publics, logiciel et prospection." },
+          { label: "Cas clients", href: "/cas-clients", body: "Le coût réel d'une mission, chiffres datés." },
+          { label: "Externaliser sa prospection", href: "/guides/externaliser-prospection-commerciale", body: "Quand le faire et comment choisir un prestataire." },
+        ],
+      },
       sprintCta,
     ],
   },
@@ -318,7 +340,7 @@ export const guides: Guide[] = [
     path: "/guides/barrage-secretaire",
     parent: { label: "Guides", href: "/guides" },
     breadcrumb: "Barrage secrétaire",
-    updated: "2026-11-12",
+    updated: "2026-11-22",
     article: { published: "2026-11-12", readingMinutes: 7 },
     meta: {
       title: "Passer le barrage secrétaire : méthode et phrases",
@@ -433,7 +455,7 @@ export const guides: Guide[] = [
             answer:
               "Plusieurs fois, à des moments différents de la journée, avant de classer un contact comme injoignable. Un seul essai ne mesure rien : sur notre campagne dentaire, la moitié des appels n'a pas abouti. Planifiez les rappels dans votre CRM plutôt que de compter sur votre mémoire.",
             paragraphs: [
-              "Le bon rythme dépend de la cible, mais la règle est la même partout : changer d'heure, noter ce qu'on vous a dit, et arrêter net si la personne demande à ne plus être appelée. Dans [le CRM Suzalink](/crm-agence-prospection), les rappels planifiés et les refus sont gardés sur toutes les missions.",
+              "Le bon rythme dépend de la cible, mais la règle est la même partout : changer d'heure, noter ce qu'on vous a dit, et arrêter net si la personne demande à ne plus être appelée. Dans [la file d'appels Suzalink](/logiciel/file-appels), les rappels planifiés et les refus sont gardés sur toutes les missions.",
             ],
           },
         ],
@@ -447,6 +469,17 @@ export const guides: Guide[] = [
           { q: "Faut-il demander directement le décideur par son nom ?", a: "Oui, si vous le connaissez : c'est plus clair. Mais présentez-vous d'abord et dites pourquoi vous appelez. Un nom seul, sans contexte, déclenche le filtre." },
           { q: "Que faire si l'assistante refuse de transmettre ?", a: "Demandez la bonne façon de proposer votre sujet : un email à une adresse précise, un autre interlocuteur, un meilleur moment. Si le refus est clair, notez-le et respectez-le." },
           { q: "Le barrage est-il plus fort dans certains secteurs ?", a: "Oui. Les directions financières filtrent beaucoup, les cabinets dentaires laissent souvent l'assistante décider. Le guide [prix d'un RDV qualifié](/guides/prix-rdv-qualifie) explique pourquoi le coût d'un RDV varie autant selon la cible." },
+        ],
+      },
+      {
+        kind: "links",
+        id: "a-lire",
+        eyebrow: "À lire ensuite",
+        title: "Pour aller plus loin",
+        items: [
+          { label: "La file d'appels", href: "/logiciel/file-appels", body: "Rappels planifiés à d'autres heures, résultat en une touche." },
+          { label: "Appels enregistrés", href: "/logiciel/telephonie", body: "Réécouter un échange pour améliorer le script." },
+          { label: "Prospection des cabinets dentaires", href: "/secteurs/cabinets-dentaires", body: "Quand l'assistante décide : notre mission de référence." },
         ],
       },
       sprintCta,

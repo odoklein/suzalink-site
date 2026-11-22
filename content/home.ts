@@ -231,6 +231,10 @@ export const homeFaq = {
       a: "Oui. Chaque client a sa propre instance et sa propre base de données. Voir [sécurité](/securite).",
     },
     {
+      q: "Je suis directeur commercial externalisé : comment travailler avec vous ?",
+      a: "Vous gardez la stratégie, nos téléprospecteurs remplissent l'agenda de vos clients, et chaque client suit ses appels dans son portail. Voir le [programme partenaires](/partenaires).",
+    },
+    {
       q: "Vous pouvez aussi appeler pour nous ?",
       a: "Oui. Nos téléprospecteurs prennent vos RDV, sur le même logiciel : vous écoutez chaque appel. Voir la [prospection externalisée](/prospection-externalisee).",
     },

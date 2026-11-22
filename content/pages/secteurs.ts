@@ -22,7 +22,7 @@ export const sectors: Sector[] = [
         "Vous vendez aux cabinets dentaires ? Nos téléprospecteurs obtiennent l'accord de l'assistante : 147 RDV terrain sur une mission de fin 2025.",
     },
     breadcrumb: "Cabinets dentaires",
-    updated: "2026-11-12",
+    updated: "2026-11-22",
     hero: {
       eyebrow: "Secteur · Cabinets dentaires",
       title: "Joignez les cabinets dentaires, pas seulement leur répondeur",
@@ -125,6 +125,17 @@ export const sectors: Sector[] = [
             q: "Combien coûte une campagne vers les cabinets dentaires ?",
             a: "Le sprint test coûte 990 € HT pour deux semaines. Comme nous connaissons cette cible, l'offre 100 % résultat est aussi possible : vous ne payez que les RDV honorés.",
           },
+        ],
+      },
+      {
+        kind: "links",
+        id: "a-lire",
+        eyebrow: "À voir aussi",
+        title: "Pour aller plus loin",
+        items: [
+          { label: "Le cas client en détail", href: "/cas-clients", body: "Contexte, méthode, chiffres datés de la mission." },
+          { label: "Passer le barrage secrétaire", href: "/guides/barrage-secretaire", body: "Ce qui fait dire oui à l'assistante, appel après appel." },
+          { label: "Le logiciel utilisé", href: "/logiciel", body: "La file d'appels, les appels enregistrés et le portail client de cette mission." },
         ],
       },
       {

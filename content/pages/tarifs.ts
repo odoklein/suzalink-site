@@ -23,7 +23,7 @@ export const tarifsPage: LandingPage = {
     description: `Prix publics, hors taxes : logiciel de prospection téléphonique dès ${startingPrice} € par mois, et prospection externalisée avec un sprint test à ${sprint.price.amount} €.`,
   },
   breadcrumb: "Tarifs",
-  updated: "2026-11-21",
+  updated: "2026-11-22",
   hero: {
     eyebrow: "Tarifs",
     title: "Des prix publics, sans « nous consulter »",

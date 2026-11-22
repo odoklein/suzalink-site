@@ -12,7 +12,7 @@ export const securitePage: LandingPage = {
       "Chez Suzalink, chaque client a sa propre instance et sa propre base de données. Appels enregistrés dans un stockage privé, rôles et permissions, RGPD.",
   },
   breadcrumb: "Sécurité",
-  updated: "2026-11-21",
+  updated: "2026-11-22",
   hero: {
     eyebrow: "Sécurité",
     title: "Vos données restent les vôtres",
@@ -72,7 +72,7 @@ export const securitePage: LandingPage = {
         },
         {
           title: "Comment signaler un problème de sécurité ?",
-          paragraphs: ["TODO : adresse email de contact sécurité. En attendant, écrivez à [contact@suzaliconseil.com](mailto:contact@suzaliconseil.com)."],
+          paragraphs: ["TODO : adresse email de contact sécurité. En attendant, écrivez à [contact@suzaliconseil.com](mailto:contact@suzaliconseil.com) ou passez par la page [contact](/contact)."],
         },
       ],
     },
