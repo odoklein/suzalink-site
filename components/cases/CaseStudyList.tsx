@@ -3,6 +3,7 @@ import Link from "next/link";
 import { isTestimonialReady, publishedCases, type Testimonial } from "@/content/cases";
 import { Icon } from "@/components/ui/Icon";
 import { Container } from "@/components/ui/primitives";
+import { Reveal } from "@/components/ui/motion";
 
 /** Named testimonial: renders only when every field is filled and approved (content/cases.ts). */
 export function NamedTestimonial({ testimonial }: { testimonial?: Testimonial }) {
@@ -39,8 +40,8 @@ export function CaseStudyList() {
     <section aria-label="Cas clients publiés" className="pb-20 sm:pb-28">
       <Container className="flex flex-col gap-8">
         {publishedCases.map((c) => (
+          <Reveal key={c.slug}>
           <article
-            key={c.slug}
             aria-labelledby={`cas-${c.slug}`}
             className="grid gap-10 rounded-[28px] border border-line bg-white p-7 sm:p-10 lg:grid-cols-2 lg:gap-16"
           >
@@ -79,6 +80,7 @@ export function CaseStudyList() {
               <NamedTestimonial testimonial={c.testimonial} />
             </div>
           </article>
+          </Reveal>
         ))}
       </Container>
     </section>

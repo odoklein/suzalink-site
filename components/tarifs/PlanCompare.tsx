@@ -1,6 +1,7 @@
 import { planComparison, plans } from "@/content/pricing";
 import { Icon } from "@/components/ui/Icon";
 import { Container, SectionHeader } from "@/components/ui/primitives";
+import { Reveal } from "@/components/ui/motion";
 
 /** Feature-by-feature table of the three software plans (content/pricing.ts). */
 export function PlanCompare() {
@@ -8,7 +9,7 @@ export function PlanCompare() {
     <section id="comparer" aria-labelledby="comparer-title" className="scroll-mt-24 bg-white pb-24 sm:pb-32">
       <Container>
         <SectionHeader id="comparer-title" eyebrow={planComparison.eyebrow} title={planComparison.title} subtitle={planComparison.subtitle} align="center" />
-        <div className="relative mt-12 overflow-x-auto rounded-[20px] border border-line">
+        <Reveal className="relative mt-12 overflow-x-auto rounded-[20px] border border-line">
           <table className="w-full min-w-[640px] border-collapse text-left text-[15px]">
             <caption className="sr-only">{planComparison.title}</caption>
             <thead>
@@ -52,7 +53,7 @@ export function PlanCompare() {
               ))}
             </tbody>
           </table>
-        </div>
+        </Reveal>
         <p className="mt-4 text-center text-[13px] text-muted">{planComparison.note}</p>
       </Container>
     </section>

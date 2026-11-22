@@ -69,7 +69,7 @@ export function PricingTabs({ tabs, label }: { tabs: PricingTab[]; label: string
         </div>
       </Container>
       {tabs.map((t) => (
-        <div key={t.id} role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} tabIndex={0} hidden={active !== t.id} className="mt-10 outline-none">
+        <div key={t.id} role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} tabIndex={0} hidden={active !== t.id} className="tab-in mt-10 outline-none">
           {t.panel}
         </div>
       ))}

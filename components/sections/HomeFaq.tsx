@@ -1,17 +1,20 @@
 import { homeFaq } from "@/content/home";
 import { RichText } from "@/components/landing/RichText";
-import { Container, SectionHeader } from "@/components/ui/primitives";
+import { Container, SectionHeader, cascade } from "@/components/ui/primitives";
+import { Reveal } from "@/components/ui/motion";
 
 /** FAQ de l'accueil. Les mêmes questions sont publiées en FAQPage (app/page.tsx). */
 export function HomeFaq() {
   return (
     <section id="faq" aria-labelledby="faq-title" className="border-y border-line bg-white py-24 sm:py-32">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,380px)_1fr] lg:gap-20">
-          <SectionHeader id="faq-title" eyebrow={homeFaq.eyebrow} title={homeFaq.title} />
+        <Reveal stagger className="grid gap-10 lg:grid-cols-[minmax(0,380px)_1fr] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <SectionHeader id="faq-title" eyebrow={homeFaq.eyebrow} title={homeFaq.title} />
+          </div>
           <div className="divide-y divide-line border-y border-line">
-            {homeFaq.items.map((q) => (
-              <details key={q.q} className="group py-5">
+            {homeFaq.items.map((q, n) => (
+              <details key={q.q} className="r-item group py-5" style={cascade(n + 2)}>
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-6 rounded-md text-[17px] font-medium text-ink transition-colors hover:text-navy [&::-webkit-details-marker]:hidden">
                   <h3 className="font-medium">{q.q}</h3>
                   <span
@@ -27,7 +30,7 @@ export function HomeFaq() {
               </details>
             ))}
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

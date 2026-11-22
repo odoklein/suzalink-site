@@ -409,3 +409,14 @@
 .spotlight:focus-within::before {
   opacity: 1;
 }
+
+/* ───────── Tabs (/tarifs): the panel that opens rises in softly ───────── */
+@keyframes tab-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.tab-in:not([hidden]) {
+  animation: tab-in 0.5s var(--ease-premium) both;
+}
