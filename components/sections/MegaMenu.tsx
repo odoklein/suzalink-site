@@ -1,15 +1,17 @@
 "use client";
 
-// Desktop mega menu (Produit, Solutions, Ressources) and the matching mobile accordions.
+// Desktop mega menu (Logiciel, Solutions, Ressources) and the matching mobile accordions.
 // Panels open on hover (with a short intent delay), on click, or with the keyboard
 // (Enter, Space, ArrowDown), and close on Escape, outside click, pointer leave or navigation.
+// No photo or illustration in the panels: brand icon tiles and text cards only (CLAUDE.md:
+// a visual appears once on the site).
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, m } from "framer-motion";
 import { useCallback, useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import { menu, type MenuFeature, type MenuItem, type MenuLink } from "@/content/menu";
-import { Icon } from "@/components/ui/Icon";
+import { Icon, type IconName } from "@/components/ui/Icon";
 import { cx } from "@/components/ui/primitives";
 
 type Panel = Extract<MenuItem, { columns: unknown }>;
@@ -17,11 +19,19 @@ const isPanel = (item: MenuItem): item is Panel => "columns" in item;
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-const linksOf = (item: Panel) => [
-  ...item.columns.flatMap((c) => c.links),
-  ...(item.feature ? [item.feature] : []),
+type AnyLink = { label: string; href: string; body?: string; icon?: IconName; tile?: string };
+
+// Every link of a panel once (the mobile menu lists them all; the feature card often repeats a page).
+const linksOf = (item: Panel): AnyLink[] => uniqueByHref([
+  ...item.columns.flatMap((c) => [...c.links, ...(c.more ? [{ label: c.more.label, href: c.more.href, icon: "grid" as IconName }] : [])]),
+  ...(item.feature ? [{ label: item.feature.label, href: item.feature.href, tile: item.feature.tile, icon: "sparkle" as IconName }] : []),
   ...(item.footer ?? []),
-];
+]);
+
+function uniqueByHref(links: AnyLink[]) {
+  const seen = new Set<string>();
+  return links.filter((l) => (seen.has(l.href) ? false : (seen.add(l.href), true)));
+}
 
 function matches(pathname: string, href: string) {
   const path = href.split("#")[0];
@@ -30,21 +40,76 @@ function matches(pathname: string, href: string) {
   return pathname === path || pathname.startsWith(`${path}/`);
 }
 
+/** Brand icon tile (public/creative/*.svg) or, failing that, a mint square with a line icon. */
+function Tile({ link, size = "md" }: { link: { tile?: string; icon?: IconName }; size?: "sm" | "md" | "lg" }) {
+  const box = size === "lg" ? "size-12 rounded-[14px]" : size === "md" ? "size-10 rounded-[12px]" : "size-8 rounded-[10px]";
+  if (link.tile)
+    return (
+      <Image
+        src={link.tile}
+        alt=""
+        width={48}
+        height={48}
+        unoptimized
+        className={cx(box, "shrink-0 transition-transform duration-300 ease-out group-hover/link:-rotate-6 group-hover/link:scale-105")}
+      />
+    );
+  return (
+    <span
+      className={cx(
+        box,
+        "grid shrink-0 place-items-center bg-navy text-mint shadow-[inset_0_0_0_1px_rgba(185,237,214,.18)] transition-transform duration-300 ease-out group-hover/link:-rotate-6 group-hover/link:scale-105",
+      )}
+    >
+      <Icon name={link.icon ?? "arrowRight"} className={size === "sm" ? "size-4" : "size-5"} />
+    </span>
+  );
+}
+
+const rise = (delay: number) => ({
+  initial: { opacity: 0, y: 6 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.26, delay, ease },
+});
+
 function ListLink({ link, delay, onNavigate }: { link: MenuLink; delay: number; onNavigate: () => void }) {
   return (
-    <m.li initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.22, delay, ease }}>
+    <m.li {...rise(delay)}>
       <Link
         href={link.href}
         onClick={onNavigate}
-        className="group/link flex items-center gap-3 rounded-[12px] px-2.5 py-2 text-[15px] font-medium text-ink transition-colors duration-200 hover:bg-mint/35 focus-visible:bg-mint/35"
+        className="group/link flex items-center gap-3 rounded-[14px] px-2.5 py-2 transition-colors duration-200 hover:bg-paper focus-visible:bg-paper"
       >
-        {link.icon ? (
-          <span className="grid size-9 shrink-0 place-items-center rounded-[10px] bg-paper text-navy ring-1 ring-line transition-[background-color,color,transform] duration-200 group-hover/link:-rotate-6 group-hover/link:bg-navy group-hover/link:text-white group-hover/link:ring-navy">
-            <Icon name={link.icon} className="size-[18px]" />
+        <Tile link={link} size="sm" />
+        <span className="min-w-0 flex-1">
+          <span className="block text-[15px] font-medium text-ink">{link.label}</span>
+          {link.body ? <span className="block truncate text-[13px] text-muted">{link.body}</span> : null}
+        </span>
+        <Icon
+          name="arrowRight"
+          className="size-4 shrink-0 -translate-x-1 text-navy opacity-0 transition-[opacity,transform] duration-200 group-hover/link:translate-x-0 group-hover/link:opacity-100 group-focus-visible/link:opacity-100"
+        />
+      </Link>
+    </m.li>
+  );
+}
+
+function StepLink({ link, n, delay, onNavigate }: { link: MenuLink; n: number; delay: number; onNavigate: () => void }) {
+  return (
+    <m.li {...rise(delay)}>
+      <Link
+        href={link.href}
+        onClick={onNavigate}
+        className="group/link relative flex h-full gap-4 rounded-[18px] border border-transparent p-4 transition-[background-color,border-color,box-shadow] duration-300 hover:border-line hover:bg-paper hover:shadow-[0_16px_32px_-26px_rgba(12,31,35,.45)] focus-visible:border-line focus-visible:bg-paper"
+      >
+        <Tile link={link} />
+        <span className="min-w-0 flex-1">
+          <span className="flex items-baseline justify-between gap-3">
+            <span className="text-[15.5px] font-semibold text-ink">{link.label}</span>
+            <span className="font-mono text-[11px] text-muted tabular-nums transition-colors group-hover/link:text-navy">{String(n).padStart(2, "0")}</span>
           </span>
-        ) : null}
-        <span className="flex-1">{link.label}</span>
-        <Icon name="arrowRight" className="size-4 -translate-x-1 text-navy opacity-0 transition-[opacity,transform] duration-200 group-hover/link:translate-x-0 group-hover/link:opacity-100" />
+          {link.body ? <span className="mt-1 block text-[13.5px] leading-relaxed text-muted">{link.body}</span> : null}
+        </span>
       </Link>
     </m.li>
   );
@@ -52,64 +117,80 @@ function ListLink({ link, delay, onNavigate }: { link: MenuLink; delay: number; 
 
 function CardLink({ link, delay, onNavigate }: { link: MenuLink; delay: number; onNavigate: () => void }) {
   return (
-    <m.li initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.24, delay, ease }}>
+    <m.li {...rise(delay)}>
       <Link
         href={link.href}
         onClick={onNavigate}
-        className="group/card flex h-full flex-col rounded-[18px] border border-line bg-white p-5 transition-[transform,border-color,box-shadow,background-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-navy/20 hover:bg-[linear-gradient(160deg,rgba(185,237,214,.45),#fff_70%)] hover:shadow-[0_18px_36px_-24px_rgba(12,31,35,.4)]"
+        className="group/link relative flex h-full flex-col overflow-hidden rounded-[20px] border border-line bg-paper p-6 transition-[transform,border-color,box-shadow,background-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-navy/20 hover:bg-white hover:shadow-[0_22px_44px_-28px_rgba(12,31,35,.45)]"
       >
-        {link.image ? (
-          <span className="relative mb-4 block aspect-[16/10] overflow-hidden rounded-[12px] bg-[radial-gradient(ellipse_at_50%_45%,rgba(185,237,214,.85),rgba(185,237,214,.2)_72%)]">
-            <Image
-              src={link.image}
-              alt=""
-              fill
-              loading="eager"
-              sizes="360px"
-              className="object-contain p-3 transition-transform duration-500 ease-out group-hover/card:scale-[1.04]"
-            />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -top-16 -right-16 size-40 rounded-full bg-[radial-gradient(closest-side,rgba(185,237,214,.7),transparent)] opacity-0 transition-opacity duration-500 group-hover/link:opacity-100"
+        />
+        <span className="relative flex items-start justify-between">
+          <Tile link={link} size="lg" />
+          <span className="grid size-8 place-items-center rounded-full border border-line bg-white text-navy transition-[transform,background-color,color,border-color] duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:border-navy group-hover/link:bg-navy group-hover/link:text-white">
+            <Icon name="arrowUpRight" className="size-4" />
           </span>
-        ) : null}
-        <span className="flex items-center justify-between">
-          {link.icon ? (
-            <span className="grid size-10 place-items-center rounded-[12px] bg-mint/60 text-navy transition-[background-color,color,transform] duration-300 group-hover/card:-rotate-6 group-hover/card:bg-navy group-hover/card:text-white">
-              <Icon name={link.icon} className="size-5" />
-            </span>
-          ) : null}
-          <Icon name="arrowUpRight" className="size-4 text-muted transition-[color,transform] duration-300 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5 group-hover/card:text-navy" />
         </span>
-        <span className="mt-4 text-[16px] font-semibold text-ink">{link.label}</span>
-        {link.body ? <span className="mt-1.5 text-[14px] leading-relaxed text-muted">{link.body}</span> : null}
+        <span className="relative mt-6 text-[17px] font-semibold text-ink">{link.label}</span>
+        {link.body ? <span className="relative mt-1.5 text-[14px] leading-relaxed text-muted">{link.body}</span> : null}
       </Link>
     </m.li>
   );
 }
 
+/** Highlight on the right of a panel: a navy card with key points or real, published figures. */
 function FeatureCard({ feature, onNavigate }: { feature: MenuFeature; onNavigate: () => void }) {
   return (
-    <m.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.28, delay: 0.06, ease }}>
+    <m.div initial={{ opacity: 0, x: 12 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.32, delay: 0.08, ease }}>
       <Link
         href={feature.href}
         onClick={onNavigate}
-        className="group/feature flex h-full flex-col rounded-[20px] bg-paper p-3 ring-1 ring-line transition-shadow duration-300 hover:shadow-[0_22px_44px_-26px_rgba(12,31,35,.45)]"
+        className="group/feature on-dark relative flex h-full flex-col overflow-hidden rounded-[22px] bg-navy p-6 text-white transition-shadow duration-300 hover:shadow-[0_26px_50px_-28px_rgba(7,21,24,.8)]"
       >
-        <span className="relative block aspect-[4/3] overflow-hidden rounded-[14px] bg-[radial-gradient(ellipse_at_50%_40%,rgba(185,237,214,.9),rgba(185,237,214,.25)_70%)]">
-          <Image
-            src={feature.image}
-            alt=""
-            fill
-            loading="eager"
-            sizes="300px"
-            className="object-contain p-4 transition-transform duration-500 ease-out group-hover/feature:scale-[1.05] group-hover/feature:-rotate-1"
-          />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 [background-image:radial-gradient(rgba(185,237,214,.16)_1px,transparent_1px)] [background-size:18px_18px] [mask-image:radial-gradient(ellipse_at_85%_0%,black_10%,transparent_65%)]"
+        />
+        <span className="relative flex items-center justify-between">
+          <span className="eyebrow text-mint">{feature.tag}</span>
+          {feature.tile ? <Image src={feature.tile} alt="" width={40} height={40} unoptimized className="size-10 rounded-[12px] ring-1 ring-white/15" /> : null}
         </span>
-        <span className="mt-4 px-2 pb-2">
-          <span className="eyebrow text-muted">{feature.tag}</span>
-          <span className="mt-2 flex items-start justify-between gap-3 text-[16px] font-semibold text-ink">
-            {feature.label}
-            <Icon name="arrowRight" className="mt-0.5 size-4 shrink-0 text-navy transition-transform duration-300 group-hover/feature:translate-x-1" />
+        <span className="relative mt-5 text-[19px] leading-snug font-semibold">{feature.label}</span>
+        <span className="relative mt-2 text-[14px] leading-relaxed text-white/75">{feature.body}</span>
+        {feature.points ? (
+          <span className="relative mt-5 flex flex-wrap gap-2">
+            {feature.points.map((p, i) => (
+              <m.span
+                key={p}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.24, delay: 0.18 + i * 0.05, ease }}
+                className="flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[13px] text-white ring-1 ring-white/10"
+              >
+                <Icon name="check" className="size-3.5 text-mint" />
+                {p}
+              </m.span>
+            ))}
           </span>
-          <span className="mt-1.5 block text-[14px] leading-relaxed text-muted">{feature.body}</span>
+        ) : null}
+        {feature.stats ? (
+          <span className="relative mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-[14px] bg-white/15">
+            {feature.stats.map((s) => (
+              <span key={s.label} className="bg-navy p-3.5">
+                <span className="font-display-tight block text-[32px] leading-none font-light text-mint tabular-nums">{s.value}</span>
+                <span className="mt-1.5 block text-[13px] text-white/75">{s.label}</span>
+              </span>
+            ))}
+          </span>
+        ) : null}
+        <span className="relative mt-auto flex items-center justify-between gap-3 pt-6 text-[14px] font-medium">
+          {feature.note ? <span className="text-[12px] font-normal text-white/65">{feature.note}</span> : <span />}
+          <span className="flex items-center gap-1.5">
+            Découvrir
+            <Icon name="arrowRight" className="size-4 transition-transform duration-300 group-hover/feature:translate-x-1" />
+          </span>
         </span>
       </Link>
     </m.div>
@@ -118,25 +199,51 @@ function FeatureCard({ feature, onNavigate }: { feature: MenuFeature; onNavigate
 
 function PanelContent({ item, onNavigate }: { item: Panel; onNavigate: () => void }) {
   let n = 0;
-  const next = () => (n++ * 0.025) + 0.04;
+  const next = () => n++ * 0.03 + 0.05;
   const cols = item.columns.length;
   return (
-    <div className="overflow-hidden rounded-[24px] border border-line bg-white shadow-[0_40px_80px_-40px_rgba(7,21,24,.45)]">
-      <div className={cx("grid gap-8 p-7", item.feature ? "grid-cols-[1fr_300px]" : "grid-cols-1")}>
-        <div className={cx("grid gap-8", cols === 3 ? "grid-cols-[1fr_1fr_1.4fr]" : cols === 2 ? "grid-cols-2" : "grid-cols-1")}>
+    <div className="overflow-hidden rounded-[26px] border border-line bg-white shadow-[0_40px_80px_-40px_rgba(7,21,24,.45)]">
+      <div className={cx("grid gap-6 p-6", item.feature ? "grid-cols-[minmax(0,1fr)_320px]" : "grid-cols-1")}>
+        <div className={cx("grid gap-6", cols === 2 ? "grid-cols-2" : "grid-cols-1")}>
           {item.columns.map((col) => (
-            <div key={col.title}>
-              <p className="eyebrow mb-3 px-2.5 text-muted">{col.title}</p>
+            <div key={col.title} className="min-w-0">
+              <div className="mb-3 px-2.5">
+                <p className="eyebrow text-muted">{col.title}</p>
+                {col.intro ? <p className="mt-1.5 text-[14px] text-ink/70">{col.intro}</p> : null}
+              </div>
               {col.layout === "cards" ? (
-                <ul className={cx("grid gap-3", cols === 1 ? (col.links.length === 3 ? "grid-cols-3" : "grid-cols-2") : "grid-cols-1")}>
+                <ul className={cx("grid gap-3", col.links.length >= 3 ? "grid-cols-3" : "grid-cols-2")}>
                   {col.links.map((l) => (
-                    <CardLink key={l.label} link={l} delay={next()} onNavigate={onNavigate} />
+                    <CardLink key={l.href} link={l} delay={next()} onNavigate={onNavigate} />
                   ))}
                 </ul>
+              ) : col.layout === "steps" ? (
+                <ol className="grid grid-cols-2 gap-1">
+                  {col.links.map((l, i) => (
+                    <StepLink key={l.href} link={l} n={i + 1} delay={next()} onNavigate={onNavigate} />
+                  ))}
+                  {col.more ? (
+                    <m.li {...rise(next())}>
+                      <Link
+                        href={col.more.href}
+                        onClick={onNavigate}
+                        className="group/more flex h-full items-center justify-between gap-4 rounded-[18px] border border-dashed border-navy/25 p-4 transition-[background-color,border-color] duration-300 hover:border-navy/50 hover:bg-mint/25 focus-visible:bg-mint/25"
+                      >
+                        <span>
+                          <span className="block text-[15.5px] font-semibold text-navy">{col.more.label}</span>
+                          <span className="mt-1 block text-[13.5px] leading-relaxed text-muted">{col.more.body}</span>
+                        </span>
+                        <span className="grid size-9 shrink-0 place-items-center rounded-full bg-navy text-white transition-transform duration-300 group-hover/more:translate-x-0.5">
+                          <Icon name="arrowRight" className="size-4" />
+                        </span>
+                      </Link>
+                    </m.li>
+                  ) : null}
+                </ol>
               ) : (
                 <ul className="flex flex-col gap-0.5">
                   {col.links.map((l) => (
-                    <ListLink key={l.label} link={l} delay={next()} onNavigate={onNavigate} />
+                    <ListLink key={l.href} link={l} delay={next()} onNavigate={onNavigate} />
                   ))}
                 </ul>
               )}
@@ -145,26 +252,40 @@ function PanelContent({ item, onNavigate }: { item: Panel; onNavigate: () => voi
         </div>
         {item.feature ? <FeatureCard feature={item.feature} onNavigate={onNavigate} /> : null}
       </div>
-      {item.footer ? (
-        <ul className="flex flex-wrap gap-2 border-t border-line bg-paper/70 px-5 py-3.5">
-          {item.footer.map((l) => (
-            <li key={l.label}>
-              <Link
-                href={l.href}
-                onClick={onNavigate}
-                className="group/foot flex items-center gap-2.5 rounded-full px-3 py-2 text-[14px] font-medium text-ink transition-colors hover:bg-white"
-              >
-                {l.icon ? (
-                  <span className="grid size-7 place-items-center rounded-full bg-navy text-white transition-transform duration-200 group-hover/foot:scale-110">
-                    <Icon name={l.icon} className="size-3.5" />
-                  </span>
-                ) : null}
-                {l.label}
-                <Icon name="arrowRight" className="size-3.5 text-navy transition-transform duration-200 group-hover/foot:translate-x-0.5" />
-              </Link>
-            </li>
-          ))}
-        </ul>
+      {item.footer || item.footerAction ? (
+        <div className="flex items-center justify-between gap-4 border-t border-line bg-paper/70 px-5 py-3">
+          <ul className="flex flex-wrap gap-1">
+            {(item.footer ?? []).map((l) => (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  onClick={onNavigate}
+                  className="group/foot flex items-center gap-2.5 rounded-full px-3 py-2 text-[14px] font-medium text-ink transition-colors hover:bg-white focus-visible:bg-white"
+                >
+                  {l.icon ? (
+                    <span className="grid size-7 place-items-center rounded-full bg-navy text-white transition-transform duration-200 group-hover/foot:scale-110">
+                      <Icon name={l.icon} className="size-3.5" />
+                    </span>
+                  ) : null}
+                  {l.label}
+                  <Icon name="arrowRight" className="size-3.5 text-navy transition-transform duration-200 group-hover/foot:translate-x-0.5" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+          {item.footerAction ? (
+            <Link
+              href={item.footerAction.href}
+              onClick={onNavigate}
+              className="group/act flex shrink-0 items-center gap-2 rounded-full bg-navy py-1.5 pr-1.5 pl-4 text-[14px] font-medium text-white transition-colors hover:bg-navy-deep"
+            >
+              {item.footerAction.label}
+              <span className="grid size-7 place-items-center rounded-full bg-rose text-navy transition-transform duration-200 group-hover/act:translate-x-0.5">
+                <Icon name="arrowRight" className="size-3.5" />
+              </span>
+            </Link>
+          ) : null}
+        </div>
       ) : null}
     </div>
   );
@@ -269,7 +390,16 @@ export function MegaMenu() {
                     className={cls}
                   >
                     {item.label}
-                    <svg viewBox="0 0 12 12" aria-hidden className={cx("size-3 transition-transform duration-300", expanded && "rotate-180")} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      viewBox="0 0 12 12"
+                      aria-hidden
+                      className={cx("size-3 transition-transform duration-300", expanded && "rotate-180")}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="m3 4.5 3 3 3-3" />
                     </svg>
                     {dot}
@@ -292,7 +422,7 @@ export function MegaMenu() {
             <m.div
               key="backdrop"
               aria-hidden
-              className="fixed inset-x-0 top-[72px] bottom-0 -z-10 bg-night/15 backdrop-blur-[2px]"
+              className="absolute inset-x-0 top-full -z-10 h-[100dvh] bg-night/15 backdrop-blur-[2px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -347,24 +477,31 @@ export function MobileMenu({ onNavigate }: { onNavigate: () => void }) {
               className="font-display-tight flex w-full items-center justify-between py-3.5 text-2xl font-light"
             >
               {item.label}
-              <span aria-hidden className={cx("grid size-8 place-items-center rounded-full border border-line text-navy transition-transform duration-300", expanded === i && "rotate-45 bg-navy text-white")}>
+              <span
+                aria-hidden
+                className={cx(
+                  "grid size-8 place-items-center rounded-full border border-line text-navy transition-transform duration-300",
+                  expanded === i && "rotate-45 bg-navy text-white",
+                )}
+              >
                 +
               </span>
             </button>
             <div className={cx("grid transition-[grid-template-rows] duration-300 ease-out", expanded === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]")}>
-              <ul className="flex flex-col gap-0.5 overflow-hidden" hidden={expanded !== i}>
+              <ul className="flex flex-col gap-0.5 overflow-hidden pb-2" hidden={expanded !== i}>
                 {linksOf(item).map((l) => (
                   <li key={`${l.label}-${l.href}`}>
                     <Link
                       href={l.href}
                       onClick={onNavigate}
                       aria-current={matches(pathname, l.href) ? "page" : undefined}
-                      className="flex items-center gap-3 rounded-[12px] px-2 py-2.5 text-[16px] text-ink/85 active:bg-mint/40 aria-[current=page]:font-medium aria-[current=page]:text-navy"
+                      className="group/link flex items-center gap-3 rounded-[12px] px-2 py-2.5 text-[16px] text-ink/85 active:bg-mint/40 aria-[current=page]:font-medium aria-[current=page]:text-navy"
                     >
-                      <span className="grid size-8 place-items-center rounded-[10px] bg-mint/50 text-navy">
-                        <Icon name={"icon" in l && l.icon ? l.icon : "arrowRight"} className="size-4" />
+                      <Tile link={l} size="sm" />
+                      <span className="min-w-0">
+                        <span className="block">{l.label}</span>
+                        {l.body ? <span className="block text-[13px] leading-snug text-muted">{l.body}</span> : null}
                       </span>
-                      {l.label}
                     </Link>
                   </li>
                 ))}
@@ -377,7 +514,7 @@ export function MobileMenu({ onNavigate }: { onNavigate: () => void }) {
               href={item.href}
               onClick={onNavigate}
               aria-current={matches(pathname, item.href) ? "page" : undefined}
-              className="font-display-tight block border-b border-line py-3.5 text-2xl font-light aria-[current=page]:text-ok"
+              className="font-display-tight block border-b border-line py-3.5 text-2xl font-light aria-[current=page]:text-navy"
             >
               {item.label}
             </Link>
