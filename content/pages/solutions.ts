@@ -24,12 +24,7 @@ export const equipesPage: LandingPage = {
     lead: "Pour les PME et ETI qui prospectent avec leur propre équipe : chacun appelle depuis une file, chaque appel est enregistré, et le manager suit le rythme en direct.",
     primary: { label: "Demander une démo", href: "/demo?offre=logiciel" },
     secondary: { label: "Voir les tarifs", href: "/tarifs" },
-    visual: {
-      src: "/visuals/mission-semaine.webp",
-      alt: "Illustration du logiciel : la semaine 2 d'une mission avec 412 appels, 38 % de joignables et 9 RDV, puis la liste des appels enregistrés avec leur durée et leur résultat.",
-      width: 1536,
-      height: 1024,
-    },
+    bullets: ["File d'appels et résultat en une touche", "Chaque appel enregistré", "Tableau de bord manager en direct", "Fiche de RDV par l'IA"],
   },
   blocks: [
     {
@@ -60,7 +55,7 @@ export const equipesPage: LandingPage = {
         { icon: "waveform", title: "Appels enregistrés", body: "Réécoutez un échange pour coacher ou comprendre un refus." },
         { icon: "sparkle", title: "Fiche de RDV par l'IA", body: "Le commercial reçoit une fiche prête, relue par le téléprospecteur. [Voir](/logiciel/ia)." },
         { icon: "chart", title: "Tableau de bord manager", body: "Appels, RDV et rythme de chacun, en direct." },
-        { icon: "sun", title: "Digest du matin", body: "Les priorités de la journée, pour chaque téléprospecteur." },
+        { icon: "sun", title: "Les priorités du matin", body: "Chaque téléprospecteur commence la journée avec sa liste de priorités." },
       ],
     },
     {

@@ -49,7 +49,10 @@ export type Block =
   | (Head & {
       kind: "showcase";
       points?: string[];
-      image: { src: string; alt: string; width: number; height: number };
+      /** Visuel (public/visuals/). Un visuel n'apparaît qu'une fois sur le site : sinon, utilisez `panel`. */
+      image?: { src: string; alt: string; width: number; height: number };
+      /** Maquette en HTML (sans image) : une fiche avec ses rubriques, à la place du visuel. */
+      panel?: { tag: string; title: string; rows: string[]; status?: string; actions?: string[] };
       reverse?: boolean;
       action?: Link;
     })

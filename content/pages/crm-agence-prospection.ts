@@ -22,12 +22,7 @@ export const crmAgencePage: LandingPage = {
     lead: "Vos téléprospecteurs appellent, vos clients suivent leurs RDV dans un portail à vos couleurs. Nous l'utilisons chaque jour pour nos propres missions : chaque fonction est née d'un problème de terrain.",
     primary: { label: "Demander une démo", href: "/demo?offre=logiciel" },
     secondary: { label: "Voir les tarifs", href: "/tarifs" },
-    visual: {
-      src: "/visuals/marque-blanche.webp",
-      alt: "Illustration : le même portail client aux couleurs de deux agences fictives, avec les RDV de la semaine.",
-      width: 1536,
-      height: 1024,
-    },
+    bullets: ["Votre domaine, votre logo, vos couleurs", "Portail client inclus", "Plusieurs missions par téléprospecteur", "Une base de données par agence"],
   },
   blocks: [
     {
@@ -75,9 +70,9 @@ export const crmAgencePage: LandingPage = {
         { icon: "users", title: "Portail client", body: "Chaque client voit ses RDV, ses enregistrements et ses rapports. Rien d'autre, et sans vous écrire." },
         { icon: "sparkle", title: "Marque blanche", body: "Votre domaine, votre logo, vos couleurs. Vos clients ne voient que votre agence." },
         { icon: "phone", title: "Téléphonie intégrée", body: "Allo et OnOff avec vos numéros. Le téléprospecteur appelle depuis la file, sans changer d'écran." },
-        { icon: "waveform", title: "Call Vault", body: "Chaque appel enregistré dans votre stockage privé. Écoute et partage en un clic." },
+        { icon: "waveform", title: "Appels enregistrés", body: "Chaque appel gardé dans votre stockage privé. Écoute et partage en un clic." },
         { icon: "mail", title: "Fiche de RDV par l'IA", body: "Dès qu'un RDV est pris, l'IA rédige la fiche : besoin, budget, objections. Le téléprospecteur relit et confirme." },
-        { icon: "chart", title: "Pilotage en direct", body: "Appels, RDV et rythme de chaque téléprospecteur, mission par mission. L'agent signale qui prend du retard." },
+        { icon: "chart", title: "Pilotage en direct", body: "Appels, RDV et rythme de chaque téléprospecteur, mission par mission. Une alerte signale qui prend du retard." },
         { icon: "arrowUpRight", title: "Plusieurs missions par téléprospecteur", body: "Un téléprospecteur passe d'une mission à l'autre sans planning imposé. Scripts, listes et rappels suivent la mission." },
         { icon: "check", title: "RDV sans agenda client", body: "Votre client n'a pas de calendrier connecté ? Le téléprospecteur pose quand même le RDV, et le client le retrouve dans son portail." },
         { icon: "lock", title: "Instance dédiée", body: "Une instance et une base de données par agence. Vos données ne côtoient jamais celles d'une autre." },
@@ -92,14 +87,9 @@ export const crmAgencePage: LandingPage = {
       points: [
         "Besoin, budget, décideur et objections, rangés au même endroit",
         "Résultat d'appel proposé par l'IA, confirmé en un clic",
-        "Digest du matin : les priorités de la journée par téléprospecteur",
+        "La liste des priorités du matin, pour chaque téléprospecteur",
       ],
-      image: {
-        src: "/visuals/fiche-rdv-ia.webp",
-        alt: "Illustration d'une fiche de RDV rédigée par l'IA, avec les boutons Confirmer et Modifier.",
-        width: 1122,
-        height: 1402,
-      },
+      panel: { tag: "Fiche de RDV", title: "Rédigée par l'IA, relue par le téléprospecteur", rows: ["Besoin", "Budget", "Décideur", "Objections"], status: "À relire", actions: ["Confirmer", "Modifier"] },
       reverse: true,
       action: { label: "La fiche de RDV par l'IA", href: "/logiciel/ia" },
     },
@@ -152,7 +142,7 @@ export const crmAgencePage: LandingPage = {
         },
         {
           q: "Quelle téléphonie puis-je utiliser ?",
-          a: "Allo et OnOff sont intégrés nativement, avec vos propres numéros. Les appels sont enregistrés dans Call Vault. Voir [téléphonie](/logiciel/telephonie).",
+          a: "Allo et OnOff sont intégrés nativement, avec vos propres numéros. Chaque appel est enregistré dans un stockage privé. Voir [téléphonie](/logiciel/telephonie).",
         },
         {
           q: "Puis-je importer mes données actuelles ?",

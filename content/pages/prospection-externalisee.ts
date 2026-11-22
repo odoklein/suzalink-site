@@ -118,12 +118,7 @@ export const prospectionPage: LandingPage = {
         "Le décideur et les autres personnes impliquées",
         "Les objections déjà levées, pour ne pas les rejouer",
       ],
-      image: {
-        src: "/visuals/fiche-rdv-ia.webp",
-        alt: "Illustration d'une fiche de RDV rédigée par l'IA : date, interlocuteur, besoin, budget, décideur et objections levées.",
-        width: 1122,
-        height: 1402,
-      },
+      panel: { tag: "Fiche de RDV", title: "Ce que vous recevez avant chaque RDV", rows: ["Besoin", "Budget et horizon", "Décideur", "Objections déjà levées"], status: "Relue" },
       action: { label: "La fiche de RDV par l'IA", href: "/logiciel/ia" },
     },
     {

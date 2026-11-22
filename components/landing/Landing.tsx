@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { site } from "@/content/site";
 import { formatEuro } from "@/content/pricing";
 import { guarantees, prospectionOffers } from "@/content/offers";
@@ -132,6 +132,50 @@ export function Guarantees() {
         </Spotlight>
       ))}
     </ul>
+  );
+}
+
+/**
+ * HTML mock of a sheet (e.g. the AI-written appointment sheet): headings and placeholder lines,
+ * no real data. Used instead of an image when the illustration is already used elsewhere.
+ */
+function SheetPanel({ panel }: { panel: { tag: string; title: string; rows: string[]; status?: string; actions?: string[] } }) {
+  return (
+    <Reveal stagger className="relative mx-auto w-full max-w-[480px]">
+      <div aria-hidden className="absolute inset-[6%] -z-10 rounded-full bg-[radial-gradient(closest-side,rgba(185,237,214,.8),transparent)] blur-2xl" />
+      <figure
+        aria-label={`${panel.title} : ${panel.rows.join(", ")}`}
+        role="img"
+        className="r-item rounded-[24px] border border-line bg-white p-6 shadow-[0_30px_60px_-34px_rgba(12,31,35,.4)] sm:p-7"
+      >
+        <div className="flex items-center justify-between gap-3">
+          <span className="flex items-center gap-2 text-[13px] font-medium text-navy">
+            <Icon name="sparkle" className="size-4" />
+            {panel.tag}
+          </span>
+          {panel.status ? <span className="rounded-full bg-mint/60 px-2.5 py-1 text-[12px] font-medium text-navy">{panel.status}</span> : null}
+        </div>
+        <p className="font-display-tight mt-4 text-[24px] leading-tight font-normal text-ink">{panel.title}</p>
+        <ul className="mt-5 flex flex-col gap-3">
+          {panel.rows.map((r, n) => (
+            <li key={r} className="r-item rounded-[14px] border border-line bg-paper px-4 py-3" style={{ "--i": n + 1 } as CSSProperties}>
+              <span className="eyebrow text-muted">{r}</span>
+              <span aria-hidden className="mt-2 block h-2 w-[86%] rounded-full bg-ink/10" />
+              <span aria-hidden className="mt-1.5 block h-2 w-[58%] rounded-full bg-ink/[.07]" />
+            </li>
+          ))}
+        </ul>
+        {panel.actions ? (
+          <div aria-hidden className="mt-5 flex gap-2">
+            {panel.actions.map((a, n) => (
+              <span key={a} className={cx("rounded-full px-4 py-2 text-[13px] font-medium", n === 0 ? "bg-navy text-white" : "border border-line text-ink")}>
+                {a}
+              </span>
+            ))}
+          </div>
+        ) : null}
+      </figure>
+    </Reveal>
   );
 }
 
@@ -527,17 +571,21 @@ function renderBlock(block: Block, i: number) {
                 </ButtonLink>
               ) : null}
             </Reveal>
-            <div className="group/visual relative">
-              <div aria-hidden className="absolute inset-[8%] -z-10 rounded-full bg-[radial-gradient(closest-side,rgba(185,237,214,.75),transparent)] blur-2xl transition-transform duration-700 group-hover/visual:scale-110" />
-              <Image
-                src={block.image.src}
-                alt={block.image.alt}
-                width={block.image.width}
-                height={block.image.height}
-                sizes="(min-width: 1024px) 560px, 100vw"
-                className="mx-auto h-auto w-full max-w-[560px] drop-shadow-[0_30px_50px_rgba(12,31,35,.16)] transition-transform duration-500 ease-out motion-safe:group-hover/visual:-translate-y-1.5 motion-safe:group-hover/visual:rotate-[-0.6deg]"
-              />
-            </div>
+            {block.image ? (
+              <div className="group/visual relative">
+                <div aria-hidden className="absolute inset-[8%] -z-10 rounded-full bg-[radial-gradient(closest-side,rgba(185,237,214,.75),transparent)] blur-2xl transition-transform duration-700 group-hover/visual:scale-110" />
+                <Image
+                  src={block.image.src}
+                  alt={block.image.alt}
+                  width={block.image.width}
+                  height={block.image.height}
+                  sizes="(min-width: 1024px) 560px, 100vw"
+                  className="mx-auto h-auto w-full max-w-[560px] drop-shadow-[0_30px_50px_rgba(12,31,35,.16)] transition-transform duration-500 ease-out motion-safe:group-hover/visual:-translate-y-1.5 motion-safe:group-hover/visual:rotate-[-0.6deg]"
+                />
+              </div>
+            ) : block.panel ? (
+              <SheetPanel panel={block.panel} />
+            ) : null}
           </div>
         </Section>
       );

@@ -27,11 +27,11 @@ export const demoVideo: { src: string | null; poster: string | null; title: stri
 
 /** Les 5 pages fonctionnalités, dans l'ordre d'un appel. Utilisé par le menu et la page pilier. */
 export const featurePages = [
-  { label: "File d'appels", href: "/logiciel/file-appels", body: "Le prospect suivant s'affiche tout seul, le résultat se note en une touche.", icon: "grid" },
-  { label: "Téléphonie et enregistrements", href: "/logiciel/telephonie", body: "Allo ou OnOff avec vos numéros, chaque appel enregistré.", icon: "phone" },
-  { label: "Fiche de RDV par l'IA", href: "/logiciel/ia", body: "L'IA rédige la fiche, le téléprospecteur la relit.", icon: "sparkle" },
-  { label: "Portail client", href: "/logiciel/portail-client", body: "Vos clients voient leurs RDV et leurs appels, sans vous écrire.", icon: "users" },
-  { label: "Marque blanche", href: "/logiciel/marque-blanche", body: "Votre domaine, votre logo, vos couleurs.", icon: "building" },
+  { label: "File d'appels", href: "/logiciel/file-appels", body: "Le prospect suivant s'affiche tout seul, le résultat se note en une touche.", icon: "grid", tile: "/creative/execution.svg" },
+  { label: "Téléphonie et enregistrements", href: "/logiciel/telephonie", body: "Allo ou OnOff avec vos numéros, chaque appel enregistré.", icon: "phone", tile: "/creative/sdr.svg" },
+  { label: "Fiche de RDV par l'IA", href: "/logiciel/ia", body: "L'IA rédige la fiche, le téléprospecteur la relit.", icon: "sparkle", tile: "/creative/ia.svg" },
+  { label: "Portail client", href: "/logiciel/portail-client", body: "Vos clients voient leurs RDV et leurs appels, sans vous écrire.", icon: "users", tile: undefined },
+  { label: "Marque blanche", href: "/logiciel/marque-blanche", body: "Votre domaine, votre logo, vos couleurs.", icon: "building", tile: undefined },
 ] as const;
 
 export const logicielPage: LandingPage = {
@@ -89,7 +89,7 @@ export const logicielPage: LandingPage = {
       items: [
         { icon: "grid", title: "File d'appels", body: "Résultat en une touche : RDV pris, rappel, pas intéressé. Le suivant s'affiche." },
         { icon: "phone", title: "Téléphonie intégrée", body: "Allo et OnOff avec vos numéros, sans changer d'écran." },
-        { icon: "waveform", title: "Call Vault", body: "Chaque appel enregistré dans un stockage privé. Écoute et partage en un clic." },
+        { icon: "waveform", title: "Appels enregistrés", body: "Chaque appel gardé dans un stockage privé. Écoute et partage en un clic." },
         { icon: "sparkle", title: "Fiche de RDV par l'IA", body: "Besoin, budget, décideur, objections. Relue et confirmée par le téléprospecteur." },
         { icon: "users", title: "Portail client", body: "Chaque client voit ses RDV, ses enregistrements et ses rapports. Rien d'autre." },
         { icon: "building", title: "Marque blanche", body: "Votre domaine, votre logo, vos couleurs. Vos clients ne voient que vous." },
@@ -107,14 +107,9 @@ export const logicielPage: LandingPage = {
       points: [
         "Besoin, budget, décideur et objections au même endroit",
         "Résultat d'appel proposé par l'IA, confirmé en un clic",
-        "Digest du matin : les priorités de chaque téléprospecteur",
+        "La liste des priorités du matin, pour chaque téléprospecteur",
       ],
-      image: {
-        src: "/visuals/fiche-rdv-ia.webp",
-        alt: "Illustration d'une fiche de RDV rédigée par l'IA, avec les boutons Confirmer et Modifier.",
-        width: 1122,
-        height: 1402,
-      },
+      panel: { tag: "Fiche de RDV", title: "Rédigée par l'IA, relue par le téléprospecteur", rows: ["Besoin", "Budget", "Décideur", "Objections"], status: "À relire", actions: ["Confirmer", "Modifier"] },
       reverse: true,
       action: { label: "La fiche de RDV par l'IA", href: "/logiciel/ia" },
     },
@@ -150,7 +145,7 @@ export const logicielPage: LandingPage = {
         },
         {
           q: "Quelle téléphonie utiliser ?",
-          a: "Allo et OnOff sont intégrés, avec vos propres numéros. Les appels sont enregistrés dans Call Vault. Voir [téléphonie](/logiciel/telephonie).",
+          a: "Allo et OnOff sont intégrés, avec vos propres numéros. Chaque appel est enregistré dans un stockage privé. Voir [téléphonie](/logiciel/telephonie).",
         },
         {
           q: "Mes données sont-elles séparées de celles des autres clients ?",
@@ -266,7 +261,7 @@ export const telephoniePage: LandingPage = {
   meta: {
     title: "Téléphonie Allo, OnOff et appels enregistrés",
     description:
-      "Appelez avec Allo ou OnOff et vos numéros depuis Suzalink. Chaque appel est enregistré dans Call Vault, un stockage privé : écoute et partage en un clic.",
+      "Appelez avec Allo ou OnOff et vos numéros depuis Suzalink. Chaque appel est enregistré dans un stockage privé : écoute et partage en un clic.",
   },
   breadcrumb: "Téléphonie",
   parent,
@@ -274,22 +269,17 @@ export const telephoniePage: LandingPage = {
   hero: {
     eyebrow: "Téléphonie et enregistrements",
     title: "Vos numéros, chaque appel enregistré",
-    lead: "Allo et OnOff sont intégrés : le téléprospecteur appelle depuis la file, avec vos numéros. Chaque appel est gardé dans Call Vault, votre stockage privé.",
+    lead: "Allo et OnOff sont intégrés : le téléprospecteur appelle depuis la file, avec vos numéros. Chaque appel est gardé dans votre stockage privé.",
     primary: demo,
     secondary: { label: "Tout le logiciel", href: "/logiciel" },
-    visual: {
-      src: "/visuals/appel-objection.webp",
-      alt: "Illustration d'un appel enregistré : l'objection « On a déjà un prestataire » et la réponse du téléprospecteur, avec un rappel planifié jeudi à 9 h 30.",
-      width: 1672,
-      height: 941,
-    },
+    bullets: ["Allo et OnOff, avec vos numéros", "Appel lancé depuis la fiche", "Chaque appel enregistré", "Écoute et partage en un clic"],
   },
   blocks: [
     {
       kind: "answer",
       question: "Quelle téléphonie utilise Suzalink ?",
       answer:
-        "Suzalink est intégré à Allo et à OnOff. Le téléprospecteur appelle depuis la fiche du prospect, avec vos propres numéros, sans changer d'écran. Chaque appel est enregistré dans Call Vault, un stockage privé : vous pouvez le réécouter et le partager en un clic.",
+        "Suzalink est intégré à Allo et à OnOff. Le téléprospecteur appelle depuis la fiche du prospect, avec vos propres numéros, sans changer d'écran. Chaque appel est enregistré dans un stockage privé : vous pouvez le réécouter et le partager en un clic.",
       facts: [
         `${solo.name} : 1 ligne, 20 h d'enregistrements par mois`,
         `${small.name} : jusqu'à 3 lignes, 80 h par mois`,
@@ -304,7 +294,7 @@ export const telephoniePage: LandingPage = {
       items: [
         { icon: "phone", title: "Allo et OnOff", body: "Vos numéros, branchés pendant la mise en service." },
         { icon: "grid", title: "Depuis la file", body: "Le téléprospecteur appelle sans quitter la fiche du prospect." },
-        { icon: "waveform", title: "Call Vault", body: "Chaque appel enregistré dans un stockage privé, à votre nom." },
+        { icon: "waveform", title: "Appels enregistrés", body: "Chaque appel gardé dans un stockage privé, à votre nom." },
         { icon: "play", title: "Écoute en un clic", body: "L'historique de la journée, avec la durée et l'enregistrement de chaque appel." },
         { icon: "users", title: "Partage au client", body: "Le client écoute ses appels dans son portail." },
         { icon: "shield", title: "Refus respecté", body: "Un refus d'être rappelé est noté et respecté sur toutes les missions." },
@@ -317,7 +307,7 @@ export const telephoniePage: LandingPage = {
       title: "Sur la téléphonie",
       items: [
         { q: "Puis-je garder mes numéros ?", a: "Oui. Allo et OnOff sont branchés avec vos propres numéros pendant la mise en service." },
-        { q: "Où sont stockés les enregistrements ?", a: "Dans Call Vault, un stockage privé propre à votre instance. Voir [sécurité](/securite)." },
+        { q: "Où sont stockés les enregistrements ?", a: "Dans un stockage privé propre à votre instance. Voir [sécurité](/securite)." },
         { q: "Combien d'heures d'enregistrement sont incluses ?", a: `${solo.name} : 20 h par mois. ${small.name} : 80 h. ${medium.name} : 250 h. Du stockage supplémentaire est disponible en option. Voir les [tarifs](/tarifs).` },
       ],
     },
@@ -354,7 +344,7 @@ export const iaPage: LandingPage = {
       kind: "answer",
       question: "Que fait l'IA dans Suzalink ?",
       answer:
-        "L'IA rédige la fiche de RDV à partir de l'appel (besoin, budget, décideur, objections), propose le résultat de l'appel et prépare chaque matin les priorités de chaque téléprospecteur. Rien ne part sans relecture : le téléprospecteur confirme ou corrige.",
+        "L'IA rédige la fiche de RDV à partir de l'appel (besoin, budget, décideur, objections), propose le résultat de l'appel et prépare chaque matin la liste des priorités de chaque téléprospecteur. Rien ne part sans relecture : le téléprospecteur confirme ou corrige.",
       facts: [
         `${solo.name} : 150 fiches par mois`,
         `${small.name} : 600 fiches par mois`,
@@ -369,7 +359,7 @@ export const iaPage: LandingPage = {
       items: [
         { icon: "sparkle", title: "Fiche de RDV", body: "Besoin, budget, décideur et objections, rangés au même endroit." },
         { icon: "check", title: "Résultat proposé", body: "L'IA propose le résultat de l'appel, le téléprospecteur confirme en un clic." },
-        { icon: "sun", title: "Digest du matin", body: "Les priorités de la journée, pour chaque téléprospecteur." },
+        { icon: "sun", title: "Les priorités du matin", body: "Chaque téléprospecteur commence la journée avec sa liste de priorités." },
         { icon: "chart", title: "Alerte de rythme", body: "Le manager voit qui prend du retard sur sa mission." },
       ],
     },
@@ -405,12 +395,7 @@ export const portailPage: LandingPage = {
     lead: "« Combien d'appels cette semaine ? » Le client a la réponse dans son portail : ses RDV, ses enregistrements et ses rapports. Rien d'autre.",
     primary: demo,
     secondary: { label: "Tout le logiciel", href: "/logiciel" },
-    visual: {
-      src: "/visuals/marque-blanche.webp",
-      alt: "Illustration : le même portail client aux couleurs de deux agences fictives, avec les RDV de la semaine.",
-      width: 1536,
-      height: 1024,
-    },
+    bullets: ["Ses RDV, fiche comprise", "Ses appels à réécouter", "Ses rapports, à jour", "À votre marque"],
   },
   blocks: [
     {
