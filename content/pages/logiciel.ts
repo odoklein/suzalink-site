@@ -269,7 +269,12 @@ export const telephoniePage: LandingPage = {
     lead: "Allo et OnOff sont intégrés : le téléprospecteur appelle depuis la file, avec vos numéros. Chaque appel est gardé dans votre stockage privé.",
     primary: demo,
     secondary: { label: "Tout le logiciel", href: "/logiciel" },
-    bullets: ["Allo et OnOff, avec vos numéros", "Appel lancé depuis la fiche", "Chaque appel enregistré", "Écoute et partage en un clic"],
+    visual: {
+      src: "/visuals/appel-objection.webp",
+      alt: "Illustration d'un appel enregistré : l'objection « On a déjà un prestataire » et la réponse du téléprospecteur, avec un rappel planifié jeudi à 9 h 30.",
+      width: 1672,
+      height: 941,
+    },
   },
   blocks: [
     {

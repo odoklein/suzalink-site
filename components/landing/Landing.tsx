@@ -15,6 +15,7 @@ import { Pricing } from "@/components/sections/Pricing";
 import { PricingTabs } from "@/components/tarifs/PricingTabs";
 import { PlanCompare } from "@/components/tarifs/PlanCompare";
 import { Footer } from "@/components/sections/Footer";
+import { Pledges } from "@/components/sections/Pledges";
 import { RichText, plainText } from "./RichText";
 import { CountUp, ReadingProgress, Spotlight, StickyCta, Toc } from "./interactive";
 
@@ -608,6 +609,46 @@ function renderBlock(block: Block, i: number) {
               ))}
             </div>
           </div>
+        </Section>
+      );
+
+    case "pledges":
+      return <Pledges key={id} withAction={false} />;
+
+    case "fit":
+      return (
+        <Section key={id} id={id}>
+          <Reveal stagger>{header}</Reveal>
+          <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-2">
+            <div className="r-item rounded-[24px] border border-line bg-white p-7 sm:p-9">
+              <h3 className="font-display-tight text-[26px] leading-tight font-normal text-ink">{block.yes.title}</h3>
+              <ul className="mt-6 flex flex-col gap-4">
+                {block.yes.items.map((t) => (
+                  <li key={t} className="flex gap-3 text-[16px] leading-relaxed text-ink/85">
+                    <Check />
+                    <span>
+                      <RichText text={t} />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="r-item rounded-[24px] border border-dashed border-ink/20 p-7 sm:p-9" style={{ "--i": 1 } as CSSProperties}>
+              <h3 className="font-display-tight text-[26px] leading-tight font-normal text-ink">{block.no.title}</h3>
+              <ul className="mt-6 flex flex-col gap-4">
+                {block.no.items.map((t) => (
+                  <li key={t} className="flex gap-3 text-[16px] leading-relaxed text-muted">
+                    <span aria-hidden className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full border border-current text-[12px] leading-none">
+                      –
+                    </span>
+                    <span>
+                      <RichText text={t} />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </Section>
       );
 

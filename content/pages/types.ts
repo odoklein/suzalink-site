@@ -58,6 +58,10 @@ export type Block =
     })
   | (Head & { kind: "prose"; parts: Array<{ title: string; paragraphs: string[] }> })
   | (Head & { kind: "faq"; items: Array<{ q: string; a: string }> })
+  /** « Nos engagements » (content/pledges.ts), la même bande que sur l'accueil. */
+  | { kind: "pledges"; id?: string }
+  /** Pour qui c'est fait, et pour qui ça ne l'est pas : deux listes côte à côte. */
+  | (Head & { kind: "fit"; yes: { title: string; items: string[] }; no: { title: string; items: string[] } })
   | (Head & { kind: "links"; items: Array<Link & { body: string }> })
   | (Head & { kind: "cta"; primary: Link; secondary?: Link; intro: string });
 

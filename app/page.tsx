@@ -19,6 +19,7 @@ import { Testimonial } from "@/components/sections/Testimonial";
 import { Security } from "@/components/sections/Security";
 import { ServiceBand } from "@/components/sections/ServiceBand";
 import { HomeFaq } from "@/components/sections/HomeFaq";
+import { Pledges } from "@/components/sections/Pledges";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Footer } from "@/components/sections/Footer";
 
@@ -70,8 +71,9 @@ export default function HomePage() {
         <Proof />
         {/* Hidden until a real, approved quote exists (content/home.ts). */}
         <Testimonial />
-        <Security />
+        <Pledges />
         <ServiceBand />
+        <Security />
         <HomeFaq />
         <FinalCta />
       </main>
