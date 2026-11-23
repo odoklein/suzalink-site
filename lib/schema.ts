@@ -3,7 +3,7 @@ import { plans } from "@/content/pricing";
 
 /** schema.org SoftwareApplication for the Suzalink software, offers built from content/pricing.ts. */
 export function softwareSchema(opts: { url?: string; description: string }) {
-  const prices = plans.flatMap((p) => [p.price.monthly, p.price.annual]);
+  const prices = plans.map((p) => p.pricePerUser);
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -37,15 +37,16 @@ export function softwareSchema(opts: { url?: string; description: string }) {
         "@type": "Offer",
         name: p.name,
         description: p.audience,
-        price: p.price.annual,
+        price: p.pricePerUser,
         priceCurrency: "EUR",
         url: `${site.url}/tarifs#${p.id}`,
         priceSpecification: {
           "@type": "UnitPriceSpecification",
-          price: p.price.annual,
+          price: p.pricePerUser,
           priceCurrency: "EUR",
-          unitText: "MONTH",
-          referenceQuantity: { "@type": "QuantitativeValue", value: p.seatsIncluded, unitText: "utilisateurs" },
+          unitText: "par utilisateur et par mois",
+          billingDuration: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
+          referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitText: "utilisateur" },
           valueAddedTaxIncluded: false,
         },
       })),

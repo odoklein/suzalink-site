@@ -39,7 +39,7 @@ export type Block =
    * « Prospection » (les offres de content/offers.ts, les garanties, puis `prospection`).
    */
   | { kind: "pricing-tabs"; id?: string; label: string; software: string; prospection: { label: string; eyebrow: string; title: string; intro: string; blocks: Block[] } }
-  /** Les trois offres CRM de content/pricing.ts (même bloc que sur l'accueil). */
+  /** Les deux offres du logiciel (content/pricing.ts). */
   | { kind: "crm-pricing"; id?: string }
   /** Encadré « En bref » juste sous le hero : la réponse à la question de la page, en 40 à 60 mots. */
   | { kind: "answer"; id?: string; question: string; answer: string; facts?: string[] }

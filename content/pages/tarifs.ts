@@ -4,43 +4,43 @@
  * téléphonique », « prix rendez-vous qualifié ».
  * Les montants viennent de content/pricing.ts et content/offers.ts : ne les changez que là.
  *
- * TODO direction : la grille du logiciel (59 / 189 / 419 € HT par mois en annuel) reste à confirmer
- * face à une grille au siège (79 / 119 €) en discussion. Rien n'est changé sans accord écrit.
+ * Grille du logiciel décidée le 23 novembre 2026 : 29 € et 59 € HT par utilisateur et par mois.
+ * TODO direction : quotas, frais de mise en service et tarif annuel à confirmer (voir content/pricing.ts).
  */
 import { plans, startingPrice } from "../pricing";
 import { prospectionOffers } from "../offers";
 import type { LandingPage } from "./types";
 
 const eur = (n: number) => `${n.toLocaleString("fr-FR")} €`;
-const [solo, small, medium] = plans;
+const [equipe, agence] = plans;
 const sprint = prospectionOffers.find((o) => o.id === "sprint")!;
 const mission = prospectionOffers.find((o) => o.id === "mission")!;
 
 export const tarifsPage: LandingPage = {
   path: "/tarifs",
   meta: {
-    title: "Tarifs du logiciel et de la prospection",
-    description: `Prix publics, hors taxes : logiciel de prospection téléphonique dès ${startingPrice} € par mois, et prospection externalisée avec un sprint test à ${sprint.price.amount} €.`,
+    title: "Tarifs : dès 29 € par utilisateur et par mois",
+    description: `Logiciel de prospection téléphonique : ${startingPrice} € ou ${agence.pricePerUser} € HT par utilisateur et par mois, sans engagement. Prospection externalisée : sprint test à ${sprint.price.amount} €.`,
   },
   breadcrumb: "Tarifs",
-  updated: "2026-11-22",
+  updated: "2026-11-23",
   hero: {
     eyebrow: "Tarifs",
-    title: "Des prix publics, sans « nous consulter »",
-    lead: "Le logiciel pour votre équipe, ou nos téléprospecteurs qui appellent pour vous. Dans les deux cas, le prix est écrit ici, hors taxes.",
+    title: "Deux offres. Un prix par personne.",
+    lead: "Pas de paquet de licences, pas de « nous consulter », pas de surprise à la signature. Vous payez pour les personnes qui appellent, chaque mois, et vous arrêtez quand vous voulez.",
     primary: { label: "Demander une démo", href: "/demo?offre=logiciel" },
     secondary: { label: "Comparer les offres", href: "#comparer" },
-    bullets: ["Logiciel : mensuel sans engagement, ou annuel", "Mise en service et formation comprises selon l'offre", "Prospection : sprint test de deux semaines"],
+    bullets: [`${equipe.name} : ${eur(equipe.pricePerUser)} HT / utilisateur / mois`, `${agence.name} : ${eur(agence.pricePerUser)} HT / utilisateur / mois`, "Sans engagement, résiliable chaque mois", "Prix hors taxes, tous publics"],
   },
   blocks: [
     {
       kind: "answer",
       question: "Combien coûte le logiciel Suzalink ?",
-      answer: `${solo.name} : ${eur(solo.price.annual)} HT par mois en annuel pour 1 utilisateur. ${small.name} : ${eur(small.price.annual)} HT par mois pour ${small.seatsIncluded} utilisateurs, avec le tableau de bord manager. ${medium.name} : ${eur(medium.price.annual)} HT par mois pour ${medium.seatsIncluded} utilisateurs, avec la marque blanche et le portail client. En mensuel, sans engagement : ${eur(solo.price.monthly)}, ${eur(small.price.monthly)} et ${eur(medium.price.monthly)} HT.`,
+      answer: `Deux offres, un prix par personne. ${equipe.name} : ${eur(equipe.pricePerUser)} HT par utilisateur et par mois, pour appeler, enregistrer, préparer les RDV avec l'IA et piloter l'équipe. ${agence.name} : ${eur(agence.pricePerUser)} HT par utilisateur et par mois, avec en plus le portail client, la marque blanche et plusieurs missions par téléprospecteur. Sans engagement.`,
       facts: [
         "Prix publics, hors taxes",
         "Téléphonie, enregistrements et IA dans chaque offre",
-        "Mensuel sans engagement, ou annuel",
+        "Sans engagement, résiliable chaque mois",
         `Prospection externalisée : sprint test à ${eur(sprint.price.amount)} HT`,
       ],
     },
@@ -85,20 +85,16 @@ export const tarifsPage: LandingPage = {
       title: "Sur les prix",
       items: [
         {
-          q: "Quelle offre du logiciel choisir ?",
-          a: `${solo.name} si vous prospectez seul. ${small.name} pour une équipe de 3 à 7 personnes avec un manager. ${medium.name} pour une agence de prospection ou une équipe de 8 à 30 personnes, avec la marque blanche et le portail client. Voir [agences](/solutions/agences-prospection) et [équipes commerciales](/solutions/equipes-commerciales).`,
+          q: "Quelle offre choisir ?",
+          a: `${equipe.name} si votre équipe appelle pour votre propre entreprise. ${agence.name} si vous appelez pour plusieurs clients et que vous devez leur montrer les RDV et les appels. Voir [agences](/solutions/agences-prospection) et [équipes commerciales](/solutions/equipes-commerciales).`,
         },
         {
-          q: "Y a-t-il des frais de mise en service ?",
-          a: `Oui, une fois : ${eur(solo.setupFee.price)} HT pour ${solo.name} (optionnelle), ${eur(small.setupFee.price)} HT pour ${small.name} (mise en service et formation), ${eur(medium.setupFee.price)} HT pour ${medium.name} (déploiement accompagné).`,
+          q: "Pourquoi un prix par utilisateur ?",
+          a: "Parce que c'est simple : 3 personnes qui appellent, 3 utilisateurs. Vous ajoutez ou retirez quelqu'un quand l'équipe change, sans changer d'offre.",
         },
         {
-          q: "Puis-je ajouter des utilisateurs ?",
-          a: `Oui : ${eur(small.extraSeat!.price)} HT par mois par utilisateur en ${small.name} (jusqu'à 7), ${eur(medium.extraSeat!.price)} HT par mois en ${medium.name}. L'offre ${solo.name} est prévue pour 1 utilisateur.`,
-        },
-        {
-          q: "Le mensuel est-il sans engagement ?",
-          a: "Oui. L'annuel coûte moins cher par mois et il est facturé chaque année.",
+          q: "Y a-t-il un engagement ?",
+          a: "Non. L'abonnement est mensuel et résiliable chaque mois. Vos données vous appartiennent et vous les récupérez si vous arrêtez.",
         },
         {
           q: "Combien coûte la prospection externalisée ?",

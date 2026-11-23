@@ -44,7 +44,7 @@ export const company = {
 };
 
 const c = company;
-const UPDATED = "2026-11-21";
+const UPDATED = "2026-11-23";
 
 export const mentionsLegales: LegalPageData = {
   path: "/mentions-legales",
@@ -248,7 +248,7 @@ export const cgv: LegalPageData = {
       id: "offres",
       title: "Offres",
       paragraphs: [
-        "**Le logiciel** : abonnement mensuel ou annuel à l'une des offres décrites sur la page [tarifs](/tarifs), avec le nombre d'utilisateurs inclus et les options indiqués pour chaque offre.",
+        "**Le logiciel** : abonnement mensuel à l'une des offres décrites sur la page [tarifs](/tarifs), facturé par utilisateur, avec les options indiquées pour chaque offre.",
         `**La prospection externalisée** : trois formules. Le **${sprint.name}** (2 semaines, 1 téléprospecteur dédié), la **${mission.name}** (1 téléprospecteur dédié, 22 jours par mois) et l'offre **${resultat.name}** (réservée aux cibles déjà prouvées en mission, facturée au RDV honoré). Le contenu de chaque formule est décrit sur la page [prospection externalisée](/prospection-externalisee).`,
       ],
     },
@@ -266,7 +266,7 @@ export const cgv: LegalPageData = {
       title: "Durée et résiliation",
       paragraphs: [
         `**Prospection** : mission mensuelle sans engagement, avec un mois de préavis ; après le sprint test, vous arrêtez quand vous voulez. ${g("Sans engagement")}`,
-        "**Logiciel** : l'abonnement mensuel est sans engagement ; l'abonnement annuel est facturé chaque année. TODO : modalités de résiliation et sort de l'année en cours à confirmer.",
+        "**Logiciel** : l'abonnement est mensuel, sans engagement, et facturé selon le nombre d'utilisateurs du mois. TODO : modalités de résiliation et d'ajout ou retrait d'utilisateurs en cours de mois à confirmer.",
       ],
     },
     {

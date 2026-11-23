@@ -80,7 +80,7 @@ export const guarantees = [
 /** Ce qu'un visiteur peut choisir sur /demo (?offre=…) : offres CRM et offres de prospection. */
 export const interests = [
   ...prospectionOffers.map((o) => ({ id: o.id, name: o.name })),
-  ...plans.map((p) => ({ id: p.id, name: `CRM ${p.name}` })),
+  ...plans.map((p) => ({ id: p.id, name: `Logiciel, offre ${p.name}` })),
 ];
 
 export const findInterest = (id?: string) => interests.find((i) => i.id === id);

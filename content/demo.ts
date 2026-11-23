@@ -30,7 +30,7 @@ export const demo = {
      * Les identifiants d'offre précis (sprint, mission, plans du logiciel…) restent transmis à part.
      */
     needs: [
-      { value: "logiciel", label: "Le logiciel pour mon équipe", from: ["logiciel", "independant", "small-business", "medium-business"] },
+      { value: "logiciel", label: "Le logiciel pour mon équipe", from: ["logiciel", "equipe", "agence"] },
       { value: "prospection", label: "Faire prospecter par vos téléprospecteurs", from: ["prospection", "sprint", "mission", "resultat"] },
       { value: "partenaire", label: "Devenir partenaire", from: ["partenaire"] },
     ],

@@ -385,7 +385,7 @@ function renderBlock(block: Block, i: number) {
               {
                 id: "logiciel",
                 label: block.software,
-                anchors: ["crm", "tarifs", "comparer", "independant", "small-business", "medium-business"],
+                anchors: ["crm", "tarifs", "comparer", "equipe", "agence"],
                 panel: (
                   <div id="crm" className="scroll-mt-24">
                     <Pricing />
