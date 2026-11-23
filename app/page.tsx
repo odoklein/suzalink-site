@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/sections/SiteHeader";
 import { Hero } from "@/components/sections/Hero";
 import { LogoStrip } from "@/components/sections/LogoStrip";
 import { Audience } from "@/components/sections/Audience";
+import { Pains } from "@/components/sections/Pains";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Features } from "@/components/sections/Features";
 import { StackCost } from "@/components/sections/StackCost";
@@ -60,6 +61,7 @@ export default function HomePage() {
       <main id="contenu" tabIndex={-1} className="outline-none">
         <Hero />
         <LogoStrip />
+        <Pains />
         <Audience />
         <HowItWorks />
         <VideoSlot />

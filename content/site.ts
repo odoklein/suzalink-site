@@ -15,7 +15,7 @@ export const site = {
     title: "Suzalink : logiciel de prospection téléphonique",
     titleTemplate: "%s | Suzalink",
     description:
-      "Le logiciel des agences et équipes de prospection téléphonique : appels enregistrés, fiche de RDV par l'IA, portail client. Une base de données par client.",
+      "Le logiciel des agences et équipes de prospection téléphonique : appels enregistrés, fiche de RDV par l'IA, portail client. Dès 29 € HT par utilisateur.",
     ogImageAlt: "Suzalink : votre prospection, vos règles.",
   },
 
@@ -27,9 +27,9 @@ export const site = {
   loginLabel: "Se connecter",
 
   announcement: {
-    badge: "Logiciel",
-    text: "La fiche de RDV rédigée par l'IA, relue par le téléprospecteur",
-    href: "/logiciel/ia",
+    badge: "Nouveaux tarifs",
+    text: "Dès 29 € HT par utilisateur et par mois, sans engagement",
+    href: "/tarifs",
   },
 
   // Menu principal : content/menu.ts

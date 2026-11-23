@@ -17,36 +17,56 @@ import { plans } from "./pricing";
 
 export type Action = { label: string; href: string };
 
-const annual = plans.map((p) => p.price.annual);
+const perUser = plans.map((p) => p.pricePerUser);
 
 export const hero = {
-  eyebrow: "Agences et équipes de prospection",
-  title: "Le logiciel de la prospection téléphonique.",
-  mark: "téléphonique",
+  eyebrow: "Logiciel de prospection téléphonique",
+  title: "Appelez plus. Saisissez moins.",
+  mark: "moins",
   subtitle:
-    "Appels, enregistrements, fiche de RDV par l'IA et portail client, dans un seul outil. Les données de chaque client sont hébergées à part.",
+    "File d'appels, téléphonie, appels enregistrés, fiche de RDV par l'IA et portail client, dans un seul outil. Dès 29 € HT par utilisateur et par mois.",
   primary: { label: "Demander une démo", href: "/demo?offre=logiciel" },
-  secondary: { label: "Voir le logiciel", href: "/logiciel" },
+  secondary: { label: "Voir les tarifs", href: "/tarifs" },
   mockupLabel:
     "Aperçu du logiciel Suzalink : la liste des prospects à appeler, la fiche du contact en cours, les résultats en un clic et le bouton Appel suivant.",
+};
+
+/**
+ * « Ça vous parle ? » : les situations que nos clients vivaient avant Suzalink, en une ligne chacune.
+ * Elles reprennent les constats déjà publiés sur le site (pages agences, équipes, portail).
+ */
+export const pains = {
+  eyebrow: "Ça vous parle ?",
+  title: "Si vous avez dit oui une fois",
+  subtitle: "C'est pour ces moments-là que nous avons construit Suzalink.",
+  items: [
+    "Vos rappels vivent dans un tableur ?",
+    "Personne ne réécoute les appels ?",
+    "Le compte rendu de RDV se tape à la main ?",
+    "Vos clients demandent chaque vendredi combien d'appels ?",
+    "Vous payez cinq abonnements par personne ?",
+    "Un téléprospecteur, trois clients, trois fichiers ?",
+    "Le manager découvre le retard en fin de semaine ?",
+  ],
+  action: { label: "Voir comment on règle ça", href: "/logiciel" },
 };
 
 /** Aiguillage : deux profils, deux pages. */
 export const audience = {
   eyebrow: "Pour qui",
-  title: "Une agence ou une équipe interne ?",
-  subtitle: "Le même logiciel, réglé pour votre façon de prospecter.",
+  title: "Agence ou équipe interne ?",
+  subtitle: "Le même logiciel. Deux façons de l'utiliser.",
   items: [
     {
-      eyebrow: "Je dirige une agence",
-      title: "Vos clients voient leurs RDV, à votre marque.",
-      body: "Plusieurs missions par téléprospecteur, portail client et marque blanche. Une base de données par agence.",
+      eyebrow: "Vous appelez pour vos clients",
+      title: "Prouvez chaque RDV, à votre marque.",
+      body: "Plusieurs missions par téléprospecteur, un portail où chaque client voit ses RDV et écoute ses appels. Offre Agence, 59 € HT par utilisateur et par mois.",
       action: { label: "Le logiciel pour les agences", href: "/solutions/agences-prospection" },
     },
     {
-      eyebrow: "J'ai une équipe commerciale",
-      title: "Votre équipe appelle, vous suivez en direct.",
-      body: "File d'appels, téléphonie, appels enregistrés et tableau de bord manager, pour une équipe de 3 à 30 personnes.",
+      eyebrow: "Vous appelez pour vous",
+      title: "Votre équipe appelle, vous voyez tout.",
+      body: "File d'appels, appels enregistrés, fiche IA et tableau de bord manager en direct. Offre Équipe, 29 € HT par utilisateur et par mois.",
       action: { label: "Le logiciel pour les équipes", href: "/solutions/equipes-commerciales" },
     },
   ],
@@ -70,9 +90,9 @@ export const logos = {
 /** Le logiciel en 4 temps, autour d'un appel. */
 export const how = {
   eyebrow: "Autour d'un appel",
-  title: "De la file au portail client",
-  mark: "portail",
-  subtitle: "Le téléprospecteur appelle, note le résultat en une touche et passe au suivant. Le reste suit tout seul.",
+  title: "Un appel. Une touche. Au suivant.",
+  mark: "suivant",
+  subtitle: "Le téléprospecteur appelle, note le résultat et passe au contact suivant. Le rappel, la fiche et le portail suivent tout seuls.",
   steps: [
     { title: "La file", body: "Le prospect suivant s'affiche, le résultat se note en une touche." },
     { title: "L'appel enregistré", body: "Allo ou OnOff, avec vos numéros. Chaque appel est gardé." },
@@ -84,7 +104,7 @@ export const how = {
 
 export const features = {
   eyebrow: "Le logiciel",
-  title: "Le logiciel derrière chaque appel",
+  title: "Ce qu'il faut pour appeler. Rien d'autre.",
   /** Description of the whole grid for screen readers (the cards are UI illustrations). */
   label:
     "Aperçu du logiciel : la liste d'appels, le résultat en une touche, le résumé proposé par l'IA, l'historique des appels avec leurs enregistrements, et le portail client avec les RDV de la semaine.",
@@ -98,15 +118,12 @@ export const features = {
 export const stack = {
   eyebrow: "Coût total",
   title: "Cinq abonnements pour un seul métier",
-  subtitle:
-    "Fichier clients, téléphonie, écoute des appels, emails de relance : chaque outil se paie par personne. Calcul pour une équipe de 3.",
+  subtitle: "Fichier, téléphonie, écoute des appels, relances : chaque outil se paie par personne. Chez nous aussi, mais une seule fois.",
   action: { label: "Voir les tarifs", href: "/tarifs" },
-  /** Taille d'équipe du calcul : l'offre Small Business inclut 3 utilisateurs (content/pricing.ts). */
-  team: 3,
-  bigNumberEyebrow: "Suzalink Small Business",
-  bigNumberCaption: "HT par mois pour 3 utilisateurs, en annuel. Téléphonie, enregistrements et IA compris.",
-  tableCaption: "Ce que coûtent les outils de prospection habituels pour une équipe de 3, par mois",
-  columns: { tool: "Outil", use: "Usage", price: "Prix pour 3 / mois" },
+  bigNumberEyebrow: "Suzalink, offre Équipe",
+  bigNumberCaption: "HT par utilisateur et par mois. Téléphonie, appels enregistrés et IA compris.",
+  tableCaption: "Ce que coûtent les outils de prospection habituels, par personne et par mois",
+  columns: { tool: "Outil", use: "Usage", price: "Prix / personne / mois" },
   totalLabel: "Total",
   oursLabel: "Suzalink",
   oursUse: "Tout-en-un",
@@ -175,20 +192,20 @@ export const offersHome = {
   },
 };
 
-/** Offres du logiciel (bloc utilisé sur /tarifs et /crm-agence-prospection). */
+/** Offres du logiciel (bloc utilisé sur /tarifs). Les prix : content/pricing.ts. */
 export const pricing = {
   eyebrow: "Tarifs du logiciel",
-  title: "Un prix clair, tout compris",
-  subtitle: "Appels, emails, relances et IA dans chaque offre. Prix HT, par mois.",
-  periodLegend: "Période de facturation",
-  perMonth: "HT / mois",
-  usersIncluded: (n: number) => (n === 1 ? "1 utilisateur" : `${n} utilisateurs inclus`),
-  extraSeat: (price: string, limit?: string) =>
-    `+ ${price} HT / mois par utilisateur supplémentaire${limit ? `, ${limit}` : ""}`,
-  annualTotal: (total: string) => `Soit ${total} HT facturés par an`,
-  monthlyNote: "Sans engagement",
-  saveLabel: (pct: number) => `jusqu'à −${pct} %`,
-  footnote: "Tous les prix sont HT. Options disponibles : stockage d'appels, fiches IA supplémentaires, marque blanche.",
+  title: "Un prix par personne. C'est tout.",
+  subtitle: "HT, par utilisateur et par mois. Sans engagement, sans paquet d'utilisateurs imposé.",
+  perUser: "HT / utilisateur / mois",
+  monthlyNote: "Sans engagement, résiliable chaque mois",
+  notIncludedLabel: "Pas dans cette offre",
+  calculator: {
+    title: "Combien êtes-vous à appeler ?",
+    label: "Nombre d'utilisateurs",
+    total: (n: number) => (n === 1 ? "pour 1 utilisateur, par mois" : `pour ${n} utilisateurs, par mois`),
+  },
+  footnote: "Tous les prix sont HT. Options : heures d'enregistrement et fiches IA supplémentaires.",
 };
 
 export const security = {
@@ -224,7 +241,7 @@ export const homeFaq = {
     },
     {
       q: "Combien coûte le logiciel ?",
-      a: `De ${Math.min(...annual)} à ${Math.max(...annual)} € HT par mois en annuel selon l'offre et le nombre d'utilisateurs. Tous les prix sont publics : voir les [tarifs](/tarifs).`,
+      a: `${Math.min(...perUser)} € ou ${Math.max(...perUser)} € HT par utilisateur et par mois, selon l'offre, sans engagement. Tous les prix sont publics : voir les [tarifs](/tarifs).`,
     },
     {
       q: "Mes données sont-elles séparées de celles des autres clients ?",
@@ -243,8 +260,8 @@ export const homeFaq = {
 
 export const finalCta = {
   eyebrow: "Démo",
-  title: "Voyez Suzalink sur vos missions",
-  mark: "missions",
-  subtitle: "Une démo sur vos propres cas, avec votre équipe.",
+  title: "Le prochain appel vous attend.",
+  mark: "appel",
+  subtitle: "Une démo sur vos propres cas, avec votre équipe. Vous repartez avec le prix exact.",
   action: { label: "Demander une démo", href: "/demo?offre=logiciel" },
 };
