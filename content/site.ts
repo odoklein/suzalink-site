@@ -44,6 +44,7 @@ export const site = {
         title: "Logiciel",
         links: [
           { label: "Vue d'ensemble", href: "/logiciel" },
+          { label: "Toutes les fonctionnalités", href: "/fonctionnalites" },
           { label: "File d'appels", href: "/logiciel/file-appels" },
           { label: "Téléphonie", href: "/logiciel/telephonie" },
           { label: "Fiche de RDV par l'IA", href: "/logiciel/ia" },

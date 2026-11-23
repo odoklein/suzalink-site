@@ -788,7 +788,18 @@ function pageSchemas(page: LandingPageData, trail: Array<{ label: string; href: 
 }
 
 /** Full page: header, hero, blocks, footer, plus the page's JSON-LD. */
-export function LandingPage({ page, extra, children }: { page: LandingPageData; extra?: object[]; children?: ReactNode }) {
+export function LandingPage({
+  page,
+  extra,
+  children,
+  heroAside,
+}: {
+  page: LandingPageData;
+  extra?: object[];
+  children?: ReactNode;
+  /** Custom visual on the right of the hero (replaces the image or the bullet card). */
+  heroAside?: ReactNode;
+}) {
   const trail = [{ label: "Accueil", href: "/" }, ...(page.parent ? [page.parent] : []), { label: page.breadcrumb, href: page.path }];
   const schemas = [...pageSchemas(page, trail), ...(extra ?? [])];
   const { hero } = page;
@@ -812,7 +823,7 @@ export function LandingPage({ page, extra, children }: { page: LandingPageData; 
             <div
               className={cx(
                 "mt-10 grid gap-12 lg:gap-16",
-                hero.visual ? "lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center" : "lg:grid-cols-[1fr_380px] lg:items-end",
+                hero.visual || heroAside ? "lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center" : "lg:grid-cols-[1fr_380px] lg:items-end",
               )}
             >
               <div className="stage flex flex-col gap-6">
@@ -821,7 +832,7 @@ export function LandingPage({ page, extra, children }: { page: LandingPageData; 
                   id="page-title"
                   className={cx(
                     "font-display-tight max-w-[18ch] leading-[1.02] font-light text-ink",
-                    hero.visual ? "text-[clamp(2.6rem,5vw,4.25rem)]" : "text-[clamp(2.75rem,6.4vw,5rem)]",
+                    hero.visual || heroAside ? "text-[clamp(2.6rem,5vw,4.25rem)]" : "text-[clamp(2.75rem,6.4vw,5rem)]",
                   )}
                 >
                   {hero.title}
@@ -876,6 +887,8 @@ export function LandingPage({ page, extra, children }: { page: LandingPageData; 
                   sizes="(min-width: 1024px) 520px, 100vw"
                   className="stage-visual h-auto w-full drop-shadow-[0_30px_50px_rgba(12,31,35,.18)]"
                 />
+              ) : heroAside ? (
+                heroAside
               ) : hero.bullets ? (
                 <ul className="stage-visual flex flex-col gap-3 rounded-[24px] border border-line bg-white/90 p-6 text-[15px] shadow-[0_18px_40px_-30px_rgba(12,31,35,.35)] backdrop-blur">
                   {hero.bullets.map((b) => (

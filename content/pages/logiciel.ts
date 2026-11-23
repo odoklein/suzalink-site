@@ -160,7 +160,7 @@ export const logicielPage: LandingPage = {
       eyebrow: "À voir aussi",
       title: "Pour aller plus loin",
       items: [
-        { label: "Agences de prospection", href: "/solutions/agences-prospection", body: "Marque blanche, portail client, plusieurs missions par téléprospecteur." },
+        { label: "Toutes les fonctionnalités", href: "/fonctionnalites", body: "Les six touches du logiciel, offre par offre." },
         { label: "Équipes commerciales", href: "/solutions/equipes-commerciales", body: "Une équipe de téléprospection interne, pilotée en direct." },
         { label: "Tarifs", href: "/tarifs", body: "Deux offres, 29 € ou 59 € HT par utilisateur et par mois." },
       ],

@@ -6,6 +6,7 @@ import { partenairesPage } from "@/content/pages/partenaires";
 import { sectors } from "@/content/pages/secteurs";
 import { aPropos } from "@/content/pages/hubs";
 import { pourquoiPage } from "@/content/pages/pourquoi";
+import { fonctionnalitesPage } from "@/content/pages/fonctionnalites";
 import { softwarePages } from "@/content/pages/logiciel";
 import { equipesPage, solutionsHub } from "@/content/pages/solutions";
 import { securitePage, casClientsPage, contactPage } from "@/content/pages/ressources";
@@ -25,6 +26,7 @@ export function GET() {
     "",
     "## Logiciel",
     ...softwarePages.map(line),
+    line(fonctionnalitesPage),
     line(securitePage),
     "",
     "## Solutions",

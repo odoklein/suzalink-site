@@ -62,7 +62,7 @@ export const menu: MenuItem[] = [
         title: "Autour d'un appel",
         intro: "De la file au portail client, dans un seul outil.",
         layout: "steps",
-        more: { label: "Tout le logiciel", href: "/logiciel", body: "Les cinq fonctions autour d'un appel, sur une page." },
+        more: { label: "Toutes les fonctionnalités", href: "/fonctionnalites", body: "Les six touches du logiciel, offre par offre." },
         links: featurePages.map((f) => ({ label: f.label, href: f.href, body: f.body, icon: f.icon as IconName, tile: f.tile })),
       },
     ],
@@ -74,6 +74,7 @@ export const menu: MenuItem[] = [
       points: ["Besoin", "Budget", "Décideur", "Objections"],
     },
     footer: [
+      { label: "Vue d'ensemble du logiciel", href: "/logiciel", icon: "grid" },
       { label: "Sécurité des données", href: "/securite", icon: "lock" },
     ],
     footerAction: { label: "Demander une démo", href: "/demo?offre=logiciel" },

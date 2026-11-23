@@ -58,7 +58,7 @@ export function Footer() {
                 className="cursor-not-allowed rounded-full px-3 py-1 text-muted"
               >
                 {footer.languages.other.code}
-                <span className="sr-only"> — {footer.languages.other.note}</span>
+                <span className="sr-only"> : {footer.languages.other.note}</span>
               </button>
             </div>
 

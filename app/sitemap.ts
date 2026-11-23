@@ -9,6 +9,7 @@ import { prospectionPage } from "@/content/pages/prospection-externalisee";
 import { partenairesPage } from "@/content/pages/partenaires";
 import { securitePage, casClientsPage, contactPage } from "@/content/pages/ressources";
 import { pourquoiPage } from "@/content/pages/pourquoi";
+import { fonctionnalitesPage } from "@/content/pages/fonctionnalites";
 import { secteursHub, aPropos } from "@/content/pages/hubs";
 import { mentionsLegales, confidentialite, cgv, cookies } from "@/content/pages/legal";
 
@@ -26,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages: Page[] = [
     { path: "/", updated: HOME_UPDATED },
     ...softwarePages,
+    fonctionnalitesPage,
     solutionsHub,
     crmAgencePage,
     equipesPage,
