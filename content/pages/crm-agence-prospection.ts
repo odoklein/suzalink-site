@@ -16,7 +16,7 @@ export const crmAgencePage: LandingPage = {
   },
   breadcrumb: "Agences de prospection",
   parent: { label: "Solutions", href: "/solutions" },
-  updated: "2026-11-22",
+  updated: "2026-11-23",
   hero: {
     eyebrow: "Agences de prospection",
     title: "Le logiciel de votre agence, à votre marque",
@@ -35,7 +35,7 @@ export const crmAgencePage: LandingPage = {
         "Votre domaine, votre logo, vos couleurs",
         "Portail client inclus",
         "Téléphonie Allo et OnOff, appels enregistrés",
-        "Dès **419 € HT par mois** pour 8 utilisateurs",
+        "**59 € HT par utilisateur et par mois**, sans engagement",
       ],
     },
     {
@@ -131,7 +131,7 @@ export const crmAgencePage: LandingPage = {
       items: [
         {
           q: "Combien coûte le logiciel pour une agence ?",
-          a: "L'offre Medium Business coûte 419 € HT par mois en annuel (499 € HT en mensuel) pour 8 utilisateurs, avec la marque blanche et le portail client. Chaque utilisateur supplémentaire coûte 39 € HT par mois. Le déploiement accompagné coûte 750 € HT, une fois.",
+          a: "L'offre Agence coûte 59 € HT par utilisateur et par mois, sans engagement, avec la marque blanche et le portail client. Vous payez pour les personnes qui appellent, pas pour un paquet d'utilisateurs.",
         },
         {
           q: "Mes clients verront-ils le nom Suzalink ?",

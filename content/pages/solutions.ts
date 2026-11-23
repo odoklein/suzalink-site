@@ -6,7 +6,7 @@
 import { plans } from "../pricing";
 import type { LandingPage } from "./types";
 
-const small = plans.find((p) => p.id === "small-business")!;
+const [equipe] = plans;
 const eur = (n: number) => `${n.toLocaleString("fr-FR")} €`;
 
 export const equipesPage: LandingPage = {
@@ -18,7 +18,7 @@ export const equipesPage: LandingPage = {
   },
   breadcrumb: "Équipes commerciales",
   parent: { label: "Solutions", href: "/solutions" },
-  updated: "2026-11-22",
+  updated: "2026-11-23",
   hero: {
     eyebrow: "Équipes commerciales",
     title: "Votre équipe appelle, vous voyez tout",
@@ -31,8 +31,8 @@ export const equipesPage: LandingPage = {
     {
       kind: "answer",
       question: "Quel logiciel pour une équipe de téléprospection interne ?",
-      answer: `Un outil qui réunit la file d'appels, la téléphonie, l'enregistrement des appels et le suivi du manager. Suzalink fait tout cela, avec la fiche de RDV rédigée par l'IA. L'offre ${small.name} coûte ${eur(small.price.annual)} HT par mois en annuel pour ${small.seatsIncluded} utilisateurs, tableau de bord manager compris.`,
-      facts: ["Tableau de bord manager en direct", "Allo ou OnOff avec vos numéros", "Chaque appel enregistré", `${small.name} : ${eur(small.price.annual)} HT / mois pour ${small.seatsIncluded}`],
+      answer: `Un outil qui réunit la file d'appels, la téléphonie, les appels enregistrés et le suivi du manager. Suzalink fait tout cela, avec la fiche de RDV rédigée par l'IA. L'offre ${equipe.name} coûte ${eur(equipe.pricePerUser)} HT par utilisateur et par mois, tableau de bord manager compris.`,
+      facts: ["Tableau de bord manager en direct", "Allo ou OnOff avec vos numéros", "Chaque appel enregistré", `${equipe.name} : ${eur(equipe.pricePerUser)} HT / utilisateur / mois`],
     },
     {
       kind: "pains",
@@ -77,8 +77,8 @@ export const equipesPage: LandingPage = {
       eyebrow: "Questions fréquentes",
       title: "Ce que les équipes nous demandent",
       items: [
-        { q: "Quelle offre pour une équipe de 3 à 7 personnes ?", a: `L'offre ${small.name} : ${eur(small.price.annual)} HT par mois en annuel (${eur(small.price.monthly)} HT en mensuel) pour ${small.seatsIncluded} utilisateurs, puis ${eur(small.extraSeat!.price)} HT par utilisateur supplémentaire, jusqu'à 7. Voir les [tarifs](/tarifs).` },
-        { q: "Et au-delà de 7 personnes ?", a: "L'offre Medium Business inclut 8 utilisateurs et accepte des utilisateurs supplémentaires. Voir les [tarifs](/tarifs)." },
+        { q: "Quelle offre pour une équipe interne ?", a: `L'offre ${equipe.name} : ${eur(equipe.pricePerUser)} HT par utilisateur et par mois, pour chaque personne qui appelle. Vous ajoutez ou retirez un utilisateur quand vous voulez. Voir les [tarifs](/tarifs).` },
+        { q: "Y a-t-il un nombre minimum ou maximum d'utilisateurs ?", a: "Non : le prix est par personne, de 1 à autant que vous voulez. Voir les [tarifs](/tarifs)." },
         { q: "Pouvons-nous confier une partie des appels à vos téléprospecteurs ?", a: "Oui. Certaines équipes appellent elles-mêmes et nous confient le reste. Voir la [prospection externalisée](/prospection-externalisee)." },
         { q: "Nos données restent-elles chez nous ?", a: "Elles sont dans votre propre instance et votre propre base de données. Voir [sécurité](/securite)." },
       ],
@@ -90,7 +90,7 @@ export const equipesPage: LandingPage = {
       title: "Pour aller plus loin",
       items: [
         { label: "Le logiciel", href: "/logiciel", body: "Toutes les fonctions, autour d'un appel." },
-        { label: "Tarifs", href: "/tarifs", body: "Trois offres publiques, hors taxes." },
+        { label: "Tarifs", href: "/tarifs", body: "Deux offres, un prix par utilisateur, hors taxes." },
         { label: "Passer le barrage secrétaire", href: "/guides/barrage-secretaire", body: "Le guide à partager avec votre équipe, tiré de nos appels." },
       ],
     },
@@ -115,7 +115,7 @@ export const solutionsHub: LandingPage = {
       "Le logiciel de prospection téléphonique pour les agences et les équipes internes, le programme partenaires, et la prospection par nos téléprospecteurs.",
   },
   breadcrumb: "Solutions",
-  updated: "2026-11-22",
+  updated: "2026-11-23",
   hero: {
     eyebrow: "Solutions",
     title: "Quatre façons de travailler avec nous",

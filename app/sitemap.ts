@@ -18,7 +18,7 @@ import { mentionsLegales, confidentialite, cgv, cookies } from "@/content/pages/
  * priority and changefreq, so they are left out.
  * Home and /demo have no `updated` field: bump HOME_UPDATED when the home page changes.
  */
-const HOME_UPDATED = "2026-11-22";
+const HOME_UPDATED = "2026-11-23";
 
 type Page = { path: string; updated?: string };
 

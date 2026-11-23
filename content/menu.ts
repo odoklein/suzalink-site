@@ -75,7 +75,6 @@ export const menu: MenuItem[] = [
     },
     footer: [
       { label: "Sécurité des données", href: "/securite", icon: "lock" },
-      { label: "Tarifs du logiciel", href: "/tarifs", icon: "chart" },
     ],
     footerAction: { label: "Demander une démo", href: "/demo?offre=logiciel" },
   },

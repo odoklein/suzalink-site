@@ -7,13 +7,10 @@
 import { plans } from "../pricing";
 import type { LandingPage, Link } from "./types";
 
-const plan = (id: string) => plans.find((p) => p.id === id)!;
 const eur = (n: number) => `${n.toLocaleString("fr-FR")} €`;
-const small = plan("small-business");
-const medium = plan("medium-business");
-const solo = plan("independant");
+const [equipe, agence] = plans;
 
-const UPDATED = "2026-11-22";
+const UPDATED = "2026-11-23";
 const parent: Link = { label: "Logiciel", href: "/logiciel" };
 const demo = { label: "Demander une démo", href: "/demo?offre=logiciel" };
 
@@ -66,7 +63,7 @@ export const logicielPage: LandingPage = {
         "Téléphonie Allo et OnOff intégrée",
         "Chaque appel enregistré",
         "Une instance et une base par client",
-        `Dès **${eur(solo.price.annual)} HT par mois** ([voir les tarifs](/tarifs))`,
+        `Dès **${eur(equipe.pricePerUser)} HT par utilisateur et par mois** ([voir les tarifs](/tarifs))`,
       ],
     },
     {
@@ -141,7 +138,7 @@ export const logicielPage: LandingPage = {
         },
         {
           q: "Combien coûte le logiciel ?",
-          a: `${solo.name} : ${eur(solo.price.annual)} HT par mois en annuel pour 1 utilisateur. ${small.name} : ${eur(small.price.annual)} HT par mois pour ${small.seatsIncluded} utilisateurs. ${medium.name} : ${eur(medium.price.annual)} HT par mois pour ${medium.seatsIncluded} utilisateurs, avec la marque blanche et le portail client. Détails sur la page [tarifs](/tarifs).`,
+          a: `Deux offres, un prix par personne. ${equipe.name} : ${eur(equipe.pricePerUser)} HT par utilisateur et par mois. ${agence.name} : ${eur(agence.pricePerUser)} HT par utilisateur et par mois, avec le portail client et la marque blanche. Sans engagement. Détails sur la page [tarifs](/tarifs).`,
         },
         {
           q: "Quelle téléphonie utiliser ?",
@@ -165,7 +162,7 @@ export const logicielPage: LandingPage = {
       items: [
         { label: "Agences de prospection", href: "/solutions/agences-prospection", body: "Marque blanche, portail client, plusieurs missions par téléprospecteur." },
         { label: "Équipes commerciales", href: "/solutions/equipes-commerciales", body: "Une équipe de téléprospection interne, pilotée en direct." },
-        { label: "Tarifs", href: "/tarifs", body: "Trois offres publiques, hors taxes, mensuel ou annuel." },
+        { label: "Tarifs", href: "/tarifs", body: "Deux offres, 29 € ou 59 € HT par utilisateur et par mois." },
       ],
     },
     {
@@ -237,7 +234,7 @@ export const fileAppelsPage: LandingPage = {
         { icon: "calendar", title: "Rappels planifiés", body: "Un prospect absent est rappelé à une autre heure." },
         { icon: "arrowUpRight", title: "Plusieurs missions", body: "Le matin pour un client, l'après-midi pour un autre : scripts, listes et rappels suivent la mission." },
         { icon: "users", title: "RDV sans agenda client", body: "Votre client n'a pas de calendrier connecté ? Le RDV est posé quand même et il le retrouve dans son portail." },
-        { icon: "chart", title: "Le rythme visible", body: "Le manager voit les appels et les RDV de chacun, en direct (offres Small et Medium Business)." },
+        { icon: "chart", title: "Le rythme visible", body: "Le manager voit les appels et les RDV de chacun, en direct (dans les deux offres)." },
       ],
     },
     {
@@ -248,7 +245,7 @@ export const fileAppelsPage: LandingPage = {
       items: [
         { q: "Un téléprospecteur peut-il travailler sur plusieurs missions ?", a: "Oui. Il passe d'une mission à l'autre sans planning imposé. Scripts, listes et rappels restent rangés par mission." },
         { q: "Que se passe-t-il quand un prospect ne répond pas ?", a: "Le téléprospecteur note le résultat et le rappel est planifié à une autre heure. Le contact revient dans la file au bon moment." },
-        { q: "La file est-elle dans toutes les offres ?", a: "Oui, dès l'offre Indépendant. Voir les [tarifs](/tarifs)." },
+        { q: "La file est-elle dans toutes les offres ?", a: "Oui, dans les deux offres, dès le premier utilisateur. Voir les [tarifs](/tarifs)." },
       ],
     },
     related("/logiciel/file-appels"),
@@ -281,9 +278,9 @@ export const telephoniePage: LandingPage = {
       answer:
         "Suzalink est intégré à Allo et à OnOff. Le téléprospecteur appelle depuis la fiche du prospect, avec vos propres numéros, sans changer d'écran. Chaque appel est enregistré dans un stockage privé : vous pouvez le réécouter et le partager en un clic.",
       facts: [
-        `${solo.name} : 1 ligne, 20 h d'enregistrements par mois`,
-        `${small.name} : jusqu'à 3 lignes, 80 h par mois`,
-        `${medium.name} : lignes illimitées, 250 h par mois`,
+        `${equipe.name} : 20 h d'appels enregistrés par utilisateur et par mois`,
+        `${agence.name} : 30 h par utilisateur et par mois`,
+        "Vos numéros, sur chaque poste",
       ],
     },
     {
@@ -308,7 +305,7 @@ export const telephoniePage: LandingPage = {
       items: [
         { q: "Puis-je garder mes numéros ?", a: "Oui. Allo et OnOff sont branchés avec vos propres numéros pendant la mise en service." },
         { q: "Où sont stockés les enregistrements ?", a: "Dans un stockage privé propre à votre instance. Voir [sécurité](/securite)." },
-        { q: "Combien d'heures d'enregistrement sont incluses ?", a: `${solo.name} : 20 h par mois. ${small.name} : 80 h. ${medium.name} : 250 h. Du stockage supplémentaire est disponible en option. Voir les [tarifs](/tarifs).` },
+        { q: "Combien d'heures d'enregistrement sont incluses ?", a: `${equipe.name} : 20 h par utilisateur et par mois. ${agence.name} : 30 h. Des heures supplémentaires sont disponibles en option. Voir les [tarifs](/tarifs).` },
       ],
     },
     related("/logiciel/telephonie"),
@@ -346,9 +343,9 @@ export const iaPage: LandingPage = {
       answer:
         "L'IA rédige la fiche de RDV à partir de l'appel (besoin, budget, décideur, objections), propose le résultat de l'appel et prépare chaque matin la liste des priorités de chaque téléprospecteur. Rien ne part sans relecture : le téléprospecteur confirme ou corrige.",
       facts: [
-        `${solo.name} : 150 fiches par mois`,
-        `${small.name} : 600 fiches par mois`,
-        `${medium.name} : 2 500 fiches par mois`,
+        `${equipe.name} : 150 fiches par utilisateur et par mois`,
+        `${agence.name} : 300 fiches par utilisateur et par mois`,
+        "Chaque fiche relue avant d'être envoyée",
       ],
     },
     {
@@ -370,7 +367,7 @@ export const iaPage: LandingPage = {
       title: "Sur l'IA",
       items: [
         { q: "L'IA envoie-t-elle des fiches sans contrôle ?", a: "Non. Le téléprospecteur relit chaque fiche et la confirme ou la modifie avant que le client la voie." },
-        { q: "Combien de fiches sont incluses ?", a: `${solo.name} : 150 par mois. ${small.name} : 600. ${medium.name} : 2 500. Des fiches supplémentaires sont disponibles en option.` },
+        { q: "Combien de fiches sont incluses ?", a: `${equipe.name} : 150 par utilisateur et par mois. ${agence.name} : 300. Des fiches supplémentaires sont disponibles en option.` },
         { q: "Qui voit la fiche ?", a: "Votre équipe, et le client concerné dans son [portail](/logiciel/portail-client)." },
       ],
     },
@@ -402,8 +399,8 @@ export const portailPage: LandingPage = {
       kind: "answer",
       question: "Qu'est-ce que le portail client de Suzalink ?",
       answer:
-        "C'est un espace où chaque client de votre agence suit sa mission : ses RDV, l'écoute de ses appels enregistrés et ses rapports. Il ne voit que ses propres données. Le portail est inclus dans l'offre Medium Business, avec la marque blanche.",
-      facts: ["RDV à jour, fiche IA comprise", "Appels à réécouter", "À votre marque", `Inclus dès ${medium.name}`],
+        "C'est un espace où chaque client de votre agence suit sa mission : ses RDV, l'écoute de ses appels enregistrés et ses rapports. Il ne voit que ses propres données. Le portail est inclus dans l'offre Agence, avec la marque blanche.",
+      facts: ["RDV à jour, fiche IA comprise", "Appels à réécouter", "À votre marque", `Offre ${agence.name}`],
     },
     {
       kind: "pains",
@@ -435,7 +432,7 @@ export const portailPage: LandingPage = {
       items: [
         { q: "Mes clients verront-ils le nom Suzalink ?", a: "Non. Avec la [marque blanche](/logiciel/marque-blanche), le portail utilise votre domaine, votre logo et vos couleurs." },
         { q: "Quand ouvrir le portail à mes clients ?", a: "Quand vous êtes prêts : vous l'ouvrez client par client." },
-        { q: "Dans quelle offre est le portail ?", a: `Dans l'offre ${medium.name}, à ${eur(medium.price.annual)} HT par mois en annuel pour ${medium.seatsIncluded} utilisateurs. Voir les [tarifs](/tarifs).` },
+        { q: "Dans quelle offre est le portail ?", a: `Dans l'offre ${agence.name}, à ${eur(agence.pricePerUser)} HT par utilisateur et par mois. Voir les [tarifs](/tarifs).` },
       ],
     },
     related("/logiciel/portail-client"),
@@ -471,8 +468,8 @@ export const marqueBlanchePage: LandingPage = {
       kind: "answer",
       question: "Que comprend la marque blanche ?",
       answer:
-        "La marque blanche met votre domaine, votre logo et vos couleurs sur le logiciel et sur le portail client. Vos clients ne voient jamais le nom Suzalink. Elle est incluse dans l'offre Medium Business, avec le portail client et une instance dédiée à votre agence.",
-      facts: ["Votre domaine", "Votre logo et vos couleurs", "Portail client compris", `Inclus dès ${medium.name}`],
+        "La marque blanche met votre domaine, votre logo et vos couleurs sur le logiciel et sur le portail client. Vos clients ne voient jamais le nom Suzalink. Elle est incluse dans l'offre Agence, avec le portail client et une instance dédiée à votre agence.",
+      facts: ["Votre domaine", "Votre logo et vos couleurs", "Portail client compris", `Offre ${agence.name}`],
     },
     {
       kind: "steps",
@@ -494,7 +491,7 @@ export const marqueBlanchePage: LandingPage = {
       title: "Sur la marque blanche",
       items: [
         { q: "Mes clients verront-ils le nom Suzalink ?", a: "Non. Le logiciel et le portail utilisent votre domaine, votre logo et vos couleurs." },
-        { q: "Combien coûte la marque blanche ?", a: `Elle est incluse dans l'offre ${medium.name} : ${eur(medium.price.annual)} HT par mois en annuel, ${eur(medium.setupFee.price)} HT de déploiement accompagné, une fois. Voir les [tarifs](/tarifs).` },
+        { q: "Combien coûte la marque blanche ?", a: `Elle est incluse dans l'offre ${agence.name}, à ${eur(agence.pricePerUser)} HT par utilisateur et par mois. Voir les [tarifs](/tarifs).` },
         { q: "Mes données côtoient-elles celles d'autres agences ?", a: "Non. Chaque agence a sa propre instance et sa propre base. Voir [sécurité](/securite)." },
       ],
     },
