@@ -98,7 +98,7 @@ export const tarifsPage: LandingPage = {
         },
         {
           q: "Combien coûte la prospection externalisée ?",
-          a: `Le sprint test coûte ${eur(sprint.price.amount)} HT pour deux semaines, déduits si vous continuez. La mission mensuelle coûte ${eur(mission.price.amount)} HT par mois plus 100 € HT par RDV honoré. Sur les cibles déjà prouvées, vous pouvez ne payer que les RDV honorés, de 180 à 300 € HT. Le calcul : [prix d'un RDV qualifié](/guides/prix-rdv-qualifie).`,
+          a: `Le sprint test coûte ${eur(sprint.price.amount)} HT pour deux semaines, déduits si vous continuez. La mission mensuelle coûte ${eur(mission.price.amount)} HT par mois plus 100 € HT par RDV honoré. Sur les cibles déjà prouvées, vous pouvez ne payer que les RDV honorés, de 180 à 300 € HT. Le sprint test sert à mesurer le coût réel d'un RDV sur votre cible.`,
         },
         {
           q: "Qu'est-ce qu'un RDV honoré ?",

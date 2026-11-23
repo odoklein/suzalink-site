@@ -1,9 +1,7 @@
-import { guidesHub as page } from "@/content/pages/hubs";
-import { LandingPage } from "@/components/landing/Landing";
-import { pageMetadata } from "@/lib/page-meta";
+import { permanentRedirect } from "next/navigation";
 
-export const metadata = pageMetadata(page);
-
+// The guides were removed on 2026-11-23: the old address points to the closest page.
+// TODO équipe tech : à remplacer par des redirections 301 dans next.config.ts si vous le validez.
 export default function Page() {
-  return <LandingPage page={page} />;
+  permanentRedirect("/pourquoi-suzalink");
 }

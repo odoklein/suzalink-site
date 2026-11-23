@@ -134,7 +134,7 @@ export const sectors: Sector[] = [
         title: "Pour aller plus loin",
         items: [
           { label: "Le cas client en détail", href: "/cas-clients", body: "Contexte, méthode, chiffres datés de la mission." },
-          { label: "Passer le barrage secrétaire", href: "/guides/barrage-secretaire", body: "Ce qui fait dire oui à l'assistante, appel après appel." },
+          { label: "Prospection externalisée", href: "/prospection-externalisee", body: "Notre méthode, mission par mission." },
           { label: "Le logiciel utilisé", href: "/logiciel", body: "La file d'appels, les appels enregistrés et le portail client de cette mission." },
         ],
       },

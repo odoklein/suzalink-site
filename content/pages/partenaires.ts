@@ -57,7 +57,7 @@ export const partenairesPage: LandingPage = {
         },
         {
           title: "Recruter pour un client, c'est long",
-          body: "Embaucher et former un téléprospecteur prend des mois. Pour un client que vous accompagnez quelques jours par mois, ça ne tient pas. Nous comparons les options dans [notre guide pour externaliser sa prospection](/guides/externaliser-prospection-commerciale).",
+          body: "Embaucher et former un téléprospecteur prend des mois. Pour un client que vous accompagnez quelques jours par mois, ça ne tient pas. Nos téléprospecteurs sont déjà formés : vous gardez la stratégie, nous passons les appels.",
         },
         {
           title: "Votre client veut des preuves",

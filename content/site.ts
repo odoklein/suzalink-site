@@ -65,7 +65,7 @@ export const site = {
       {
         title: "Ressources",
         links: [
-          { label: "Guides", href: "/guides" },
+          { label: "Pourquoi Suzalink", href: "/pourquoi-suzalink" },
           { label: "Cas clients", href: "/cas-clients" },
           { label: "Secteurs", href: "/secteurs" },
           { label: "Sécurité", href: "/securite" },

@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { sectors } from "@/content/pages/secteurs";
-import { guides } from "@/content/pages/guides";
 import { softwarePages } from "@/content/pages/logiciel";
 import { crmAgencePage } from "@/content/pages/crm-agence-prospection";
 import { equipesPage, solutionsHub } from "@/content/pages/solutions";
@@ -9,7 +8,8 @@ import { tarifsPage } from "@/content/pages/tarifs";
 import { prospectionPage } from "@/content/pages/prospection-externalisee";
 import { partenairesPage } from "@/content/pages/partenaires";
 import { securitePage, casClientsPage, contactPage } from "@/content/pages/ressources";
-import { guidesHub, secteursHub, aPropos } from "@/content/pages/hubs";
+import { pourquoiPage } from "@/content/pages/pourquoi";
+import { secteursHub, aPropos } from "@/content/pages/hubs";
 import { mentionsLegales, confidentialite, cgv, cookies } from "@/content/pages/legal";
 
 /**
@@ -32,12 +32,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     partenairesPage,
     prospectionPage,
     tarifsPage,
+    pourquoiPage,
     securitePage,
     casClientsPage,
     secteursHub,
     ...sectors,
-    guidesHub,
-    ...guides,
     aPropos,
     contactPage,
     { path: "/demo", updated: HOME_UPDATED },

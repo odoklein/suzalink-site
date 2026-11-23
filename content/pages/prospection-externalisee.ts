@@ -56,7 +56,7 @@ export const prospectionPage: LandingPage = {
       items: [
         {
           title: "Recruter un SDR prend des mois",
-          body: "Annonce, entretiens, formation, premiers appels hésitants. Le premier RDV arrive tard. Et si la personne part au bout de six mois, tout recommence. Nous comparons les deux options dans [notre guide pour externaliser sa prospection](/guides/externaliser-prospection-commerciale).",
+          body: "Annonce, entretiens, formation, premiers appels hésitants. Le premier RDV arrive tard. Et si la personne part au bout de six mois, tout recommence. Avec nous, le premier appel part dans la semaine.",
         },
         {
           title: "Les agences montrent des chiffres, pas des appels",
@@ -68,7 +68,7 @@ export const prospectionPage: LandingPage = {
         },
         {
           title: "Le standard filtre, le décideur ne rappelle pas",
-          body: "Assistante, accueil, « il est en réunion ». Passer ce premier filtre demande des rappels à des heures différentes et une phrase d'accroche qui tient en dix secondes. Notre méthode est détaillée dans [passer le barrage secrétaire](/guides/barrage-secretaire).",
+          body: "Assistante, accueil, « il est en réunion ». Passer ce premier filtre demande des rappels à des heures différentes et une phrase d'accroche qui tient en dix secondes. C'est ce que nos téléprospecteurs font toute la journée, et chaque appel est [enregistré](/logiciel/telephonie).",
         },
       ],
     },
@@ -181,7 +181,7 @@ export const prospectionPage: LandingPage = {
         {
           title: "Ce qu'est un RDV qualifié",
           paragraphs: [
-            "Un RDV avec la bonne personne, dans la bonne entreprise, qui a accepté de parler de votre sujet à une date précise. On le définit avec vous dès le cadrage : taille d'entreprise, fonction, besoin, horizon. Un RDV qui ne coche pas ces cases ne vous est pas facturé. Pour les prix pratiqués, lisez [combien coûte un rendez-vous qualifié](/guides/prix-rdv-qualifie).",
+            "Un RDV avec la bonne personne, dans la bonne entreprise, qui a accepté de parler de votre sujet à une date précise. On le définit avec vous dès le cadrage : taille d'entreprise, fonction, besoin, horizon. Un RDV qui ne coche pas ces cases ne vous est pas facturé. Nos prix sont publics : voir les [tarifs](/tarifs#prospection).",
           ],
         },
         {
@@ -238,10 +238,9 @@ export const prospectionPage: LandingPage = {
       items: [
         { label: "Tarifs", href: "/tarifs", body: "Toutes nos offres de prospection et de CRM, prix publics." },
         { label: "Prospection des cabinets dentaires", href: "/secteurs/cabinets-dentaires", body: "Ce que nous avons appris en appelant des milliers de cabinets." },
-        { label: "Guide : externaliser sa prospection", href: "/guides/externaliser-prospection-commerciale", body: "Quand le faire, combien ça coûte, les pièges à éviter." },
-        { label: "Prix d'un RDV qualifié", href: "/guides/prix-rdv-qualifie", body: "Forfait, paiement au RDV, coût interne : le calcul complet." },
+        { label: "Cas clients", href: "/cas-clients", body: "Une mission réelle, chiffres datés à l'appui." },
         { label: "Le logiciel", href: "/logiciel", body: "Vous avez votre propre équipe ? Elle appelle avec notre logiciel." },
-        { label: "Passer le barrage secrétaire", href: "/guides/barrage-secretaire", body: "Les phrases et les horaires qui marchent, tirés de nos appels." },
+        { label: "Pourquoi Suzalink", href: "/pourquoi-suzalink", body: "Ce que vous n'aurez plus à assembler vous-même." },
       ],
     },
     {

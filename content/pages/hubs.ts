@@ -1,48 +1,9 @@
 /**
- * Pages de rubrique : /guides, /secteurs et /a-propos.
- * Les listes se construisent toutes seules à partir de guides.ts et secteurs.ts.
+ * Pages de rubrique : /secteurs et /a-propos.
+ * La liste des secteurs se construit toute seule à partir de secteurs.ts.
  */
-import { guides } from "./guides";
 import { sectors } from "./secteurs";
 import type { LandingPage } from "./types";
-
-export const guidesHub: LandingPage = {
-  path: "/guides",
-  breadcrumb: "Guides",
-  updated: "2026-11-12",
-  meta: {
-    title: "Guides de prospection B2B et prise de rendez-vous",
-    description:
-      "Nos guides de prospection B2B : externaliser, prix d'un RDV qualifié, barrage secrétaire. Écrits par une équipe qui appelle tous les jours.",
-  },
-  hero: {
-    eyebrow: "Ressources",
-    title: "Ce que nous apprenons en appelant tous les jours",
-    lead: "Des guides courts et chiffrés, écrits par l'équipe de Suzali Conseil à partir de ses propres missions. Pas de théorie recopiée : ce qui marche au téléphone, et ce qui ne marche pas.",
-    primary: { label: "Lancer un sprint test", href: "/demo?offre=sprint" },
-    secondary: { label: "Voir les secteurs", href: "/secteurs" },
-  },
-  blocks: [
-    {
-      kind: "links",
-      id: "guides",
-      eyebrow: "Guides",
-      title: "Pour bien prospecter",
-      items: guides.map((g) => ({ label: g.name, href: g.path, body: g.summary })),
-    },
-    {
-      kind: "links",
-      id: "aller-plus-loin",
-      eyebrow: "Nos offres",
-      title: "Quand vous voulez passer à l'action",
-      items: [
-        { label: "Prospection externalisée", href: "/prospection-externalisee", body: "Nos téléprospecteurs prennent vos RDV, chaque appel est visible." },
-        { label: "Le logiciel", href: "/logiciel", body: "Votre équipe appelle avec notre logiciel : enregistrements, fiche IA, portail client." },
-        { label: "Tarifs", href: "/tarifs", body: "Prix publics, hors taxes, sans « nous consulter »." },
-      ],
-    },
-  ],
-};
 
 export const secteursHub: LandingPage = {
   path: "/secteurs",
@@ -58,7 +19,7 @@ export const secteursHub: LandingPage = {
     title: "Chaque cible se prospecte différemment",
     lead: "Un cabinet dentaire ne décroche pas comme une direction financière. Nous ne publions une page secteur que lorsqu'une vraie mission nous a appris quelque chose de chiffré.",
     primary: { label: "Tester sur mon secteur", href: "/demo?offre=sprint" },
-    secondary: { label: "Lire les guides", href: "/guides" },
+    secondary: { label: "Voir les cas clients", href: "/cas-clients" },
   },
   blocks: [
     {
@@ -156,7 +117,7 @@ export const aPropos: LandingPage = {
       items: [
         { label: "Prospection externalisée", href: "/prospection-externalisee", body: "Nos téléprospecteurs prennent vos RDV." },
         { label: "Le logiciel", href: "/logiciel", body: "Le logiciel de prospection téléphonique, à votre marque." },
-        { label: "Nos guides", href: "/guides", body: "Ce que nous apprenons au téléphone." },
+        { label: "Pourquoi Suzalink", href: "/pourquoi-suzalink", body: "Ce qui nous distingue, sans détour." },
       ],
     },
   ],

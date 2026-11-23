@@ -120,20 +120,18 @@ export const menu: MenuItem[] = [
     label: "Ressources",
     columns: [
       {
-        title: "Guides",
+        title: "Choisir",
         layout: "list",
         links: [
-          { label: "Externaliser sa prospection", href: "/guides/externaliser-prospection-commerciale", body: "Quand, comment, à quel prix.", icon: "book" },
-          { label: "Prix d'un RDV qualifié", href: "/guides/prix-rdv-qualifie", body: "Le calcul, avec nos chiffres.", icon: "chart" },
-          { label: "Passer le barrage secrétaire", href: "/guides/barrage-secretaire", body: "Ce qui marche au téléphone.", icon: "phone" },
-          { label: "Tous les guides", href: "/guides", icon: "grid" },
+          { label: "Pourquoi Suzalink", href: "/pourquoi-suzalink", body: "Un outil au lieu de cinq abonnements.", icon: "target" },
+          { label: "Tarifs", href: "/tarifs", body: "Deux offres, un prix par utilisateur.", icon: "chart" },
+          { label: "Cas clients", href: "/cas-clients", body: "Des missions réelles, en chiffres.", icon: "book" },
         ],
       },
       {
         title: "Suzalink",
         layout: "list",
         links: [
-          { label: "Cas clients", href: "/cas-clients", body: "Des missions réelles, en chiffres.", icon: "target" },
           { label: "Secteurs", href: "/secteurs", body: "Ce que nous avons déjà appelé.", icon: "map" },
           { label: "Sécurité", href: "/securite", body: "Une base de données par client.", icon: "shield", tile: "/creative/instance.svg" },
           { label: "À propos", href: "/a-propos", icon: "users" },

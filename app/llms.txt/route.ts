@@ -3,9 +3,9 @@ import { prospectionPage } from "@/content/pages/prospection-externalisee";
 import { crmAgencePage } from "@/content/pages/crm-agence-prospection";
 import { tarifsPage } from "@/content/pages/tarifs";
 import { partenairesPage } from "@/content/pages/partenaires";
-import { guides } from "@/content/pages/guides";
 import { sectors } from "@/content/pages/secteurs";
 import { aPropos } from "@/content/pages/hubs";
+import { pourquoiPage } from "@/content/pages/pourquoi";
 import { softwarePages } from "@/content/pages/logiciel";
 import { equipesPage, solutionsHub } from "@/content/pages/solutions";
 import { securitePage, casClientsPage, contactPage } from "@/content/pages/ressources";
@@ -36,12 +36,10 @@ export function GET() {
     "",
     "## Tarifs",
     line(tarifsPage),
+    line(pourquoiPage),
     "",
     "## Secteurs",
     ...sectors.map(line),
-    "",
-    "## Guides",
-    ...guides.map(line),
     "",
     "## Entreprise",
     line(casClientsPage),

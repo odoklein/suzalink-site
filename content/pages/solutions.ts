@@ -91,7 +91,7 @@ export const equipesPage: LandingPage = {
       items: [
         { label: "Le logiciel", href: "/logiciel", body: "Toutes les fonctions, autour d'un appel." },
         { label: "Tarifs", href: "/tarifs", body: "Deux offres, un prix par utilisateur, hors taxes." },
-        { label: "Passer le barrage secrétaire", href: "/guides/barrage-secretaire", body: "Le guide à partager avec votre équipe, tiré de nos appels." },
+        { label: "Pourquoi Suzalink", href: "/pourquoi-suzalink", body: "Un outil au lieu de cinq abonnements." },
       ],
     },
     {
